@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import Navbar from './components/Navbar'
 import Form from './components/Form'
+import './App.css'
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar />
+      <main>
+        <h1 className="title">Destaques</h1>
         <Form />
-      </div>
+      </main>
     )
   }
 }

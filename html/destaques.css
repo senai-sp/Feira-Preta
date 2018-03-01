@@ -1,0 +1,69 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* NAVBAR */
+.navbar{
+    background-color: #ee2c2e;
+    height: 3rem;
+}
+.navbar__logo{
+    height: inherit;
+    padding-left: 0.5rem;
+}
+.navbar__links{
+    float: right;
+    list-style-type: none;
+    padding-right: 0.5rem;
+}
+.menu-item{
+    display: inline-block;
+    padding-top: 1rem;
+}
+.menu-link{
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+/* MAIN */
+.title{
+    text-align: center;
+    text-transform: uppercase;
+}
+/* FORM */
+.feature-form{
+    margin-left: 2.5%;
+    padding: 0.5rem;
+    width: 95%;
+}
+.feature-form__input{
+    display: block;
+    margin-bottom: 0.25rem;
+    width: 100%;
+}
+/* BOTÃO */
+.button{
+    padding: 0 0.5rem;
+    text-decoration: none;
+}
+.button--primary{
+    color: #008000;
+}
+.button--secondary{
+    color: #ee2c2e;
+}
+/*.button--outline{
+    border: 1px solid #aeb2b8;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+}*/
+.features{
+    margin-left: 2.5%;
+    width: 95%;
+}
+.link{
+    color: #000000;
+    text-decoration: none;
+}
