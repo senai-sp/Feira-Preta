@@ -1,16 +1,14 @@
-.button{
+/*.button{
     border-radius: 1.5625rem;
     text-decoration: none;
-}
+}*/
 .button--primary{
-    background-color: #000000;
-    color: #ffffff;
-    padding: 1rem 1.5rem;
+    /*background-color: #000000;*/
+    color: #008000;
 }
 .button--secondary{
-    background-color: #ee2c2e;
-    color: #ffffff;
-    padding: 1rem 1.5rem;
+    /*background-color: #ee2c2e;*/
+    color: #ee2c2e;
 }
 /*.button--outline{
     border: 1px solid #aeb2b8;
