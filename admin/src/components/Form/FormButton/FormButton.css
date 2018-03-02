@@ -1,0 +1,10 @@
+.button{
+    padding: 0 0.5rem;
+    text-decoration: none;
+}
+.button--primary{
+    color: #008000;
+}
+.button--secondary{
+    color: #ee2c2e;
+}

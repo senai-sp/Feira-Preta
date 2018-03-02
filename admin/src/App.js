@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Form from './components/Form'
+import Features from './components/Features'
+import './App.css'
+import Card from './components/Card'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <main>
+        <h1 className="title">Destaques</h1>
+        <Form />
+        <Features />
+        <Card image="http://www.telesintese.com.br/wp-content/uploads/2015/09/OGB-INSIDER-BLOGS-GoogleLogox2-Animated.gif" text="Teste de texto" user="Camila IBS" />
+      </main>
+    )
   }
 }
 

@@ -1,0 +1,24 @@
+.navbar{
+    background-color: #ee2c2e;
+    height: 3rem;
+}
+.navbar__logo{
+    height: inherit;
+    padding-left: 0.5rem;
+}
+.navbar__links{
+    display: inline-block;
+    float: right;
+    list-style-type: none;
+    padding-right: 0.5rem;
+}
+.menu-item{
+    display: inline-block;
+    padding-top: 1rem;
+}
+.menu-link{
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
