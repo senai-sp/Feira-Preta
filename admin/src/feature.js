@@ -7,7 +7,7 @@ export default class Feature {
         return this._link
     }
 
-    set posicao(novoPosicao) {
+    set posicao(newLink) {
         this._link = newLink
     }
 }

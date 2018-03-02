@@ -1,5 +1,5 @@
 import * as actionsTypes from '../actions'
-import Feature from '../feature'
+
 
 const initialState = {
     features: []
@@ -8,9 +8,8 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case actionsTypes.ADD_FEATURE:
-            const newFeature = new Feature(action.link)
             return {
-                features: state.features.concat(newFeature)
+                features: state.features.concat(action.posts)
             }
         default:
             return state
