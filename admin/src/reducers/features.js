@@ -1,13 +1,36 @@
-import { ADD_FEATURE } from '../actions'
-// import Nota from '../nota'
+import * as actionsTypes from '../actions'
+import Feature from '../feature'
 
+const initialState = {
+    features: []
+}
 
-export function notas(estadoAtual = [], acao) {
-    switch(acao.type) {
-        case ADD_FEATURE:
-            const novaNota = new Nota(acao.posicao, acao.titulo, acao.texto)
-            return estadoAtual.concat(novaNota)
+export default function reducer(state = initialState, action) {
+    switch(action.type) {
+        case actionsTypes.ADD_FEATURE:
+            const newFeature = new Feature(action.link)
+            return {
+                features: state.features.concat(newFeature)
+            }
         default:
-            return estadoAtual
+            return state
     }
 }
+
+
+
+// const initialState = {
+//     url: 'https://redux.js.org/basics/actions'
+// }
+
+// const reducer = (state, action) => {
+//     switch (action.type) {
+//         case actionsTypes.ADD_FEATURE:
+//             const newPost = new Post(action.link)
+//             return estadoAtual.concat(novaNota)
+//         default:
+//             return state
+//     }
+// }
+
+// export default reducer
