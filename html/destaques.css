@@ -2,33 +2,36 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 /* NAVBAR */
 .navbar{
-    background-color: #ee2c2e;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     height: 3rem;
+    background-color: #b04632;
 }
 .navbar__logo{
     height: inherit;
-    padding-left: 0.5rem;
 }
 .navbar__links{
-    float: right;
-    list-style-type: none;
-    padding-right: 0.5rem;
+    list-style: none;
 }
 .menu-item{
     display: inline-block;
-    padding-top: 1rem;
+    padding: 1rem 3rem;
 }
 .menu-link{
-    color: #ffffff;
+    color: #000000;
     font-weight: bold;
     text-decoration: none;
-    text-transform: uppercase;
+    
+    letter-spacing: 3px;
 }
 /* MAIN */
 .title{
+    margin-top: 1rem;
     text-align: center;
     text-transform: uppercase;
 }
@@ -46,13 +49,16 @@
 /* BOTÃO */
 .button{
     padding: 0 0.5rem;
+    font-size: 1.5rem;
     text-decoration: none;
+    border-radius: 3px;
+    background-color: #ffffff;
 }
 .button--primary{
-    color: #008000;
+    border: 2px solid #008000; 
 }
 .button--secondary{
-    color: #ee2c2e;
+    border: 2px solid #ec2e2b;    
 }
 /*.button--outline{
     border: 1px solid #aeb2b8;
@@ -62,8 +68,4 @@
 .features{
     margin-left: 2.5%;
     width: 95%;
-}
-.link{
-    color: #000000;
-    text-decoration: none;
 }
