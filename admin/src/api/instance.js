@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'https://limitless-harbor-35826.herokuapp.com'
+    baseURL: 'https://feirapreta-001-site1.ctempurl.com/api'
 })
 
 export default instance

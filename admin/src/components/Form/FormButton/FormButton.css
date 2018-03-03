@@ -1,10 +1,13 @@
 .button{
     padding: 0 0.5rem;
+    font-size: 1.5rem;
     text-decoration: none;
+    border-radius: 3px;
+    background-color: #ffffff;
 }
 .button--primary{
-    color: #008000;
+    border: 2px solid #008000; 
 }
 .button--secondary{
-    color: #ee2c2e;
+    border: 2px solid #ec2e2b;    
 }

@@ -1,21 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './Features.css'
+import Card from '../Card'
 
 const Features = props => {
     return (
         <section className='features'>
             <h2 className='title'>Destaques Cadastrados</h2>
-            {
-                props.features.map(feature => (
-                    <div >
-                        <img src={feature.images.standard_resolution.url} />
-                        <h4>{feature.user.full_name}</h4>
-                        <p>{feature.caption ? feature.caption.text : 'Sem legenda'}</p>
-                        <a href={feature.link}>{feature.link}</a>
-                    </div>
+            <div className='features__cards'>
+                {
+                props.features.map((feature, index) => (
+                    <Card key={index} image={feature.images.standard_resolution.url} text={feature.caption ? feature.caption.text : 'Sem legenda'} user={feature.user.full_name} />
                 ))
             }
+            </div>
+            
         </section>
     )
 }

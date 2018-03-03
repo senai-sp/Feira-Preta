@@ -2,6 +2,13 @@
     margin-left: 5%;
     width: 90%;
 }
+
+.features__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .link{
     color: #000000;
     text-decoration: none;

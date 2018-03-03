@@ -5,21 +5,27 @@ import FormButton from './FormButton'
 import { addFeature } from '../../actions'
 import './Form.css'
 
-const Form = props => (
-    <form className='feature-form' onSubmit={(event) => {
-        event.preventDefault()
-        props.enviaLink()
+const Form = props => {
+    let link = '';
+
+    return (
+        <form className='feature-form' onSubmit={(event) => {
+            event.preventDefault()
+            props.enviaLink(link)
         }} >
-        <p>Incluir Destaque</p>
-        <FormInput className='feature-form__input' />
-        <FormButton className='button button--secondary' children='Cancelar'/>
-        <FormButton className='button button--primary' children='Enviar'/>
-    </form>
-)
+            <p>Incluir Destaque</p>
+            <FormInput className='feature-form__input' onChange={evento => link = evento.target.value} />
+            <FormButton className='button button--secondary' children='Cancelar' />
+            <FormButton className='button button--primary' children='Enviar' />
+        </form>
+    )
+
+}
 
 const mapDispatchToProps = dispatch => ({
-    enviaLink: () => {
-        dispatch(addFeature(''))
+    enviaLink: link => {
+        console.log('link', link)
+        dispatch(addFeature(link))
     }
 })
 
