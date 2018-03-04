@@ -1,15 +1,14 @@
 .navbar {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 3rem;
-    padding: 0 5%;
+    height: 5rem;
     background-color: #ec2e2b;
 }
 
 .navbar__logo {
-    height: inherit;
+    height: 3rem;
 }
 
 .navbar-links {
@@ -20,15 +19,12 @@
     display: inline-block;
 }
 
-.navbar-links__item + .navbar-links__item {
-    margin-left: 1rem;
-}
-
 .link {
-    color: #000000;
+    margin: .5rem;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    letter-spacing: 3px;
+    color: #000000;
 }
 
 .link:hover {
@@ -36,5 +32,18 @@
 }
 
 @media (min-width: 768px) {
-    
+    .navbar{
+        flex-direction: row;
+        justify-content: space-between;
+        height: 4rem;
+    }
+
+    .navbar__logo{
+        height: inherit;
+    }
+
+    .menu-link{
+        margin: 1rem;
+        font-size: 1.5rem;
+    }
 }
