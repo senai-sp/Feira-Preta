@@ -1,6 +1,6 @@
 import React from 'react'
-import FeaturesForm from '../FeaturesForm'
-import FeaturesList from '../FeaturesList'
+import FeaturesForm from '../../FeaturesForm'
+import FeaturesList from '../../FeaturesList'
 import './Features.css'
 
 

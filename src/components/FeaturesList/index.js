@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listFeatures } from '../../actions'
 import Card from '../Card'
 import './FeaturesList.css'
 
 
-class Features extends React.Component {
+class FeaturesList extends Component {
     componentDidMount() {
         this.props.dispatchListFeatures()
     }
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Features)
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturesList)

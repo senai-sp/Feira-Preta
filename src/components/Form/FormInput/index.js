@@ -1,16 +1,43 @@
 import React from 'react'
+import classnames from 'classnames'
 import './FormInput.css'
 
 
-function classnames(className, secondary){
-    let classes = ['form-input', className];
+class FormInput extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { error: undefined }
+        this.validate = this.validate.bind(this)
+    }
 
-    return classes.join(' ')
+    validate(event) {
+        let value = event.target.value
+        const regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+        const pattern = new RegExp(regex, 'i');
+
+        if (value === '') {
+            this.props.onChange(value, true)
+            this.setState({ error: 'Campo obrigatório' });
+        } else if(!pattern.test(value)) {
+            this.props.onChange(value, true)
+            this.setState({ error: 'Endereço incorreto' });
+        } else {
+            this.props.onChange(value, false)
+            this.setState({ error: undefined });
+        }
+    }
+
+    render() {
+        const { className, onChange, ...props } = this.props
+
+        return (
+            <fieldset>
+                <input className={classnames('form-input', { 'form-input--error': this.state.error })} {...props} onChange={this.validate} />
+                {this.state.error && <p className="form-input__error">{this.state.error}</p>}
+            </fieldset>
+        )
+
+    }
 }
-
-
-const FormInput = ({ className, ...props }) => (
-    <input className={classnames(className)} {...props} />
-)
 
 export default FormInput

@@ -6,19 +6,37 @@ import FormButton from '../Form/FormButton'
 import './FeaturesForm.css'
 
 
-const FeaturesForm = props => {
-    let link = '';
+class FeaturesForm extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { isInvalid: false }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+    }
 
-    return (
-        <form className='features-form' onSubmit={(event) => {
-            event.preventDefault()
-            props.dispatchAddFeature(link)
-        }} >
-            <FormInput type="url" onChange={event => link = event.target.value} />
-            <FormButton>Enviar</FormButton>
-        </form>
-    )
+    handleSubmit(event) {
+        event.preventDefault()
+        this.props.dispatchAddFeature(this.value)
+    }
 
+    handleChange(value, isInvalid) {
+        this.value = value
+        this.setState({ isInvalid });
+    }
+
+    render() {
+        const buttonProps = {}
+        if (this.state.isInvalid) {
+            buttonProps.disabled = true
+        }
+
+        return (
+            <form className='features-form' onSubmit={this.handleSubmit} >
+                <FormInput type="url" onChange={this.handleChange} />
+                <FormButton { ...buttonProps }>Enviar</FormButton>
+            </form>
+        )
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
