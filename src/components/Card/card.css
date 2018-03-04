@@ -1,0 +1,43 @@
+.card {
+    display: inline-block;
+    max-width: 400px;
+    height: 500px;
+    padding: 1rem;
+    margin: .5rem;
+    border: solid #808080 1px;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+    overflow: auto;
+}
+
+.card__delete {
+    color: #808080;
+    font-size: 1.5rem;
+    float: right;
+    margin-bottom: .8rem;
+    border: 0;
+    background-color: #ffffff;
+}
+
+.card__delete:hover {
+    cursor: pointer;
+    color: #ec2e2b;
+}
+
+.card__user {
+    margin: 0 0 0.8rem;
+}
+
+.card__image {
+    height: 360px;
+    width: 100%;
+    margin: 0 0 0.8rem;
+    border: solid #808080 1px;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+}
+
+.card__text, .card__user {
+    color: #808080;
+    text-align: center;
+}
