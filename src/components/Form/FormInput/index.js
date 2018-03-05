@@ -17,10 +17,10 @@ class FormInput extends React.Component {
 
         if (value === '') {
             this.props.onChange(value, true)
-            this.setState({ error: 'Campo obrigatório' });
+            this.setState({ error: '*campo obrigatório' });
         } else if(!pattern.test(value)) {
             this.props.onChange(value, true)
-            this.setState({ error: 'Endereço incorreto' });
+            this.setState({ error: '*endereço incorreto' });
         } else {
             this.props.onChange(value, false)
             this.setState({ error: undefined });

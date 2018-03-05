@@ -2,6 +2,7 @@
     color: #008000;
     font-size: 1.5rem;
     text-decoration: none;
+    margin-top: .5rem;
     padding: 0.25rem 0.5rem;
     border: 2px solid #008000; 
     border-radius: 3px;
@@ -11,4 +12,9 @@
 .form-button--secondary {
     color: #ec2e2b;
     border: 2px solid #ec2e2b;    
+}
+
+.form-button:disabled {
+    color: #808080;
+    border: 2px solid #808080;
 }
