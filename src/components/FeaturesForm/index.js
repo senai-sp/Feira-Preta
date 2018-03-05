@@ -14,7 +14,7 @@ const FeaturesForm = props => {
             event.preventDefault()
             props.dispatchAddFeature(link)
         }} >
-            <FormInput type="url" onChange={event => link = event.target.value} />
+            <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={event => link = event.target.value} />
             <FormButton>Enviar</FormButton>
         </form>
     )

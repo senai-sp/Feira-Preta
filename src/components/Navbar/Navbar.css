@@ -19,27 +19,40 @@
     display: inline-block;
 }
 
+li:nth-of-type(2) {
+    border-left: .1rem solid black;
+    border-right: .1rem solid black;
+}
+
 .link {
     margin: .5rem;
     font-size: 1rem;
     font-weight: bold;
+    letter-spacing: .1rem;
     text-decoration: none;
     color: #000000;
 }
 
-.link:hover {
+.link:hover, link:active {
     color: #ffffff;
 }
 
 @media (min-width: 768px) {
     .navbar{
         flex-direction: row;
-        justify-content: space-between;
         height: 4rem;
     }
 
     .navbar__logo{
         height: inherit;
+        margin-left: 5%;
+    }
+
+    .navbar-links {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+        margin-right: 5%;
     }
 
     .menu-link{
