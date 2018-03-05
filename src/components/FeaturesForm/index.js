@@ -32,7 +32,7 @@ class FeaturesForm extends React.Component {
 
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
-                <FormInput type="url" onChange={this.handleChange} />
+                <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
                 <FormButton { ...buttonProps }>Enviar</FormButton>
             </form>
         )
