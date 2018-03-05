@@ -8,7 +8,7 @@ export function addFeature(link) {
     return dispatch => {
         postLink(link) 
             .then(() => dispatch(listFeatures()))
-            .catch(error => console.log('error', error))
+            .catch(error => alert('Houve algum problema e o link não cadastrado! Verifique o endereço e tente novamente.'))
     }
 }
 
@@ -19,6 +19,6 @@ export function listFeatures() {
                 type: LIST_FEATURES,
                 features: response.data
             }))
-            .catch(error => console.log('error', error))
+            .catch(error => alert('Houve um problema e não conseguimos carregar a lista de destaques!'))
     }
 }
