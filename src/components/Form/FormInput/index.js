@@ -12,7 +12,7 @@ class FormInput extends React.Component {
 
     validate(event) {
         let value = event.target.value
-        const regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+        const regex = /^https:\/\/www\.instagram\.com(\/(p)\/)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
         const pattern = new RegExp(regex, 'i');
 
         if (value === '') {
