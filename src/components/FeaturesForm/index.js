@@ -29,15 +29,22 @@ class FeaturesForm extends React.Component {
         if (this.state.isInvalid) {
             buttonProps.disabled = true
         }
+        console.log(this.props)
 
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
+                {this.props.error && <div>{this.props.error}</div>}
                 <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
-                <FormButton { ...buttonProps }>Enviar</FormButton>
+                <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
             </form>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    isLoading: state.isLoading,
+    error: state.error
+})
 
 const mapDispatchToProps = dispatch => ({
     dispatchAddFeature: link => {
@@ -45,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(null, mapDispatchToProps)(FeaturesForm)
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturesForm)
