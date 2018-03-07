@@ -1,14 +1,47 @@
 import { postLink, getLinks } from '../api/features'
-
-
+// import { setLoad } from './api'
 export const ADD_FEATURE = 'ADD_FEATURE'
+export const ADD_FEATURE_FAILURE = 'ADD_FEATURE_FAILURE'
+export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
 export const LIST_FEATURES = 'LIST_FEATURES'
+
+function addFeatureFailure(error) {
+    return {
+        type: ADD_FEATURE_FAILURE,
+        error
+    }
+}
+
+function addFeatureSuccess() {
+    return dispatch => {
+        dispatch({
+            type: ADD_FEATURE_SUCCESS,
+        })
+        dispatch(listFeatures())
+    }
+}
 
 export function addFeature(link) {
     return dispatch => {
-        postLink(link) 
-            .then(() => dispatch(listFeatures()))
-            .catch(error => alert('Houve algum problema e o link não cadastrado! Verifique o endereço e tente novamente.'))
+        dispatch({
+            type: ADD_FEATURE
+        })
+        postLink(link)
+            .then(() => {
+                dispatch(cleanInput())
+                dispatch(addFeatureSuccess())
+            })
+            .catch(error => {
+                console.log(error)
+                if (error.name == 'NetworkError') {
+                    dispatch(addFeatureFailure('Erro de conexão'))
+                } else if (error.response.status == 409) {
+                    dispatch(addFeatureFailure('Destaque já cadastrado'))
+                } else {
+                    dispatch(addFeatureFailure('Não foi possível adicionar o link'))
+                }
+            })
+            
     }
 }
 
