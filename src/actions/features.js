@@ -1,6 +1,5 @@
 import { postLink, getLinks } from '../api/features'
-import { setLoad } from './api'
-
+// import { setLoad } from './api'
 export const ADD_FEATURE = 'ADD_FEATURE'
 export const ADD_FEATURE_FAILURE = 'ADD_FEATURE_FAILURE'
 export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
@@ -27,14 +26,15 @@ export function addFeature(link) {
         dispatch({
             type: ADD_FEATURE
         })
-        postLink(link) 
+        postLink(link)
             .then(() => {
+                dispatch(cleanInput())
                 dispatch(addFeatureSuccess())
             })
             .catch(error => {
                 console.log(error)
                 if (error.name == 'NetworkError') {
-                    dispatch(addFeatureFailure('Erro de conexão errado'))
+                    dispatch(addFeatureFailure('Erro de conexão'))
                 } else if (error.response.status == 409) {
                     dispatch(addFeatureFailure('Destaque já cadastrado'))
                 } else {
