@@ -28,7 +28,6 @@ export function addFeature(link) {
         })
         postLink(link)
             .then(() => {
-                dispatch(cleanInput())
                 dispatch(addFeatureSuccess())
             })
             .catch(error => {

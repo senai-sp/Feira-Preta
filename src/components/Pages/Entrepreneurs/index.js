@@ -1,11 +1,11 @@
 import React from 'react'
 import './Entrepreneurs.css'
-import EnterpreneursForm from '../../EnterpreneursForm'
+import EntrepreneursForm from '../../EntrepreneursForm'
 
 const Entrepreneurs = () => (
     <article className="entrepreneurs">
         <h1 className="entrepreneurs__title">Empreendores</h1>
-        <EnterpreneursForm />
+        <EntrepreneursForm />
     </article> 
 )
 
