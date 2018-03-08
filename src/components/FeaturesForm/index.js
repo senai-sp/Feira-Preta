@@ -33,8 +33,8 @@ class FeaturesForm extends React.Component {
 
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
-                {this.props.error && <div>{this.props.error}</div>}
                 <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
+                {this.props.error && <div>{this.props.error}</div>}
                 <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
             </form>
         )

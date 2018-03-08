@@ -28,18 +28,18 @@ export function addFeature(link) {
         })
         postLink(link)
             .then(() => {
-                dispatch(cleanInput())
                 dispatch(addFeatureSuccess())
             })
             .catch(error => {
                 console.log(error)
-                if (error.name == 'NetworkError') {
-                    dispatch(addFeatureFailure('Erro de conexão'))
-                } else if (error.response.status == 409) {
-                    dispatch(addFeatureFailure('Destaque já cadastrado'))
-                } else {
-                    dispatch(addFeatureFailure('Não foi possível adicionar o link'))
-                }
+                dispatch(addFeatureFailure('Houve um problema com o cadastro do destaque. Verifique o link e tente novamente.'))
+                // if (error.name == 'NetworkError') {
+                //     dispatch(addFeatureFailure('Erro de conexão'))
+                // } else if (error.response.status == 409) {
+                //     dispatch(addFeatureFailure('Destaque já cadastrado'))
+                // } else {
+                //     dispatch(addFeatureFailure('Não foi possível adicionar o link'))
+                // }
             })
             
     }
