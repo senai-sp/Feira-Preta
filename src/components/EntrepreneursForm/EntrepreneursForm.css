@@ -1,4 +1,9 @@
 .enterpreneurs-form {
-    display: flex;
-    justify-content: space-around;
+    width: 50%;
+    min-width: 340px;
+    margin: 0 auto;
+}
+
+.form-input {
+   margin: .5rem 0;
 }
