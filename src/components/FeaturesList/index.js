@@ -33,6 +33,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatchListFeatures: () => {
         dispatch(listFeatures())
+        console.log(dispatch)
     }
 })
 

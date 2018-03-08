@@ -1,6 +1,6 @@
 import instance from './instance'
 
 
-export function postEntrepreneurs(instaUser, phoneUser) {
-    return instance.post('URL', { instaUser, phoneUser })
+export function postEntrepreneurs(userName, phoneNumber) {
+    return instance.post('URL', { userName, phoneNumber })
 }

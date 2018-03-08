@@ -32,12 +32,11 @@ export function addFeature(link) {
             })
             .catch(error => {
                 console.log(error)
-                console.log(error.data)
-                if (error.response == 'NetworkError') {
+                if (error == 'NetworkError') {
                     dispatch(addFeatureFailure('Erro de conexão'))
-                } else if (error.response == 409) {
+                } else if (error == 409) {
                     dispatch(addFeatureFailure('Destaque já cadastrado'))
-                } else if (error.response == 500) {
+                } else if (error == 500) {
                     dispatch(addFeatureFailure('EVOLUCAO'))
                 } else {
                     dispatch(addFeatureFailure('Não foi possível adicionar o link'))
