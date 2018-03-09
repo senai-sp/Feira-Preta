@@ -17,13 +17,11 @@ class FeaturesForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         this.props.dispatchAddFeature(this.value)
-        console.log(this.value)       
     }
 
     handleChange(value, isInvalid) {
         this.value = value
         this.setState({ isInvalid });
-        console.log(this.value)
     }
 
     render() {
@@ -31,8 +29,6 @@ class FeaturesForm extends React.Component {
         if (this.state.isInvalid) {
             buttonProps.disabled = true
         }
-        console.log(this.props)
-
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
                 {this.props.error && <div>{this.props.error}</div>}

@@ -10,18 +10,14 @@ class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
-
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        // console.log(this.conta, this.telefone)
         this.props.dispatchAddEntrepreneur(this.userName, this.phoneNumber)
-        console.log(this.userName, this.phoneNumber)
-        console.log(this.props.dispatchAddEntrepreneur)
-        // this.props.dispatchAddFeature(this.value)
+        event.target.reset()
     }
 
     handleUserInput(event) {
@@ -43,15 +39,15 @@ class EnterpreneursForm extends React.Component {
                     keepCharPositions={true}
                     onChange={this.handlePhoneInput}
             />
-            <FormButton>Enviar</FormButton>
-        </form>   
+            <FormButton type="submit">Enviar</FormButton>
+        </form>
         )
 
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    dispatchAddEntrepreneur: (userName, phoneNumber) => (dispatch(addEntrepreneur( { userName, phoneNumber })))
+    dispatchAddEntrepreneur: (userName, phoneNumber) => (dispatch(addEntrepreneur( userName, phoneNumber )))
 })
 
 export default connect(null, mapDispatchToProps)(EnterpreneursForm)

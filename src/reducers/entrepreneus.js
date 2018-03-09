@@ -10,7 +10,8 @@ export function reducer(state = initialState, action) {
     switch(action.type) {
         case actionsTypes.ADD_ENTREPRENEUR:
             return {
-                ...state,
+                ...state
+                }
             }
         case actionsTypes.ADD_ENTREPRENEUR_FAILURE:
             return {
