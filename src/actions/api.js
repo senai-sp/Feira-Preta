@@ -1,9 +1,9 @@
-export const LOADING = 'LOADING'
+// export const LOADING = 'LOADING'
 
-export function setLoad (value) {
-    return {
-        type: LOADING,
-        value
-    }
+// export function setLoad (value) {
+//     return {
+//         type: LOADING,
+//         value
+//     }
         
-}
+// }

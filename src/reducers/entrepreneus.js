@@ -11,7 +11,6 @@ export function reducer(state = initialState, action) {
         case actionsTypes.ADD_ENTREPRENEUR:
             return {
                 ...state
-                }
             }
         case actionsTypes.ADD_ENTREPRENEUR_FAILURE:
             return {

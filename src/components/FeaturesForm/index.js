@@ -12,6 +12,8 @@ class FeaturesForm extends React.Component {
         this.state = { isInvalid: false }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.validate = this.validate.bind(this)
+        this.handleBla = this.handleBla.bind(this)
     }
 
     handleSubmit(event) {
@@ -19,9 +21,32 @@ class FeaturesForm extends React.Component {
         this.props.dispatchAddFeature(this.value)
     }
 
+    handleBla(value, isInvalid, event) {
+        this.handleChange(value, isInvalid)
+        this.validate(event)
+        console.log(value, isInvalid, event)
+    }
+
     handleChange(value, isInvalid) {
         this.value = value
-        this.setState({ isInvalid });
+        this.setState({ isInvalid })
+    }
+
+    validate(event) {
+        let value = event.target.value
+        const regex = /^https:\/\/www\.instagram\.com(\/(p)\/)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+        const pattern = new RegExp(regex, 'i');
+
+        if (value === '') {
+            this.props.onChange(value, true)
+            this.setState({ error: '*campo obrigatório' });
+        } else if(!pattern.test(value)) {
+            this.props.onChange(value, true)
+            this.setState({ error: '*endereço incorreto' });
+        } else {
+            this.props.onChange(value, false)
+            this.setState({ error: undefined });
+        }
     }
 
     render() {
@@ -31,8 +56,10 @@ class FeaturesForm extends React.Component {
         }
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
-                {this.props.error && <div>{this.props.error}</div>}
-                <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
+                {/* {this.props.errorMessage && <div>{this.props.errorMessage}</div>} */}
+                {this.state.error && <p className="form-input__error">{this.state.error}</p>}
+                <div>{this.props.errorMessage}</div>
+                <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleBla} />
                 <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
             </form>
         )
@@ -41,7 +68,7 @@ class FeaturesForm extends React.Component {
 
 const mapStateToProps = state => ({
     isLoading: state.isLoading,
-    error: state.error
+    errorMessage: state.errorMessage
 })
 
 const mapDispatchToProps = dispatch => ({

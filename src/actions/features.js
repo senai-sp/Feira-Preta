@@ -5,10 +5,10 @@ export const ADD_FEATURE_FAILURE = 'ADD_FEATURE_FAILURE'
 export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
-function addFeatureFailure(error) {
+function addFeatureFailure(errorMessage) {
     return {
         type: ADD_FEATURE_FAILURE,
-        error
+        errorMessage
     }
 }
 
@@ -31,15 +31,13 @@ export function addFeature(link) {
                 dispatch(addFeatureSuccess())
             })
             .catch(error => {
-                console.log(error)
-                if (error == 'NetworkError') {
-                    dispatch(addFeatureFailure('Erro de conexão'))
-                } else if (error == 409) {
+                // console.log(error)
+                if (error == 409) {
                     dispatch(addFeatureFailure('Destaque já cadastrado'))
-                } else if (error == 500) {
-                    dispatch(addFeatureFailure('EVOLUCAO'))
+                } else if (error == "Error: Network Error") {
+                    dispatch(addFeatureFailure('Não foi possível cadastrar o destaque'))
                 } else {
-                    dispatch(addFeatureFailure('Não foi possível adicionar o link'))
+                    dispatch(addFeatureFailure('Não foi possível adicionar o o destaque'))
                 }
             })
             
