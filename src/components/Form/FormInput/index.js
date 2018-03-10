@@ -18,7 +18,7 @@ class FormInput extends React.Component {
         if (value === '') {
             this.props.onChange(value, true)
             this.setState({ error: '*campo obrigatório' });
-        } else if(!pattern.test(value)) {
+        } else if(this.props.type == 'url' && !pattern.test(value)) {
             this.props.onChange(value, true)
             this.setState({ error: '*endereço incorreto' });
         } else {
