@@ -17,6 +17,7 @@
      handleSubmit(event) {
          event.preventDefault()
          this.props.dispatchAddFeature(this.value)
+         event.target.reset()
      }
  
      handleChange(value, isInvalid) {
