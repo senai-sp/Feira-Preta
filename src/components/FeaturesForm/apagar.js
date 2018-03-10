@@ -13,6 +13,7 @@ class EnterpreneursForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(event) {
@@ -25,19 +26,26 @@ class EnterpreneursForm extends React.Component {
         this.userName = value
         this.setState({ isInvalid })
     }
-    handlePhoneInput(event, isInvalid) {
-        this.phoneNumber = event.target.value
+    handlePhoneInput(value, isInvalid) {
+        this.phoneNumber = value
         this.setState({ isInvalid })
     }
+
+    // handleChange(value, isInvalid) {
+    //      this.value = value
+    //      this.setState({ isInvalid })
+    //  }
 
     render() {
         const buttonProps = {}
          if (this.state.isInvalid) {
              buttonProps.disabled = true
          }
+         console.log(this.props)
+
         return (
         <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message && <div>{this.props.message}</div>}
+            {this.props.errorMessage && <div>{this.props.errorMessage}</div>}
             <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
             <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -47,7 +55,7 @@ class EnterpreneursForm extends React.Component {
                     keepCharPositions={true}
                     onChange={this.handlePhoneInput}
             />
-            <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'}</FormButton>
+            <FormButton { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'}</FormButton>
         </form>
         )
 
@@ -55,9 +63,9 @@ class EnterpreneursForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-     isLoading: state.isLoading,
-     message: state.message
- })
+    isLoading: state.isLoading,
+    errorMessage: state.errorMessage
+})
 
 const mapDispatchToProps = dispatch => ({
     dispatchAddEntrepreneur: (userName, phoneNumber) => (dispatch(addEntrepreneur( userName, phoneNumber )))

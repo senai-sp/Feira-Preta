@@ -23,12 +23,13 @@ export function reducer(state = initialState, action) {
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: action.errorMessage
+                message: action.message
             }
         case actionsTypes.ADD_FEATURE_SUCCESS:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                message: action.message
             }
         default:
             return state

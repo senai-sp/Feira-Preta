@@ -17,12 +17,12 @@
      handleSubmit(event) {
          event.preventDefault()
          this.props.dispatchAddFeature(this.value)
+         event.target.reset()
      }
  
      handleChange(value, isInvalid) {
          this.value = value
          this.setState({ isInvalid })
-         console.log(this.value)
      }
  
      render() {
@@ -30,11 +30,10 @@
          if (this.state.isInvalid) {
              buttonProps.disabled = true
          }
-         console.log(this.props)
  
          return (
              <form className='features-form' onSubmit={this.handleSubmit} >
-                 {this.props.errorMessage && <div>{this.props.errorMessage}</div>}
+                 {this.props.message && <div>{this.props.message}</div>}
                  <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
                  <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
              </form>
@@ -42,12 +41,12 @@
      }
  }
  
- const mapStateToProps = state => ({
+const mapStateToProps = state => ({
      isLoading: state.isLoading,
-     errorMessage: state.errorMessage
+     message: state.message
  })
  
- const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
      dispatchAddFeature: link => {
          dispatch(addFeature(link))
      }
