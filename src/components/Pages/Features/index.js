@@ -1,8 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import FeaturesForm from '../../FeaturesForm'
 import FeaturesList from '../../FeaturesList'
 import './Features.css'
-
 
 const Features = () => (
     <article className="features">
@@ -11,5 +11,9 @@ const Features = () => (
         <FeaturesList />
     </article>  
 )
-
-export default Features;
+//oncomponentdid mout
+const mapStateToProps = state => ({
+     message: state.message
+ })
+ 
+ export default connect(mapStateToProps, null)(Features)

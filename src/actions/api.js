@@ -12,7 +12,7 @@ export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
 
 export function addFailure(message) {
     return {
-        type: ADD_FEATURE_FAILURE,
+        type: ADD_FEATURE_FAILURE, //ARRUMAR!!!!!
         message
     }
 }
