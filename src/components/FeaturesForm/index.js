@@ -1,6 +1,6 @@
  import React from 'react'
  import { connect } from 'react-redux'
- import { addFeature } from '../../actions'
+ import { addFeature, cleanMessage } from '../../actions'
  import FormInput from '../Form/FormInput'
  import FormButton from '../Form/FormButton'
  import './FeaturesForm.css'
@@ -13,7 +13,11 @@
          this.handleSubmit = this.handleSubmit.bind(this)
          this.handleChange = this.handleChange.bind(this)
      }
- 
+    
+     componentWillUnmount() {
+        this.props.dispatchCleanMessage()
+    }
+
      handleSubmit(event) {
          event.preventDefault()
          this.props.dispatchAddFeature(this.value)
@@ -46,10 +50,15 @@ const mapStateToProps = state => ({
      message: state.message
  })
  
-const mapDispatchToProps = dispatch => ({
-     dispatchAddFeature: link => {
-         dispatch(addFeature(link))
-     }
- })
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatchAddFeature: link => {
+            dispatch(addFeature(link))
+        },
+        dispatchCleanMessage: () => {
+            dispatch(cleanMessage())
+        }
+    }
+}
  
  export default connect(mapStateToProps, mapDispatchToProps)(FeaturesForm)

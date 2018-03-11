@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addEntrepreneur } from '../../actions'
+import { addEntrepreneur, cleanMessage } from '../../actions'
 import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
@@ -13,6 +13,10 @@ class EnterpreneursForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
+    }
+
+    componentWillUnmount() {
+        this.props.dispatchCleanMessage()
     }
 
     handleSubmit(event) {
@@ -59,8 +63,15 @@ const mapStateToProps = state => ({
      message: state.message
  })
 
-const mapDispatchToProps = dispatch => ({
-    dispatchAddEntrepreneur: (userName, phoneNumber) => (dispatch(addEntrepreneur( userName, phoneNumber )))
-})
+const mapDispatchToProps = dispatch => {
+    return{
+        dispatchAddEntrepreneur: (userName, phoneNumber) => {
+            dispatch(addEntrepreneur( userName, phoneNumber ))
+        },
+        dispatchCleanMessage: () => {
+            dispatch(cleanMessage())
+        }
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnterpreneursForm)

@@ -19,13 +19,19 @@ export function reducer(state = initialState, action) {
                 ...state,
                 isLoading: true
             }
-        case actionsTypes.ADD_FEATURE_FAILURE:
+        case actionsTypes.ADD_FAILURE:
             return {
                 ...state,
                 isLoading: false,
                 message: action.message
             }
-        case actionsTypes.ADD_FEATURE_SUCCESS:
+        case actionsTypes.ADD_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                message: action.message
+            }
+        case actionsTypes.CLEAN_MESSAGE:
             return {
                 ...state,
                 isLoading: false,

@@ -1,5 +1,6 @@
-export const ADD_FEATURE_FAILURE = 'ADD_FEATURE_FAILURE'
-export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
+export const ADD_FAILURE = 'ADD_FAILURE'
+export const ADD_SUCCESS = 'ADD_SUCCESS'
+export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
 // export const LOADING = 'LOADING'
 
 // export function setLoad (value) {
@@ -12,7 +13,7 @@ export const ADD_FEATURE_SUCCESS = 'ADD_FEATURE_SUCCESS'
 
 export function addFailure(message) {
     return {
-        type: ADD_FEATURE_FAILURE, //ARRUMAR!!!!!
+        type: ADD_FAILURE,
         message
     }
 }
@@ -20,8 +21,17 @@ export function addFailure(message) {
 export function addSuccess(message) {
     return dispatch => {
         dispatch({
-            type: ADD_FEATURE_SUCCESS,
+            type: ADD_SUCCESS,
             message
+        })
+    }
+}
+
+export function cleanMessage() {
+    return dispatch => {
+        dispatch({
+            type: CLEAN_MESSAGE,
+            error: ''
         })
     }
 }
