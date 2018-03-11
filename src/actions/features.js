@@ -1,14 +1,28 @@
 import { postLink, getLinks } from '../api/features'
-
-
+import { addFailure, addSuccess } from './api'
 export const ADD_FEATURE = 'ADD_FEATURE'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
 export function addFeature(link) {
     return dispatch => {
-        postLink(link) 
-            .then(() => dispatch(listFeatures()))
-            .catch(error => alert('Houve algum problema e o link não cadastrado! Verifique o endereço e tente novamente.'))
+        dispatch({
+            type: ADD_FEATURE
+        })
+        postLink(link)
+            .then(() => {
+                dispatch(addSuccess('Cadastrado com sucesso'))
+                dispatch(listFeatures())
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 400) {
+                    dispatch(addFailure('URL incorreta'))
+                } else if (error.response && error.response.status === 409) {
+                    dispatch(addFailure('Destaque já cadastrado'))
+                } else {
+                    dispatch(addFailure('Ocorreu um erro inesperado'))
+                }
+            })
+            
     }
 }
 

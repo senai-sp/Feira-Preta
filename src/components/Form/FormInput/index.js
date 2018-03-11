@@ -18,7 +18,7 @@ class FormInput extends React.Component {
         if (value === '') {
             this.props.onChange(value, true)
             this.setState({ error: '*campo obrigatório' });
-        } else if(!pattern.test(value)) {
+        } else if(this.props.type == 'url' && !pattern.test(value)) {
             this.props.onChange(value, true)
             this.setState({ error: '*endereço incorreto' });
         } else {
@@ -32,8 +32,8 @@ class FormInput extends React.Component {
 
         return (
             <fieldset>
-                <input className={classnames('form-input', { 'form-input--error': this.state.error })} {...props} onChange={this.validate} />
-                {this.state.error && <p className="form-input__error">{this.state.error}</p>}
+                <input className={classnames('form-input', { 'form-input--error': this.state.error })} {...props}  onChange={this.validate} />
+                 {this.state.error && <p className="form-input__error">{this.state.error}</p>} 
             </fieldset>
         )
 
