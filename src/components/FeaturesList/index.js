@@ -19,6 +19,7 @@ class FeaturesList extends Component {
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
+                        href={feature.link}
                     />
                 ))}
             </section>
