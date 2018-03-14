@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export function reducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case actionsTypes.LIST_FEATURES:
             return {
                 ...state,
@@ -23,13 +23,19 @@ export function reducer(state = initialState, action) {
             return {
                 ...state,
                 isLoading: false,
-                message: action.message
+                message: {
+                    text: action.message,
+                    isError: true
+                }
             }
         case actionsTypes.ADD_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                message: action.message
+                message: {
+                    text: action.message,
+                    isError: false
+                }
             }
         case actionsTypes.CLEAN_MESSAGE:
             return {

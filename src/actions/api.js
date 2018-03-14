@@ -14,7 +14,8 @@ export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
 export function addFailure(message) {
     return {
         type: ADD_FAILURE,
-        message
+        message,
+        isError: true
     }
 }
 
@@ -22,7 +23,8 @@ export function addSuccess(message) {
     return dispatch => {
         dispatch({
             type: ADD_SUCCESS,
-            message
+            message,
+            isError: false
         })
     }
 }

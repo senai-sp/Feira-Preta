@@ -4,6 +4,7 @@ import { addEntrepreneur, cleanMessage } from '../../actions'
 import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
+import classnames from 'classnames'
 import './EntrepreneursForm.css'
 
 class EnterpreneursForm extends React.Component {
@@ -41,7 +42,7 @@ class EnterpreneursForm extends React.Component {
          }
         return (
         <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message && <div>{this.props.message}</div>}
+            {this.props.message && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
             <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
             <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}

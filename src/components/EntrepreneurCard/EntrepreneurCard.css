@@ -47,4 +47,5 @@ li {
 
 .card-links__remove {
     display: inline-block;
+    border: none;
 }
