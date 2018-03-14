@@ -3,7 +3,9 @@
  import { addFeature, cleanMessage } from '../../actions'
  import FormInput from '../Form/FormInput'
  import FormButton from '../Form/FormButton'
+ import classnames from 'classnames'
  import './FeaturesForm.css'
+ import '../Pages/AlertMessage.css'
  
  
  class FeaturesForm extends React.Component {
@@ -34,10 +36,10 @@
          if (this.state.isInvalid) {
              buttonProps.disabled = true
          }
- 
+
          return (
              <form className='features-form' onSubmit={this.handleSubmit} >
-                 {this.props.message && <div>{this.props.message}</div>}
+                 {this.props.message && <div className={classnames({ 'error-alert': this.props.message.isError, 'sucess-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
                  <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
                  <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
              </form>

@@ -7,6 +7,7 @@ const initialState = {
     error: ''
 }
 
+
 export function featuresReducer(state = initialState, action) {
     switch(action.type) {
         case actionsTypes.LIST_FEATURES:
@@ -23,13 +24,19 @@ export function featuresReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoading: false,
-                message: action.message
+                message: {
+                    text: action.message,
+                    isError: true
+                }
             }
         case actionsTypes.ADD_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                message: action.message
+                message: {
+                    text: action.message,
+                    isError: false
+                }
             }
         case actionsTypes.CLEAN_MESSAGE:
             return {
