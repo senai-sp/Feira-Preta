@@ -7,7 +7,7 @@ const initialState = {
     error: ''
 }
 
-export function reducer(state = initialState, action) {
+export function featuresReducer(state = initialState, action) {
     switch(action.type) {
         case actionsTypes.LIST_FEATURES:
             return {

@@ -1,25 +1,20 @@
 import * as actionsTypes from '../actions'
 
-
 const initialState = {
     entrepreneurs: [],
     error: ''
 }
 
-export function reducer(state = initialState, action) {
+export function entrepreneursReducer(state = initialState, action) {
     switch(action.type) {
         case actionsTypes.ADD_ENTREPRENEUR:
             return {
                 ...state
             }
-        case actionsTypes.ADD_ENTREPRENEUR_FAILURE:
+        case actionsTypes.LIST_ENTREPRENEUR:
             return {
                 ...state,
-                error: action.error
-            }
-        case actionsTypes.ADD_ENTREPRENEUR_SUCCESS:
-            return {
-                ...state,
+                entrepreneurs: action.entrepreneurs
             }
         default:
             return state

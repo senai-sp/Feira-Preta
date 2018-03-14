@@ -29,10 +29,13 @@ export function addFeature(link) {
 export function listFeatures() {
     return dispatch => {
         getLinks() 
-            .then(response => dispatch({
+            .then(response => {
+                dispatch({
                 type: LIST_FEATURES,
                 features: response.data
-            }))
+            })
+            console.log(response)
+            } )
             .catch(error => alert('Houve um problema e não conseguimos carregar a lista de destaques!'))
     }
 }
