@@ -64,7 +64,6 @@ const mapStateToProps = state => ({
         text: state.message.message.text,
         isError: state.message.message.isError,
         warning: state.message.message.warning
-
     }
 })
 

@@ -11,6 +11,10 @@ export function entrepreneurs(state = { entrepreneurs: [] }, action) {
                 ...state,
                 entrepreneurs: action.entrepreneurs
             }
+        case actionsTypes.REMOVE_ENTREPRENEUR:
+            return{
+                ...state
+            }
         default:
             return state
     }
