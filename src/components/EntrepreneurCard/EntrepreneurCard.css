@@ -42,10 +42,19 @@ li {
 .card-links__edit {
     display: inline-block;
     border-right: .1rem solid #000000;
-    padding-right: .7rem;
+}
+
+.card-links__edit:hover {
+    cursor: pointer;
+    color: #3c763d;
 }
 
 .card-links__remove {
     display: inline-block;
     border: none;
+}
+
+.card-links__remove:hover {
+    cursor: pointer;
+    color: #a94442;
 }
