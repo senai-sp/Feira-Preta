@@ -1,11 +1,6 @@
 import * as actionsTypes from '../actions'
 
-const initialState = {
-    entrepreneurs: [],
-    error: ''
-}
-
-export function entrepreneursReducer(state = initialState, action) {
+export function entrepreneurs(state = { entrepreneurs: [] }, action) {
     switch(action.type) {
         case actionsTypes.ADD_ENTREPRENEUR:
             return {

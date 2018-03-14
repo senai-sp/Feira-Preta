@@ -11,20 +11,18 @@ export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
         
 // }
 
-export function addFailure(message) {
+export function addFailure(text) {
     return {
         type: ADD_FAILURE,
-        message,
-        isError: true
+        text
     }
 }
 
-export function addSuccess(message) {
+export function addSuccess(text) {
     return dispatch => {
         dispatch({
             type: ADD_SUCCESS,
-            message,
-            isError: false
+            text
         })
     }
 }
@@ -32,8 +30,7 @@ export function addSuccess(message) {
 export function cleanMessage() {
     return dispatch => {
         dispatch({
-            type: CLEAN_MESSAGE,
-            error: ''
+            type: CLEAN_MESSAGE
         })
     }
 }

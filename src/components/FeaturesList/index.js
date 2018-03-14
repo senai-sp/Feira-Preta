@@ -27,7 +27,7 @@ class FeaturesList extends Component {
 }
 
 const mapStateToProps = state => ({
-    features: state.featuresReducer.features
+    features: state.features.features
 })
 
 const mapDispatchToProps = dispatch => ({

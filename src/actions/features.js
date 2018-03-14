@@ -22,20 +22,19 @@ export function addFeature(link) {
                     dispatch(addFailure('Ocorreu um erro inesperado'))
                 }
             })
-            
+
     }
 }
 
 export function listFeatures() {
     return dispatch => {
-        getLinks() 
+        getLinks()
             .then(response => {
                 dispatch({
-                type: LIST_FEATURES,
-                features: response.data
+                    type: LIST_FEATURES,
+                    features: response.data
+                })
             })
-            console.log(response)
-            } )
-            .catch(error => alert('Houve um problema e não conseguimos carregar a lista de destaques!'))
+            .catch(error => dispatch(addFailure('Houve um problema e não conseguimos carregar a lista de destaques!')))
     }
 }

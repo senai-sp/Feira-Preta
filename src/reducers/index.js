@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux'
-import { featuresReducer } from './features'
-import { entrepreneursReducer } from './entrepreneurs'
+import { features } from './features'
+import { entrepreneurs } from './entrepreneurs'
+import { isLoading } from './isLoading'
+import { message } from './message'
 
 const reducer = combineReducers({
-    featuresReducer,
-    entrepreneursReducer
+  features,
+  entrepreneurs,
+  isLoading,
+  message
 })
    
 export default reducer

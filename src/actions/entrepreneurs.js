@@ -22,7 +22,6 @@ export function addEntrepreneur(userName, phoneNumber) {
                 } else {
                     dispatch(addFailure('Ocorreu um erro inesperado'))
                 }
-                console.log(error)
             })
     }
 }
@@ -35,8 +34,7 @@ export function listEntrepreneurs() {
                 type: LIST_ENTREPRENEUR,
                 entrepreneurs: response.data
             })
-                console.log(response)
-            } )
-            .catch(error => console.log(error))
+        } )
+            .catch(error => dispatch(addFailure('A lista de empreendedores não foi carregada')))
     }
 }

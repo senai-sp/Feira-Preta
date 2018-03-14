@@ -42,8 +42,7 @@ class EnterpreneursForm extends React.Component {
          }
         return (
         <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
-            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
+            {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
             <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     className="form-input"
@@ -60,9 +59,14 @@ class EnterpreneursForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-     isLoading: state.isLoading,
-     message: state.message
- })
+     isLoading: state.isLoading.isLoading,
+     message: {
+        text: state.message.message.text,
+        isError: state.message.message.isError,
+        warning: state.message.message.warning
+
+    }
+})
 
 const mapDispatchToProps = dispatch => {
     return{
