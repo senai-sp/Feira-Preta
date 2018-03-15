@@ -5,7 +5,7 @@ import './card.css'
 
 const Card = props => (
     <div className="card">
-        <button className="card__delete" type="button" onClick="">
+        <button className="card__delete" type="button" onClick={props.click}>
             <FaTimesCircleO className="fas fa-times-circle" aria-hidden="true"></FaTimesCircleO>
         </button>
         <h3 className="card__user">{props.user}</h3>

@@ -1,12 +1,11 @@
-import { postLink, getLinks } from '../api/features'
-import { addFailure, addSuccess } from './api'
-export const ADD_FEATURE = 'ADD_FEATURE'
+import { postLink, getLinks, deleteLink } from '../api/features'
+import { addFailure, addSuccess, START_LOAD } from './api'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
 export function addFeature(link) {
     return dispatch => {
         dispatch({
-            type: ADD_FEATURE
+            type: START_LOAD
         })
         postLink(link)
             .then(() => {
@@ -36,5 +35,16 @@ export function listFeatures() {
                 })
             })
             .catch(error => dispatch(addFailure('Houve um problema e não conseguimos carregar a lista de destaques!')))
+    }
+}
+
+export function removeFeature(id) {
+    return dispatch => {
+        deleteLink(id)
+            .then(() => {
+                dispatch(addSuccess('Destaque removido com sucesso'))
+                dispatch(listFeatures())
+            })
+            .catch(error => dispatch(addFailure('Não foi possível remover o destaque')))
     }
 }

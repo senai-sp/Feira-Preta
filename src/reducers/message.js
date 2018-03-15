@@ -9,7 +9,6 @@ const initialState = {
     }
 }
 
-
 export function message(state = initialState, action) {
     switch (action.type) {
         case actionsTypes.ADD_FAILURE:

@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listFeatures } from '../../actions'
+import { listFeatures, removeFeature } from '../../actions'
 import Card from '../Card'
 import './FeaturesList.css'
 
 
 class FeaturesList extends Component {
+    constructor(props){
+        super(props)
+        this.removeItem = this.removeItem.bind(this)
+    }
     componentDidMount() {
         this.props.dispatchListFeatures()
+    }
+
+    removeItem(id) {
+        this.props.dispatchRemoveFeature(id)
     }
 
     render() {
@@ -19,6 +27,7 @@ class FeaturesList extends Component {
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
+                        click={this.removeItem}
                     />
                 ))}
             </section>
@@ -33,6 +42,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatchListFeatures: () => {
         dispatch(listFeatures())
+    },
+    dispatchRemoveFeature: id => {
+        dispatch(removeFeature(id))
     }
 })
 

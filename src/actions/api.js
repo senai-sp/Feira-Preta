@@ -1,15 +1,7 @@
 export const ADD_FAILURE = 'ADD_FAILURE'
 export const ADD_SUCCESS = 'ADD_SUCCESS'
 export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
-// export const LOADING = 'LOADING'
-
-// export function setLoad (value) {
-//     return {
-//         type: LOADING,
-//         value
-//     }
-        
-// }
+export const START_LOAD = 'START_LOAD'
 
 export function addFailure(text) {
     return {

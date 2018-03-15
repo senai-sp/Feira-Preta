@@ -31,12 +31,11 @@ class EntrepreneurCard extends Component {
                 ))}
             </section>
         )
-
     }
 }
 
 const mapStateToProps = state => ({
-    entrepreneurs: state.entrepreneurs.entrepreneurs
+    entrepreneurs: state.entrepreneurs
 })
 
 const mapDispatchToProps = dispatch => ({

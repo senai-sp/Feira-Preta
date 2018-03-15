@@ -2,7 +2,7 @@ import * as actionsTypes from '../actions'
 
 export function isLoading(state = { isLoading: false }, action) {
     switch (action.type) {
-        case actionsTypes.ADD_FEATURE:
+        case actionsTypes.START_LOAD:
             return {
                 ...state,
                 isLoading: true

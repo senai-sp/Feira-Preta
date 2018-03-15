@@ -1,13 +1,13 @@
 import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur } from '../api/entrepreneurs'
-import { addFailure, addSuccess } from './api'
-export const ADD_ENTREPRENEUR = 'ADD_ENTREPRENEUR'
+import { addFailure, addSuccess, START_LOAD } from './api'
+
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
 
 export function addEntrepreneur(userName, phoneNumber) {
     return dispatch => {
         dispatch({
-            type: ADD_ENTREPRENEUR,
+            type: START_LOAD
         })
         postEntrepreneurs(userName, phoneNumber)
             .then(() => {
@@ -41,9 +41,6 @@ export function listEntrepreneurs() {
 
 export function removeEntrepreneur(id) {
     return dispatch => {
-        dispatch({
-            type: REMOVE_ENTREPRENEUR
-        })
         deleteEntrepreneur(id)
             .then(() => {
                 dispatch(addSuccess('Cadastro removido com sucesso'))

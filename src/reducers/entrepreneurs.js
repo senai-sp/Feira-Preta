@@ -1,20 +1,9 @@
 import * as actionsTypes from '../actions'
 
-export function entrepreneurs(state = { entrepreneurs: [] }, action) {
+export function entrepreneurs(state = [], action) {
     switch(action.type) {
-        case actionsTypes.ADD_ENTREPRENEUR:
-            return {
-                ...state
-            }
         case actionsTypes.LIST_ENTREPRENEUR:
-            return {
-                ...state,
-                entrepreneurs: action.entrepreneurs
-            }
-        case actionsTypes.REMOVE_ENTREPRENEUR:
-            return{
-                ...state
-            }
+            return [...action.entrepreneurs]
         default:
             return state
     }

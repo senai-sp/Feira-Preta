@@ -8,3 +8,7 @@ export function postLink(link) {
 export function getLinks() {
     return instance.get('/publication');
 }
+
+export function deleteLink(id) {
+    return instance.delete('/publication', { id })
+}

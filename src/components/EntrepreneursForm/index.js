@@ -42,7 +42,8 @@ class EnterpreneursForm extends React.Component {
          }
         return (
         <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
+            {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
+            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
             <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     className="form-input"
