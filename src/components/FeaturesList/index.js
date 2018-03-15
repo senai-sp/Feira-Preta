@@ -6,10 +6,6 @@ import './FeaturesList.css'
 
 
 class FeaturesList extends Component {
-    constructor(props){
-        super(props)
-        this.removeItem = this.removeItem.bind(this)
-    }
     componentDidMount() {
         this.props.dispatchListFeatures()
     }
@@ -27,7 +23,7 @@ class FeaturesList extends Component {
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
-                        click={this.removeItem}
+                        click={() => this.removeItem(feature.id)}
                     />
                 ))}
             </section>

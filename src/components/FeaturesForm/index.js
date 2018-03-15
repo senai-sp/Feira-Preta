@@ -19,9 +19,7 @@ class FeaturesForm extends React.Component {
     componentWillUnmount() {
         this.props.dispatchCleanMessage()
     }
-
-
-
+    
     handleSubmit(event) {
         event.preventDefault()
         this.props.dispatchAddFeature(this.value)

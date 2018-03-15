@@ -6,7 +6,7 @@ import './EntrepreneurCard.css'
 class EntrepreneurCard extends Component {
     constructor(props){
         super(props)
-        this.removeItem = this.removeItem.bind(this)
+        this.editItem = this.editItem.bind(this)
     }
 
     componentDidMount() {
@@ -17,6 +17,10 @@ class EntrepreneurCard extends Component {
         this.props.dispatchremoveEntrepreneur(id)
     }
 
+    editItem(id) {
+
+    }
+
     render() {
         return (
             <section>
@@ -24,8 +28,8 @@ class EntrepreneurCard extends Component {
                     <div className="entrepreneur-card" key={entrepreneur.id} >
                         <h3 className="user">{entrepreneur.fullNameInstagram}</h3>
                         <ul className="card-links">
-                            <li className="card-links__edit" >Editar</li>
-                            <li className="card-links__remove" onClick={this.removeItem}>Remover</li>
+                            <li className="card-links__edit" onClick={this.editItem} >Editar</li>
+                            <li className="card-links__remove" onClick={() => this.removeItem(entrepreneur.id)}>Remover</li>
                         </ul>
                     </div>
                 ))}
