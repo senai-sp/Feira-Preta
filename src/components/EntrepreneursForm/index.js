@@ -10,7 +10,7 @@ import './EntrepreneursForm.css'
 class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false }
+        this.state = { isInvalid: true }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)

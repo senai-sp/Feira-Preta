@@ -11,7 +11,7 @@ import '../Pages/AlertMessage.css'
 class FeaturesForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false }
+        this.state = { isInvalid: true }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
@@ -19,6 +19,8 @@ class FeaturesForm extends React.Component {
     componentWillUnmount() {
         this.props.dispatchCleanMessage()
     }
+
+
 
     handleSubmit(event) {
         event.preventDefault()
@@ -40,7 +42,7 @@ class FeaturesForm extends React.Component {
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
                 {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
-                <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} />
+                <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} onClick={this.props.dispatchCleanMessage} />
                 <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
             </form>
         )
