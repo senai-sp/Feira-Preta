@@ -24,6 +24,7 @@ class FeaturesList extends Component {
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
                         click={() => this.removeItem(feature.id)}
+                        href={feature.link}
                     />
                 ))}
             </section>
