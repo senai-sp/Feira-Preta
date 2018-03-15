@@ -7,3 +7,7 @@ export function postEntrepreneurs(userName, phoneNumber) {
 export function getEntrepreneurs() {
     return instance.get('/person')
 }
+
+export function deleteEntrepreneur(id) {
+    return instance.delete('/person', { id })
+}

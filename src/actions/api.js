@@ -1,28 +1,20 @@
 export const ADD_FAILURE = 'ADD_FAILURE'
 export const ADD_SUCCESS = 'ADD_SUCCESS'
 export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
-// export const LOADING = 'LOADING'
+export const START_LOAD = 'START_LOAD'
 
-// export function setLoad (value) {
-//     return {
-//         type: LOADING,
-//         value
-//     }
-        
-// }
-
-export function addFailure(message) {
+export function addFailure(text) {
     return {
         type: ADD_FAILURE,
-        message
+        text
     }
 }
 
-export function addSuccess(message) {
+export function addSuccess(text) {
     return dispatch => {
         dispatch({
             type: ADD_SUCCESS,
-            message
+            text
         })
     }
 }
@@ -30,8 +22,7 @@ export function addSuccess(message) {
 export function cleanMessage() {
     return dispatch => {
         dispatch({
-            type: CLEAN_MESSAGE,
-            error: ''
+            type: CLEAN_MESSAGE
         })
     }
 }

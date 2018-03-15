@@ -4,12 +4,13 @@ import { addEntrepreneur, cleanMessage } from '../../actions'
 import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
+import classnames from 'classnames'
 import './EntrepreneursForm.css'
 
 class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: false }
+        this.state = { isInvalid: true }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
@@ -41,8 +42,8 @@ class EnterpreneursForm extends React.Component {
          }
         return (
         <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message && <div>{this.props.message}</div>}
-            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
+            {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
+            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
             <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     className="form-input"
@@ -59,9 +60,13 @@ class EnterpreneursForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-     isLoading: state.isLoading,
-     message: state.message
- })
+     isLoading: state.isLoading.isLoading,
+     message: {
+        text: state.message.message.text,
+        isError: state.message.message.isError,
+        warning: state.message.message.warning
+    }
+})
 
 const mapDispatchToProps = dispatch => {
     return{

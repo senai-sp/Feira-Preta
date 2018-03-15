@@ -1,12 +1,11 @@
-import { postLink, getLinks } from '../api/features'
-import { addFailure, addSuccess } from './api'
-export const ADD_FEATURE = 'ADD_FEATURE'
+import { postLink, getLinks, deleteLink } from '../api/features'
+import { addFailure, addSuccess, START_LOAD } from './api'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
 export function addFeature(link) {
     return dispatch => {
         dispatch({
-            type: ADD_FEATURE
+            type: START_LOAD
         })
         postLink(link)
             .then(() => {
@@ -22,17 +21,30 @@ export function addFeature(link) {
                     dispatch(addFailure('Ocorreu um erro inesperado'))
                 }
             })
-            
+
     }
 }
 
 export function listFeatures() {
     return dispatch => {
-        getLinks() 
-            .then(response => dispatch({
-                type: LIST_FEATURES,
-                features: response.data
-            }))
-            .catch(error => alert('Houve um problema e não conseguimos carregar a lista de destaques!'))
+        getLinks()
+            .then(response => {
+                dispatch({
+                    type: LIST_FEATURES,
+                    features: response.data
+                })
+            })
+            .catch(error => dispatch(addFailure('Houve um problema e não conseguimos carregar a lista de destaques!')))
+    }
+}
+
+export function removeFeature(id) {
+    return dispatch => {
+        deleteLink(id)
+            .then(() => {
+                dispatch(addSuccess('Destaque removido com sucesso'))
+                dispatch(listFeatures())
+            })
+            .catch(error => dispatch(addFailure('Não foi possível remover o destaque')))
     }
 }

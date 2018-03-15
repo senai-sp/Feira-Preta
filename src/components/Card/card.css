@@ -13,16 +13,16 @@
 
 .card__delete {
     color: #808080;
-    font-size: 1.5rem;
+    font-size: 2rem;
     float: right;
-    margin-bottom: .8rem;
+    transform: translateY(-25%);
     border: 0;
     background-color: #ffffff;
 }
 
 .card__delete:hover {
     cursor: pointer;
-    color: #ec2e2b;
+    color: #a94442;
 }
 
 .card__user {

@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.entrepreneur-card {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    min-width: 340px;
+    margin: .5rem auto;
+    border: 2px solid #808080;
+    padding: 1rem;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+}
+
+.enterpreneurs-form {
+    width: 50%;
+    min-width: 340px;
+    margin: 0 auto;
+}
+
+.user {
+    flex-grow: 1;
+}
+
+.card-links {
+    list-style: none;
+}
+
+li {
+    padding: .5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000;
+}
+
+.card-links__edit {
+    display: inline-block;
+    border-right: .1rem solid #000000;
+}
+
+.card-links__edit:hover {
+    cursor: pointer;
+    color: #3c763d;
+}
+
+.card-links__remove {
+    display: inline-block;
+    border: none;
+}
+
+.card-links__remove:hover {
+    cursor: pointer;
+    color: #a94442;
+}
