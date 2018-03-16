@@ -9,7 +9,9 @@ const Card = props => (
             <FaTimesCircleO className="fas fa-times-circle" aria-hidden="true"></FaTimesCircleO>
         </button>
         <h3 className="card__user">{props.user}</h3>
-        <img className="card__image" src={props.image} alt={props.text} />
+        <a target="_blank" href={props.href}>
+            <img className="card__image" src={props.image} alt={props.text} />
+        </a>
         <p className="card__text">{props.text}</p>
     </div>
 )

@@ -8,19 +8,13 @@
 .entrepreneur-card {
     display: flex;
     align-items: center;
-    width: 50%;
-    min-width: 340px;
+    width: 70%;
+    min-width: 320px;
     margin: .5rem auto;
     border: 2px solid #808080;
     padding: 1rem;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-}
-
-.enterpreneurs-form {
-    width: 50%;
-    min-width: 340px;
-    margin: 0 auto;
 }
 
 .user {
