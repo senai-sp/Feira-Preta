@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addEntrepreneur, cleanMessage } from '../../actions'
+import { addEntrepreneur, cleanMessage, editEntrepreneur } from '../../actions'
 import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
@@ -18,6 +18,8 @@ class EnterpreneursForm extends React.Component {
 
     componentWillUnmount() {
         this.props.dispatchCleanMessage()
+        this.props.dispatchEditEntrepreneur(false, '', '')
+        console.log('aqui')
     }
 
     handleSubmit(event) {
@@ -36,7 +38,7 @@ class EnterpreneursForm extends React.Component {
     }
 
     render() {
-        console.log('aijdawjoaw')
+        console.log('entrepreneur form')
         const buttonProps = {}
         if (this.state.isInvalid) {
             buttonProps.disabled = true
@@ -44,8 +46,8 @@ class EnterpreneursForm extends React.Component {
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
                 {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
-                <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.isEditing ? this.props.editing.id : '' } />
-                { this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.id } />}
+                {/* <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} /> */}
+                { this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.usernameInstagram } />}
                 { !this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -55,7 +57,7 @@ class EnterpreneursForm extends React.Component {
                     keepCharPositions={true}
                     onChange={this.handlePhoneInput}
                 />
-                <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'} </FormButton>
+                <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'}</FormButton>
             </form>
         )
     }
@@ -70,7 +72,8 @@ const mapStateToProps = state => ({
     },
     editing: {
         isEditing: state.editing.editing.isEditing,
-        id: state.editing.editing.id
+        id: state.editing.editing.id,
+        usernameInstagram: state.editing.editing.usernameInstagram
     }
 })
 
@@ -81,6 +84,9 @@ const mapDispatchToProps = dispatch => {
         },
         dispatchCleanMessage: () => {
             dispatch(cleanMessage())
+        },
+        dispatchEditEntrepreneur: (isEditing, id, usernameInstagram) => {
+            dispatch(editEntrepreneur(isEditing, id, usernameInstagram))
         }
     }
 }

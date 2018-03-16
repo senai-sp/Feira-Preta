@@ -4,8 +4,7 @@ import * as actionsTypes from '../actions'
 
 const initialState = {
     editing: {
-        isEditing: false,
-        id: ''
+        isEditing: false
     }
 }
 
@@ -15,8 +14,9 @@ export function editing(state = initialState, action) {
             return {
                 ...state,
                 editing: {
-                    isEditing: true,
-                    id: action.id
+                    isEditing: action.isEditing,
+                    id: action.id,
+                    usernameInstagram: action.usernameInstagram
                 }
             }
         default:

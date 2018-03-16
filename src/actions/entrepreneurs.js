@@ -51,11 +51,13 @@ export function removeEntrepreneur(id) {
     }
 }
 
-export function editEntrepreneur(id) { //adicionar telefone
+export function editEntrepreneur(isEditing, id, usernameInstagram) { //adicionar telefone
     return dispatch => {
         dispatch({
             type: EDIT_ENTREPRENEUR,
-            id
+            isEditing,
+            id,
+            usernameInstagram
         })
     }
 }

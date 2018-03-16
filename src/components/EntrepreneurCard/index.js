@@ -17,8 +17,8 @@ class EntrepreneurCard extends Component {
         this.props.dispatchRemoveEntrepreneur(id)
     }
 
-    editItem(id) {
-        this.props.dispatchEditEntrepreneur(id)
+    editItem(isEditing, id, usernameInstagram) {
+        this.props.dispatchEditEntrepreneur(true, id, usernameInstagram)
     }
 
     render() {
@@ -28,18 +28,11 @@ class EntrepreneurCard extends Component {
                     <div className="entrepreneur-card" key={entrepreneur.id} >
                         <h3 className="user">{entrepreneur.fullNameInstagram}</h3>
                         <ul className="card-links">
-                            <li className="card-links__edit" onClick={() => this.editItem(entrepreneur.id)} >Editar</li> {/* Incluir telefone como parâmetro no onClick */}
+                            <li className="card-links__edit" onClick={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram)} >Editar</li> {/* Incluir telefone como parâmetro no onClick */}
                             <li className="card-links__remove" onClick={() => this.removeItem(entrepreneur.id)} >Remover</li>
                         </ul>
                     </div>
-                ))}
-                
-                        
-                
-                            <li className="card-links__edit" onClick={() => this.editItem('Rafael')} >Editar</li> {/* Incluir telefone como parâmetro no onClick */}
-                            <li className="card-links__edit" onClick={() => this.editItem('Yves')} >Editar</li> {/* Incluir telefone como parâmetro no onClick */}
-                            
-                
+                ))}      
             </section>
         )
     }
@@ -56,8 +49,8 @@ const mapDispatchToProps = dispatch => ({
     dispatchRemoveEntrepreneur: (id) => {
         dispatch(removeEntrepreneur(id))
     },
-    dispatchEditEntrepreneur: (id) => {
-        dispatch(editEntrepreneur(id))
+    dispatchEditEntrepreneur: (isEditing, id, usernameInstagram) => {
+        dispatch(editEntrepreneur(isEditing, id, usernameInstagram))
     } //adicionar telefone
 }
 )
