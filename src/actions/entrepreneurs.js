@@ -1,8 +1,8 @@
 import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur } from '../api/entrepreneurs'
 import { addFailure, addSuccess, START_LOAD } from './api'
-
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
+export const EDIT_ENTREPRENEUR = 'EDIT_ENTREPRENEUR'
 
 export function addEntrepreneur(userName, phoneNumber) {
     return dispatch => {
@@ -34,6 +34,7 @@ export function listEntrepreneurs() {
                     type: LIST_ENTREPRENEUR,
                     entrepreneurs: response.data
                 })
+                console.log(response)
             })
             .catch(error => dispatch(addFailure('A lista de empreendedores não foi carregada')))
     }
@@ -47,5 +48,14 @@ export function removeEntrepreneur(id) {
                 dispatch(listEntrepreneurs())
             })
             .catch(error => dispatch(addFailure('Não foi possível remover o empreendedor')))
+    }
+}
+
+export function editEntrepreneur(id) { //adicionar telefone
+    return dispatch => {
+        dispatch({
+            type: EDIT_ENTREPRENEUR,
+            id
+        })
     }
 }

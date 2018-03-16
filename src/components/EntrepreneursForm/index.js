@@ -36,42 +36,48 @@ class EnterpreneursForm extends React.Component {
     }
 
     render() {
+        console.log('aijdawjoaw')
         const buttonProps = {}
-         if (this.state.isInvalid) {
-             buttonProps.disabled = true
-         }
+        if (this.state.isInvalid) {
+            buttonProps.disabled = true
+        }
         return (
-        <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-            {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
-            <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
-            <MaskedInput
+            <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
+                {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
+                <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.isEditing ? this.props.editing.id : '' } />
+                { this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.id } />}
+                { !this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
+                <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     className="form-input"
                     placeholder="Telefone"
                     guide={true}
                     keepCharPositions={true}
                     onChange={this.handlePhoneInput}
-            />
-            <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'}</FormButton>
-        </form>
+                />
+                <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'} </FormButton>
+            </form>
         )
-
     }
 }
 
 const mapStateToProps = state => ({
-     isLoading: state.isLoading.isLoading,
-     message: {
+    isLoading: state.isLoading.isLoading,
+    message: {
         text: state.message.message.text,
         isError: state.message.message.isError,
         warning: state.message.message.warning
+    },
+    editing: {
+        isEditing: state.editing.editing.isEditing,
+        id: state.editing.editing.id
     }
 })
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         dispatchAddEntrepreneur: (userName, phoneNumber) => {
-            dispatch(addEntrepreneur( userName, phoneNumber ))
+            dispatch(addEntrepreneur(userName, phoneNumber))
         },
         dispatchCleanMessage: () => {
             dispatch(cleanMessage())

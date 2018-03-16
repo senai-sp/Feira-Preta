@@ -10,5 +10,5 @@ export function getLinks() {
 }
 
 export function deleteLink(id) {
-    return instance.delete('/publication', { id })
+    return instance.delete('/publication/' +  id )
 }
