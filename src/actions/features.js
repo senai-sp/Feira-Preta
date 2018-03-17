@@ -8,8 +8,9 @@ export function addFeature(link) {
             type: START_LOAD
         })
         postLink(link)
-            .then(() => {
-                dispatch(addSuccess('Cadastrado com sucesso'))
+            .then((response) => {
+                // dispatch(addSuccess('Cadastrado com sucesso'))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listFeatures())
             })
             .catch(error => {
@@ -41,8 +42,10 @@ export function listFeatures() {
 export function removeFeature(id) {
     return dispatch => {
         deleteLink(id)
-            .then(() => {
-                dispatch(addSuccess('Destaque removido com sucesso'))
+            .then((response) => {
+                // dispatch(addSuccess('Destaque removido com sucesso'))
+                dispatch(addSuccess(response.data.message))
+                console.log(response)
                 dispatch(listFeatures())
             })
             .catch(error => dispatch(addFailure('Não foi possível remover o destaque')))

@@ -17,22 +17,26 @@ class EntrepreneurCard extends Component {
         this.props.dispatchRemoveEntrepreneur(id)
     }
 
-    editItem(isEditing, id, usernameInstagram) {
-        this.props.dispatchEditEntrepreneur(true, id, usernameInstagram)
+    editItem(isEditing, id, usernameInstagram, tel) {
+        this.props.dispatchEditEntrepreneur(isEditing, id, 'yves.carrasco', tel)
     }
 
     render() {
+        console.log('entrepreneur card')
         return (
             <section>
                 {this.props.entrepreneurs.map(entrepreneur => (
                     <div className="entrepreneur-card" key={entrepreneur.id} >
-                        <h3 className="user">{entrepreneur.fullNameInstagram}</h3>
+                        <span>
+                            <h3 className="user">@{entrepreneur.usernameInstagram}</h3>
+                            <h3 className="user">{entrepreneur.phoneNumber}</h3>
+                        </span>
                         <ul className="card-links">
-                            <li className="card-links__edit" onClick={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram)} >Editar</li> {/* Incluir telefone como parâmetro no onClick */}
+                            <li className="card-links__edit" onClick={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram, entrepreneur.phoneNumber)} >Editar</li>
                             <li className="card-links__remove" onClick={() => this.removeItem(entrepreneur.id)} >Remover</li>
                         </ul>
                     </div>
-                ))}      
+                ))}
             </section>
         )
     }
@@ -49,9 +53,9 @@ const mapDispatchToProps = dispatch => ({
     dispatchRemoveEntrepreneur: (id) => {
         dispatch(removeEntrepreneur(id))
     },
-    dispatchEditEntrepreneur: (isEditing, id, usernameInstagram) => {
-        dispatch(editEntrepreneur(isEditing, id, usernameInstagram))
-    } //adicionar telefone
+    dispatchEditEntrepreneur: (isEditing, id, usernameInstagram, tel) => {
+        dispatch(editEntrepreneur(isEditing, id, usernameInstagram, tel))
+    }
 }
 )
 

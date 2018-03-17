@@ -1,4 +1,4 @@
-import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur } from '../api/entrepreneurs'
+import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur, editedEntrepreneur } from '../api/entrepreneurs'
 import { addFailure, addSuccess, START_LOAD } from './api'
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
@@ -34,7 +34,6 @@ export function listEntrepreneurs() {
                     type: LIST_ENTREPRENEUR,
                     entrepreneurs: response.data
                 })
-                console.log(response)
             })
             .catch(error => dispatch(addFailure('A lista de empreendedores não foi carregada')))
     }
@@ -42,6 +41,7 @@ export function listEntrepreneurs() {
 
 export function removeEntrepreneur(id) {
     return dispatch => {
+        console.log(id)
         deleteEntrepreneur(id)
             .then(() => {
                 dispatch(addSuccess('Cadastro removido com sucesso'))
@@ -51,13 +51,20 @@ export function removeEntrepreneur(id) {
     }
 }
 
-export function editEntrepreneur(isEditing, id, usernameInstagram) { //adicionar telefone
+export function editEntrepreneur(isEditing, id, usernameInstagram, tel) { //adicionar telefone
     return dispatch => {
         dispatch({
             type: EDIT_ENTREPRENEUR,
             isEditing,
             id,
-            usernameInstagram
+            usernameInstagram,
+            tel
         })
+        // editedEntrepreneur(id, usernameInstagram, tel)
+        //     .then((response) => {
+        //         dispatch(addSuccess('Cadastro removido com sucesso'))
+        //         dispatch(listEntrepreneurs())
+        //     })
+        //     .catch(error => console.log('falhou'))
     }
 }

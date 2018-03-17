@@ -16,7 +16,8 @@ export function editing(state = initialState, action) {
                 editing: {
                     isEditing: action.isEditing,
                     id: action.id,
-                    usernameInstagram: action.usernameInstagram
+                    usernameInstagram: action.usernameInstagram,
+                    tel: action.tel
                 }
             }
         default:

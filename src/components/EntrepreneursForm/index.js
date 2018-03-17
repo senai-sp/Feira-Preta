@@ -10,45 +10,65 @@ import './EntrepreneursForm.css'
 class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: true }
+        this.state = { isInvalid: true, userInputValue: '' }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
+        // this.editingInput = this.editingInput.bind(this)
+    }
+
+    componentDidMount() {
+        // this.props.editing.isEditing && 
+        this.setState({ userInputValue: 'lalala' })
+            // this.props.editing.usernameInstagram })
+        console.log('componentDidMount')
+        console.log(this.state.userInputValue)
     }
 
     componentWillUnmount() {
         this.props.dispatchCleanMessage()
         this.props.dispatchEditEntrepreneur(false, '', '')
-        console.log('aqui')
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        this.props.dispatchAddEntrepreneur(this.userName, this.phoneNumber)
+        this.props.dispatchAddEntrepreneur(this.state.userInputValue, this.phoneNumber)
+        this.setState({ userInputValue: '' })
         event.target.reset()
     }
 
     handleUserInput(value, isInvalid) {
-        this.userName = value
-        this.setState({ isInvalid })
+        this.setState({ isInvalid, userInputValue: value })
     }
     handlePhoneInput(event, isInvalid) {
         this.phoneNumber = event.target.value
         this.setState({ isInvalid })
     }
 
+    // editingInput(event) {
+    //     event.preventDefault()
+    //     this.setState({ userInputValue: this.props.editing.this.props.editing.usernameInstagram })
+    // }
+
     render() {
-        console.log('entrepreneur form')
         const buttonProps = {}
         if (this.state.isInvalid) {
             buttonProps.disabled = true
         }
+        let inputUser = (
+            <FormInput defaultValue={this.state.userInputValue} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
+        )
+        if (this.props.editing.isEditing) {
+             inputUser = <FormInput value={ this.props.editing.usernameInstagram } className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
+             console.log('edit', this.props.editing.usernameInstagram)
+        }
+        console.log(this.state.userInputValue)
         return (
-            <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
+            <form className='enterpreneurs-form'onSubmit={this.handleSubmit} >
                 {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
-                {/* <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} /> */}
-                { this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} defaultValue={ this.props.editing.usernameInstagram } />}
-                { !this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
+                {/*<FormInput defaultValue={this.state.userInputValue} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />
+                { this.props.editing.isEditing && <FormInput defaultValue={ this.props.editing.usernameInstagram } className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}*/}
+                {inputUser}
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     className="form-input"
@@ -85,8 +105,8 @@ const mapDispatchToProps = dispatch => {
         dispatchCleanMessage: () => {
             dispatch(cleanMessage())
         },
-        dispatchEditEntrepreneur: (isEditing, id, usernameInstagram) => {
-            dispatch(editEntrepreneur(isEditing, id, usernameInstagram))
+        dispatchEditEntrepreneur: (isEditing, id, usernameInstagram, tel) => {
+            dispatch(editEntrepreneur(isEditing, id, usernameInstagram, tel))
         }
     }
 }
