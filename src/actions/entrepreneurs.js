@@ -1,4 +1,4 @@
-import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur, editedEntrepreneur } from '../api/entrepreneurs'
+import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur, putEntrepreneur } from '../api/entrepreneurs'
 import { addFailure, addSuccess, START_LOAD } from './api'
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
@@ -10,8 +10,9 @@ export function addEntrepreneur(userName, phoneNumber) {
             type: START_LOAD
         })
         postEntrepreneurs(userName, phoneNumber)
-            .then(() => {
-                dispatch(addSuccess('Cadastrado com sucesso'))
+            .then((response) => {
+                console.log(response)
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
             .catch(error => {
@@ -41,30 +42,49 @@ export function listEntrepreneurs() {
 
 export function removeEntrepreneur(id) {
     return dispatch => {
-        console.log(id)
         deleteEntrepreneur(id)
-            .then(() => {
-                dispatch(addSuccess('Cadastro removido com sucesso'))
+            .then((response) => {
+                console.log(response)
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
             .catch(error => dispatch(addFailure('Não foi possível remover o empreendedor')))
     }
 }
 
-export function editEntrepreneur(isEditing, id, usernameInstagram, tel) { //adicionar telefone
+export function editEntrepreneur(isEditing, id, usernameInstagram, phoneNumber) {
     return dispatch => {
         dispatch({
             type: EDIT_ENTREPRENEUR,
             isEditing,
             id,
             usernameInstagram,
-            tel
+            phoneNumber
         })
-        // editedEntrepreneur(id, usernameInstagram, tel)
-        //     .then((response) => {
-        //         dispatch(addSuccess('Cadastro removido com sucesso'))
-        //         dispatch(listEntrepreneurs())
-        //     })
-        //     .catch(error => console.log('falhou'))
+    }
+}
+
+// export function editedEntrepreneur(id, tel, usernameInstagram) {
+//     return dispatch => {
+//         deleteEntrepreneur(id)
+//             .then(() => {
+//                 postEntrepreneurs(usernameInstagram, tel)
+//                     .then(() => {
+//                         dispatch(listEntrepreneurs())
+//                         alert('iajdwjiow')
+//                     })
+//             })
+//             .catch(error => dispatch(addFailure('Não foi possível atualizar os dados do empreendedor')))
+//     }
+// }
+
+export function editedEntrepreneur(id, phoneNumber, usernameInstagram) {
+    return dispatch => {
+        putEntrepreneur(id, phoneNumber, usernameInstagram)
+            .then(response => {
+                dispatch(addSuccess(response.data.message))
+                dispatch(listEntrepreneurs())
+            })
+            .catch(error => dispatch(addFailure('Não foi possível atualizar os dados do empreendedor')))
     }
 }

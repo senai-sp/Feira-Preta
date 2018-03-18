@@ -18,11 +18,10 @@ class EntrepreneurCard extends Component {
     }
 
     editItem(isEditing, id, usernameInstagram, tel) {
-        this.props.dispatchEditEntrepreneur(isEditing, id, 'yves.carrasco', tel)
+        this.props.dispatchEditEntrepreneur(isEditing, id, usernameInstagram, tel)
     }
 
     render() {
-        console.log('entrepreneur card')
         return (
             <section>
                 {this.props.entrepreneurs.map(entrepreneur => (
