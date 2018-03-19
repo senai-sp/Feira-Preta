@@ -27,8 +27,10 @@ class EntrepreneurCard extends Component {
             <section>
                 {this.props.entrepreneurs.map(entrepreneur => (
                     <div className="entrepreneur-card" key={entrepreneur.id} >
+                        <img className="entrepreneur-card__profile-img" src={entrepreneur.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram"/>
                         <span className="user">
                             <h3>@{entrepreneur.usernameInstagram}</h3>
+                            <h3>{entrepreneur.fullNameInstagram}</h3>
                             <h3>{entrepreneur.phoneNumber}</h3>
                         </span>
                         <ul className="card-links">

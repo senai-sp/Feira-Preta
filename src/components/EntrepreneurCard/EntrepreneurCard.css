@@ -12,9 +12,14 @@
     min-width: 320px;
     margin: .5rem auto;
     border: 2px solid #808080;
-    padding: 1rem;
+    padding: .5rem;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+}
+
+.entrepreneur-card__profile-img {
+    margin: .2rem;
+    max-width: 4rem;
 }
 
 .user {
