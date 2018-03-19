@@ -38,6 +38,13 @@ export function message(state = initialState, action) {
                     warning: false
                 }
             }
+        case actionsTypes.EDIT_ENTREPRENEUR:
+            return {
+                ...state,
+                text: 'Editando empreendedor',
+                isError: false,
+                warning: true
+            }
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listEntrepreneurs, removeEntrepreneur, editEntrepreneur } from '../../actions'
+import { listEntrepreneurs, removeEntrepreneur, editEntrepreneur, cleanMessage } from '../../actions'
 import './EntrepreneurCard.css'
 
 class EntrepreneurCard extends Component {
@@ -18,6 +18,7 @@ class EntrepreneurCard extends Component {
     }
 
     editItem(isEditing, id, usernameInstagram, tel) {
+        this.props.dispatchCleanMessage()
         this.props.dispatchEditEntrepreneur(isEditing, id, usernameInstagram, tel)
     }
 
@@ -54,6 +55,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchEditEntrepreneur: (isEditing, id, usernameInstagram, tel) => {
         dispatch(editEntrepreneur(isEditing, id, usernameInstagram, tel))
+    },
+    dispatchCleanMessage: () => {
+        dispatch(cleanMessage())
     }
 }
 )

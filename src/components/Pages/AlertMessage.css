@@ -13,3 +13,11 @@
     border: 1px solid #3c763d;
     border-radius: 3px;
 }
+
+.edit-alert {
+    color: #000000;
+    background-color: #ffeb3b;
+    padding: .5rem;
+    border: 1px solid #3c763d;
+    border-radius: 3px;
+}
