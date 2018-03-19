@@ -1,7 +1,9 @@
 .entrepreneurs {
-    width: 90%;
-    margin-top: 2rem;
-    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    margin: 2rem auto 0 auto;
 }
 
 .entrepreneurs__title {

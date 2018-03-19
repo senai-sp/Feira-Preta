@@ -8,13 +8,13 @@ export function addFeature(link) {
             type: START_LOAD
         })
         postLink(link)
-            .then(() => {
-                dispatch(addSuccess('Cadastrado com sucesso'))
+            .then((response) => {
+                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
                 dispatch(listFeatures())
             })
             .catch(error => {
                 if (error.response && error.response.status === 400) {
-                    dispatch(addFailure('URL incorreta'))
+                    dispatch(addFailure('Destaque não cadastrado'))
                 } else if (error.response && error.response.status === 409) {
                     dispatch(addFailure('Destaque já cadastrado'))
                 } else {
@@ -34,15 +34,15 @@ export function listFeatures() {
                     features: response.data
                 })
             })
-            .catch(error => dispatch(addFailure('Houve um problema e não conseguimos carregar a lista de destaques!')))
+            .catch(error => dispatch(addFailure('Houve um problema e não foi possível carregar a lista de destaques')))
     }
 }
 
 export function removeFeature(id) {
     return dispatch => {
         deleteLink(id)
-            .then(() => {
-                dispatch(addSuccess('Destaque removido com sucesso'))
+            .then((response) => {
+                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
                 dispatch(listFeatures())
             })
             .catch(error => dispatch(addFailure('Não foi possível remover o destaque')))

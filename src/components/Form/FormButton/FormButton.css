@@ -17,6 +17,8 @@
     color: #a94442;
     border: 2px solid #a94442;
     box-shadow: inset 0 0 .2rem #808080;
+    
+    margin-left: .3rem;
 }
 
 .form-button:hover, .form-button--secondary:hover {

@@ -9,5 +9,9 @@ export function getEntrepreneurs() {
 }
 
 export function deleteEntrepreneur(id) {
-    return instance.delete('/person', { id })
+    return instance.delete('/person/' + id )
+}
+
+export function putEntrepreneur(id, phoneNumber, usernameInstagram) {
+    return instance.put('/person', { id, phoneNumber, usernameInstagram })
 }
