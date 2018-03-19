@@ -5,7 +5,7 @@ import EntrepreneurCard from '../../EntrepreneurCard'
 
 const Entrepreneurs = () => (
     <article className="entrepreneurs">
-        <h1 className="entrepreneurs__title">Empreendores</h1>
+        <h1 className="entrepreneurs__title">Empreendedores</h1>
         <EntrepreneursForm />
         <section>
             <EntrepreneurCard />
