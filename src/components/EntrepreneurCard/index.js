@@ -27,9 +27,9 @@ class EntrepreneurCard extends Component {
             <section>
                 {this.props.entrepreneurs.map(entrepreneur => (
                     <div className="entrepreneur-card" key={entrepreneur.id} >
-                        <span>
-                            <h3 className="user">@{entrepreneur.usernameInstagram}</h3>
-                            <h3 className="user">{entrepreneur.phoneNumber}</h3>
+                        <span className="user">
+                            <h3>@{entrepreneur.usernameInstagram}</h3>
+                            <h3>{entrepreneur.phoneNumber}</h3>
                         </span>
                         <ul className="card-links">
                             <li className="card-links__edit" onClick={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram, entrepreneur.phoneNumber)} >Editar</li>
