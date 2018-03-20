@@ -1,9 +1,9 @@
 import React from 'react'
 import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o'
-import './card.css'
+import './FeaturesCard.css'
 
 
-const Card = props => (
+const FeaturesCard = props => (
     <div className="card">
         <button className="card__delete" type="button" onClick={props.click}>
             <FaTimesCircleO className="fas fa-times-circle" aria-hidden="true"></FaTimesCircleO>
@@ -16,4 +16,4 @@ const Card = props => (
     </div>
 )
 
-export default Card
+export default FeaturesCard
