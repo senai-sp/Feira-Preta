@@ -7,10 +7,9 @@ const Entrepreneurs = () => (
     <article className="entrepreneurs">
         <h1 className="entrepreneurs__title">Empreendedores</h1>
         <EntrepreneursForm />
-        <section>
-            <EntrepreneurList />
-        </section>
-    </article> 
+        <EntrepreneurList />
+
+    </article>
 )
 
 export default Entrepreneurs

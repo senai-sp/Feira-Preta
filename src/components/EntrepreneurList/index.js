@@ -18,14 +18,15 @@ class EntrepreneurList extends Component {
     }
 
     render() {
+        
         return (
             <section>
                 {this.props.entrepreneurs.map(entrepreneur => (
                     <EntrepreneurCard
                         key={entrepreneur.id}
                         profilePictureInstagram={entrepreneur.profilePictureInstagram}
-                        usernameInstagram={entrepreneur.person.usernameInstagram}
-                        fullNameInstagram={entrepreneur.person.fullNameInstagram}
+                        usernameInstagram={entrepreneur.usernameInstagram}
+                        fullNameInstagram={entrepreneur.fullNameInstagram}
                         phoneNumber={entrepreneur.phoneNumber}
                         clickEdit={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram, entrepreneur.phoneNumber)}
                         clickRemove={() => this.removeItem(entrepreneur.id)}
@@ -56,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 }
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(EntrepreneurCard)
+export default connect(mapStateToProps, mapDispatchToProps)(EntrepreneurList)
