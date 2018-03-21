@@ -1,7 +1,6 @@
 import React from 'react'
 import './EntrepreneurCard.css'
 
-
 const EntrepreneurCard = props => (
     <div className="entrepreneur-card" key={props.id} >
         <img className="entrepreneur-card__profile-img" src={props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />

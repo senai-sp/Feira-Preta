@@ -17,7 +17,7 @@ class FeaturesList extends Component {
     render() {
         return (
             <section className="features-list">
-                {this.props.features.map(feature => (
+                {this.props.features.reverse().map(feature => (
                     <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
