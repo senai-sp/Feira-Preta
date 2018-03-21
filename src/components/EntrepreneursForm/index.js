@@ -30,7 +30,6 @@ class EnterpreneursForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         if (!this.props.editing.isEditing) {
-            console.log(this.user.usernameInstagram, this.user.phoneNumber)
             this.props.dispatchAddEntrepreneur(this.user.usernameInstagram, this.user.phoneNumber)
         } else {
             this.props.dispatchEditedEntrepreneur(this.user.id, this.user.phoneNumber, this.user.usernameInstagram)
@@ -66,13 +65,12 @@ class EnterpreneursForm extends React.Component {
         if (!this.props.editing.isEditing && this.state.isUserInvalid && this.state.isPhoneInvalid) {
             buttonProps.disabled = true
         }
-        console.log(this.user)
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
                 {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>}
-                {this.props.editing.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>}
-                {!this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
-                {this.props.editing.isEditing && <FormInput defaultValue={this.props.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}
+                {this.user.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>}
+                {!this.user.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
+                {this.user.isEditing && <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     guide={true}
