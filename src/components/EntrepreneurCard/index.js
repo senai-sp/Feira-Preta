@@ -22,9 +22,19 @@ class EntrepreneurCard extends Component {
         this.props.dispatchEditEntrepreneur(isEditing, id, usernameInstagram, tel)
     }
 
+    orderEntrepeneur(orderBy) {
+        this.props.entrepreneurs.sort((a,b) => (a.orderBy > b.orderBy) ? 1 : (b.orderBy > a.orderBy) ? -1 : 0)
+    }
+
     render() {
+        // const orderedEntrepreneurs = this.props.entrepreneurs.sort((a,b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0)
+
         return (
             <section>
+                <div>Ordenar: </div>
+                <span onClick={() => this.orderEntrepeneur('usernameInstagram')}  >Nome de usuário</span>
+                <span onClick={() => this.orderEntrepeneur('fullNameInstagram')}  >Nome completo</span>
+                <span onClick={() => this.orderEntrepeneur('phoneNumber')}  >Telefone</span>
                 {this.props.entrepreneurs.map(entrepreneur => (
                     <div className="entrepreneur-card" key={entrepreneur.id} >
                         <img className="entrepreneur-card__profile-img" src={entrepreneur.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram"/>
