@@ -10,22 +10,16 @@ import './EntrepreneursForm.css'
 class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isInvalid: true, phoneInputValue: this.props.editing.phoneNumber }
+        this.state = { isUserInvalid: true, isPhoneInvalid: true }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
         this.cancelHandler = this.cancelHandler.bind(this)
-        this.telefone = this.props.editing.phoneNumber
         this.user = { ...props.editing }
     }
 
     componentWillReceiveProps(nextProps) {
         this.user = { ...nextProps.editing }
-        console.log(this.user)
-    }
-
-    componentDidMount() {
-        this.setState({ phoneInputValue: this.props.editing.phoneNumber })
     }
 
     componentWillUnmount() {
@@ -35,55 +29,57 @@ class EnterpreneursForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        if (this.props.editing.isEditing) {
+        if (!this.props.editing.isEditing) {
+            console.log(this.user.usernameInstagram, this.user.phoneNumber)
             this.props.dispatchAddEntrepreneur(this.user.usernameInstagram, this.user.phoneNumber)
         } else {
-            this.props.dispatchEditedEntrepreneur(this.user.editing.id, this.user.phoneNumber, this.user.usernameInstagram)
+            this.props.dispatchEditedEntrepreneur(this.user.id, this.user.phoneNumber, this.user.usernameInstagram)
         }
         this.props.dispatchEditEntrepreneur(false, '', '', '')
         event.target.reset()
     }
 
     cancelHandler() {
-        this.setState({ userInputValue: '', phoneInputValue: '', newUserInputValue: '', newPhoneInputValue: '' })
+        this.setState({ isInvalid: true })
         this.props.dispatchCleanMessage()
         this.props.dispatchEditEntrepreneur(false, '', '', '')
     }
 
-    handleUserInput(value, isInvalid) {
-        // this.setState({ isInvalid, userInputValue: value })
-        // this.props.editing.isEditing && this.setState({ newUserInputValue: value })
+    handleUserInput(value) {
         this.user.usernameInstagram = value
+        this.setState({ isUserInvalid: false })
+        if (!this.user.usernameInstagram) {
+            this.setState({ isUserInvalid: true })
+        }
     }
 
-    handlePhoneInput(event, isInvalid) {
-        // this.props.editing.isEditing && this.setState({ isInvalid: false })
+    handlePhoneInput(event) {
         this.user.phoneNumber = event.target.value
-        // this.props.editing.isEditing && this.setState({ phoneInputValue: false })
+        this.setState({ isPhoneInvalid: false })
+        if (!this.user.phoneNumber) {
+            this.setState({ isPhoneInvalid: true })
+        }
     }
 
     render() {
         const buttonProps = {}
-        if (this.state.isInvalid) {
+        if (!this.props.editing.isEditing && this.state.isUserInvalid && this.state.isPhoneInvalid) {
             buttonProps.disabled = true
         }
-        console.log('render: ', this.user)
-
+        console.log(this.user)
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
                 {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>}
-                {this.props.editing.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}>Clique no campo que deseja editar</div>}
-                {/* {this.props.editing.isEditing && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>} */}
-                {/*{!this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
-                {this.props.editing.isEditing && <FormInput defaultValue={this.props.editing.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />}*/}
-                <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
+                {this.props.editing.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>}
+                {!this.props.editing.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
+                {this.props.editing.isEditing && <FormInput defaultValue={this.props.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                    guide={true}
+                    keepCharPositions={false}
                     className="form-input"
                     placeholder="Telefone"
                     type='tel'
-                    guide={false}
-                    keepCharPositions={false}
                     onChange={this.handlePhoneInput}
                     value={this.user.phoneNumber}
                 />
@@ -116,6 +112,7 @@ const mapDispatchToProps = dispatch => {
         },
         dispatchCleanMessage: () => {
             dispatch(cleanMessage())
+            console.log('clean')
         },
         dispatchEditEntrepreneur: (isEditing, id, usernameInstagram, phoneNumber) => {
             dispatch(editEntrepreneur(isEditing, id, usernameInstagram, phoneNumber))
