@@ -29,12 +29,11 @@ class FormInput extends React.Component {
 
     render() {
         const { className, onChange, ...props } = this.props
-        console.log(props)
         return (
-            <fieldset>
+            <React.Fragment>
                 <input className={classnames('form-input', { 'form-input--error': this.state.error })} {...props} onChange={this.validate} />
                  {this.state.error && <p className="form-input__error">{this.state.error}</p>} 
-            </fieldset>
+            </React.Fragment>
         )
 
     }
