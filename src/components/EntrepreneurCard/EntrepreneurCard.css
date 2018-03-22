@@ -27,33 +27,33 @@
 }
 
 .card-links {
-    list-style: none;
-}
-
-li {
-    padding: .5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000000;
+    flex-grow: 0;
 }
 
 .card-links__edit {
-    display: inline-block;
-    border-right: .1rem solid #000000;
+    margin: 0 .2rem;
+    border: 0;
+    font-size: 2rem;
+    cursor: pointer;
+    color: darkgoldenrod;
+    background-color: #ffffff;
 }
 
-.card-links__edit:hover {
-    cursor: pointer;
-    color: #3c763d;
+.card-links__edit:disabled {
+    color: #808080;
+    cursor: default;
 }
 
 .card-links__remove {
-    display: inline-block;
-    border: none;
-}
-
-.card-links__remove:hover {
+    margin: 0 .2rem;
+    border: 0;
+    font-size: 2rem;
     cursor: pointer;
     color: #a94442;
+    background-color: #ffffff;
+}
+
+.card-links__remove:disabled {
+    color: #808080;
+    cursor: default;
 }
