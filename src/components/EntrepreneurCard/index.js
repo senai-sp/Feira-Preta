@@ -19,9 +19,9 @@ class EntrepreneurCard extends React.Component {
             <div className="entrepreneur-card" key={this.props.id} >
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
                 <span className="user">
-                    <h3>@{this.props.usernameInstagram}</h3>
-                    <h3>{this.props.fullNameInstagram}</h3>
-                    <h3>{this.props.phoneNumber}</h3>
+                    <h3 className="user__full-name">{this.props.fullNameInstagram}</h3>
+                    <h3 className="user__user-name">@{this.props.usernameInstagram}</h3>
+                    <h3 className="user__phone-number">{this.props.phoneNumber}</h3>
                 </span>
                 <div className="card-links">
                     <button { ...buttonProps } className="card-links__edit" onClick={this.props.clickEdit} >

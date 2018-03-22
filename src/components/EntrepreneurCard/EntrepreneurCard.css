@@ -9,21 +9,42 @@
     display: flex;
     align-items: center;
     width: 70%;
-    min-width: 320px;
+    min-width: 316px;
     margin: .5rem auto;
-    border: 2px solid #808080;
+    border: 0;
     padding: .5rem;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
 }
 
 .entrepreneur-card__profile-img {
-    margin: .2rem;
+    margin: .5rem .5rem .5rem 0;
     max-width: 4rem;
+    border-radius: 50%;
 }
 
 .user {
     flex-grow: 1;
+}
+
+.user__full-name {
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
+}
+
+.user__user-name {
+    font-size: 1rem;
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
+}
+
+.user__phone-number {
+    padding: .2rem 0;
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
 }
 
 .card-links {
@@ -31,29 +52,45 @@
 }
 
 .card-links__edit {
-    margin: 0 .2rem;
+    margin: 0;
+    padding: 0 .2rem .2rem .2rem;
     border: 0;
+    border-radius: 3px;
     font-size: 2rem;
     cursor: pointer;
-    color: darkgoldenrod;
+    color: #808080;
     background-color: #ffffff;
+}
+
+.card-links__edit:hover {
+    color: #ffffff;
+    background-color: #8094b7;
 }
 
 .card-links__edit:disabled {
     color: #808080;
+    background-color: #ffffff;
     cursor: default;
 }
 
 .card-links__remove {
-    margin: 0 .2rem;
+    margin: 0;
+    padding: 0 .2rem .2rem .2rem;
     border: 0;
+    border-radius: 3px;
     font-size: 2rem;
     cursor: pointer;
-    color: #a94442;
+    color: #808080;
     background-color: #ffffff;
+}
+
+.card-links__remove:hover {
+    color: #ffffff;
+    background-color: #8094b7;
 }
 
 .card-links__remove:disabled {
     color: #808080;
+    background-color: #ffffff;
     cursor: default;
 }

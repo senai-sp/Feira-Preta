@@ -5,40 +5,46 @@
     height: 550px;
     padding: 1rem;
     margin: .5rem;
-    border: solid #808080 1px;
+    border: 0;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
     overflow: auto;
 }
 
 .card__delete {
-    color: #808080;
-    font-size: 2rem;
     float: right;
-    transform: translateY(-25%);
+    transform: translateY(-20%);
+    padding: 0 .2rem .2rem .2rem;
     border: 0;
-    background-color: #ffffff;
-}
-
-.card__delete:hover {
+    border-radius: 3px;
     cursor: pointer;
-    color: #a94442;
+    font-size: 2rem;
+    color: #808080;
+    background-color: #ffffff;
+}  
+    
+.card__delete:hover {
+    color: #ffffff;
+    background-color: #8094b7;
 }
 
 .card__user {
     margin: 0 0 0.8rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color:#4b4f56;
 }
 
 .card__image {
     height: 360px;
     width: 100%;
-    margin: 0 0 0.8rem;
-    border: solid #808080 1px;
+    margin: 0 0 0.3rem;
+    border: 0;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
 }
 
-.card__text, .card__user {
-    color: #808080;
-    text-align: center;
+.card__text {
+    text-align: justify;
+    color:#4b4f56;
 }

@@ -1,14 +1,14 @@
 import React from 'react'
-import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o'
+import FaTrashO from 'react-icons/lib/fa/trash-o'
 import './FeaturesCard.css'
 
 
 const FeaturesCard = props => (
     <div className="card">
         <button className="card__delete" type="button" onClick={props.click}>
-            <FaTimesCircleO className="fas fa-times-circle" aria-hidden="true"></FaTimesCircleO>
+            <FaTrashO className="fas fa-trash-o" aria-hidden="true"></FaTrashO>
         </button>
-        <h3 className="card__user">{props.user}</h3>
+        <p className="card__user">Publicado por {props.user}</p>
         <a target="_blank" href={props.href}>
             <img className="card__image" src={props.image} alt={props.text} />
         </a>
