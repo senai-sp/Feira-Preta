@@ -7,13 +7,31 @@ import './EntrepreneurList.css'
 class EntrepreneurList extends Component {
     constructor(props) {
         super(props)
-        this.state = { entrepreneurs: this.props.entrepreneurs }
-        this.orderedEntrepeneur = ''
+        this.state = { orderedEntrepeneur: [...props.entrepreneurs] }
     }
 
     componentDidMount() {
         this.props.dispatchListEntrepreneur()
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.orderBy !== this.state.orderBy) {
+            switch (this.state.orderBy) {
+                case 'phoneNumber':
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
+                    break
+                case 'fullNameInstagram':
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) }) 
+                    break
+                default:
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
+                    break
+            }
+        }
+        if (!this.state.orderBy) {
+            this.setState({ orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: 'usernameInstagram' })
+        }
+}
 
     removeItem(id) {
         this.props.dispatchRemoveEntrepreneur(id)
@@ -25,38 +43,23 @@ class EntrepreneurList extends Component {
     }
 
     orderEntrepeneur(orderBy) {
-        this.setState({ orderBy })
-        switch (orderBy) {
-            case 'phoneNumber':
-                this.orderedEntrepeneur = [...this.props.entrepreneurs].sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0)
-                break
-            case 'usernameInstagram':
-                this.orderedEntrepeneur = [...this.props.entrepreneurs].sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0)
-                break
-            default:
-                this.orderedEntrepeneur = [...this.props.entrepreneurs].sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0)
-                break
-        }
+        (this.state.orderBy != orderBy) && this.setState({ orderBy })
     }
-
+    
     render() {
-        console.log(this.orderedEntrepeneur)
-        if (this.orderedEntrepeneur == '') {
-            this.orderedEntrepeneur = [...this.props.entrepreneurs]
-        }
-        console.log(this.orderedEntrepeneur)
+        console.log('render')
         return (
             <section>
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por:</span>
-                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" defaultChecked="checked" onClick={() => this.orderEntrepeneur('usernameInstagram')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" name="selectOrder" defaultChecked onClick={() => this.orderEntrepeneur('usernameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
-                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" onClick={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" onClick={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
-                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" onClick={() => this.orderEntrepeneur('phoneNumber')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" onClick={() => this.orderEntrepeneur('phoneNumber')} ></input>
                     <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
                 </div>
-                {this.orderedEntrepeneur.map(entrepreneur => (
+                {this.state.orderedEntrepeneur.map(entrepreneur => (
                     <EntrepreneurCard
                         key={entrepreneur.id}
                         profilePictureInstagram={entrepreneur.profilePictureInstagram}
@@ -67,15 +70,12 @@ class EntrepreneurList extends Component {
                         clickRemove={() => this.removeItem(entrepreneur.id)}
                     />
                 ))}
-                {/*<p>orderedEntrepeneur: { this.orderedEntrepeneur[1].usernameInstagram}</p>
-                <p>props.entrepreneurs: { this.props.entrepreneurs[1].usernameInstagram}</p>*/}
             </section>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    // entrepreneurs: state.entrepreneurs
     entrepreneurs: state.entrepreneurs
 })
 
