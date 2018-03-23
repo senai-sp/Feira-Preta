@@ -14,7 +14,7 @@ class EntrepreneurCard extends React.Component {
         if (this.props.editing.isEditing) {
             buttonProps.disabled = true
         }
-        console.log(this.props.editing.isEditing)
+
         return (
             <div className="entrepreneur-card" key={this.props.id} >
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
