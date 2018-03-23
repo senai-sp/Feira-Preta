@@ -1,5 +1,5 @@
 import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur, putEntrepreneur } from '../api/entrepreneurs'
-import { addFailure, addSuccess, START_LOAD } from './api'
+import { addFailure, addSuccess, START_LOAD, warning, cleanMessage } from './api'
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
 export const EDIT_ENTREPRENEUR = 'EDIT_ENTREPRENEUR'
@@ -11,11 +11,11 @@ export function addEntrepreneur(userName, phoneNumber) {
         })
         postEntrepreneurs(userName, phoneNumber)
             .then((response) => {
-                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
             .catch(error => {
-                dispatch(addFailure('Ocorreu um erro inesperado'))
+                dispatch(addFailure(error.data.message))
             })
     }
 }
@@ -29,7 +29,7 @@ export function listEntrepreneurs() {
                     entrepreneurs: response.data
                 })
             })
-            .catch(error => dispatch(addFailure('Ocorreu um erro e não foi possível carregar a lista de empreendedores')))
+            .catch(error => dispatch(addFailure(error.response.message)))
     }
 }
 
@@ -53,6 +53,7 @@ export function editEntrepreneur(isEditing, id, usernameInstagram, phoneNumber) 
             usernameInstagram,
             phoneNumber
         })
+        isEditing ? dispatch(warning('Editando empreendedor')) : dispatch(cleanMessage())
     }
 }
 

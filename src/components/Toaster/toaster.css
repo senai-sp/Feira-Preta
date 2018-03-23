@@ -14,10 +14,10 @@
     border-radius: 3px;
 }
 
-.edit-alert {
-    color: #000000;
-    background-color: #ffeb3b;
+.warning-alert {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
     padding: .5rem;
-    border: 1px solid #3c763d;
+    border: 1px solid #faebcc;
     border-radius: 3px;
 }

@@ -15,18 +15,16 @@ export function message(state = initialState, action) {
             return {
                 ...state,
                 message: {
-                    text: action.text,
-                    isError: true,
-                    warning: true
+                    text: action.payload.text,
+                    type: action.payload.type
                 }
             }
         case actionsTypes.ADD_SUCCESS:
             return {
                 ...state,
                 message: {
-                    text: action.text,
-                    isError: false,
-                    warning: true
+                    text: action.payload.text,
+                    type: action.payload.type
                 }
             }
         case actionsTypes.CLEAN_MESSAGE:
@@ -34,16 +32,16 @@ export function message(state = initialState, action) {
                 ...state,
                 message: {
                     text: null,
-                    isError: false,
-                    warning: false
+                    type: null
                 }
             }
-        case actionsTypes.EDIT_ENTREPRENEUR:
+        case actionsTypes.WARNING:
             return {
                 ...state,
-                text: 'Editando empreendedor',
-                isError: false,
-                warning: true
+                message: {
+                    text: action.payload.text,
+                    type: action.payload.type
+                }
             }
         default:
             return state

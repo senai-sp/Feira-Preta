@@ -4,7 +4,6 @@ import { addEntrepreneur, cleanMessage, editEntrepreneur, editedEntrepreneur } f
 import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
-import classnames from 'classnames'
 import './EntrepreneursForm.css'
 
 class EnterpreneursForm extends React.Component {
@@ -65,12 +64,12 @@ class EnterpreneursForm extends React.Component {
         if (!this.props.editing.isEditing && this.state.isUserInvalid && this.state.isPhoneInvalid) {
             buttonProps.disabled = true
         }
+        console.log(this.props.editing.usernameInstagram)
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-                {this.props.message.text && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>}
-                {/* {this.user.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>} */}
-                {!this.user.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
-                {this.user.isEditing && <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}
+                {/*{!this.user.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
+                {this.user.isEditing && <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}*/}
+                <FormInput defaultValue={this.props.editing.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     guide={true}

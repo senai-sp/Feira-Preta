@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import classnames from 'classnames'
+import './toaster.css'
 
-class Toaster extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+class Toaster extends Component {
 
     render() {
 
         return (
-            <div>{this.props.message.text}</div>
+            <div className={classnames({ 'error-alert': (this.props.message.type == 'failure'), 'success-alert': (this.props.message.type == 'success'), 'warning-alert': (this.props.message.type == 'warning') })}>{this.props.message.text}</div>
         )
     }
 }
@@ -17,8 +16,7 @@ class Toaster extends React.Component {
 const mapStateToProps = state => ({
     message: {
         text: state.message.message.text,
-        isError: state.message.message.isError,
-        warning: state.message.message.warning
+        type: state.message.message.type
     }
 })
 
