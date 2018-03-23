@@ -64,14 +64,16 @@
     }
 
     .navbar-links {
-        position: fixed;
+        position: static;
         display: inline-block;
         opacity: 1;
-        right: 0;
-        top: 0;
         pointer-events: all;
         height: inherit;
         width: inherit;
+    }
+
+    .link {
+        margin: 0;
     }
 
     .navbar-links__item {
