@@ -67,8 +67,8 @@ class EnterpreneursForm extends React.Component {
         }
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
-                {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>}
-                {this.user.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>}
+                {this.props.message.text && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError, 'edit-alert': this.props.editing.isEditing })}>{this.props.message.text}</div>}
+                {/* {this.user.isEditing && <div className={classnames({ 'edit-alert': this.props.editing.isEditing })}></div>} */}
                 {!this.user.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
                 {this.user.isEditing && <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}
                 <MaskedInput
