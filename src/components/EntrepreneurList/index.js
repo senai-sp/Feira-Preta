@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listEntrepreneurs, removeEntrepreneur, editEntrepreneur, cleanMessage } from '../../actions'
 import EntrepreneurCard from '../EntrepreneurCard'
+import './EntrepreneurList.css'
 
 class EntrepreneurList extends Component {
     constructor(props) {
@@ -44,10 +45,16 @@ class EntrepreneurList extends Component {
         const entrepreneurCard = this.orderEntrepeneur('phoneNumber')
         return (
             <section>
-                <div>Ordenar: </div>
-                <span onClick={() => this.orderEntrepeneur('usernameInstagram')}  >Nome de usuário</span>
-                <span onClick={() => this.orderEntrepeneur('fullNameInstagram')}  >Nome completo</span>
-                <span onClick={() => this.orderEntrepeneur('phoneNumber')}  >Telefone</span>
+                <div className='ordination-options'>
+                    <span className='ordination-options__title'>Ordenar por:</span>
+                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" defaultChecked="checked" onClick={() => this.orderEntrepeneur('usernameInstagram')} ></input>
+                    <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
+                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" onClick={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
+                    <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
+                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" onClick={() => this.orderEntrepeneur('phoneNumber')} ></input>
+                    <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
+                </div>
+
                 {this.props.entrepreneurs.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.orderBy > a.orderBy) ? -1 : 0).map(entrepreneur => (
                     <EntrepreneurCard
                         key={entrepreneur.id}
