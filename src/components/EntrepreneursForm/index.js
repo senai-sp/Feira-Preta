@@ -69,7 +69,7 @@ class EnterpreneursForm extends React.Component {
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
                 {/*{!this.user.isEditing && <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} onClick={this.props.dispatchCleanMessage} />}
                 {this.user.isEditing && <FormInput defaultValue={this.user.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />}*/}
-                <FormInput defaultValue={this.props.editing.usernameInstagram} className="form-input" type='text' placeholder='@usuário2' onChange={this.handleUserInput} />
+                <FormInput defaultValue={this.props.editing.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
                 <MaskedInput
                     mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                     guide={true}

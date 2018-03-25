@@ -36,7 +36,7 @@
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s;
-    right: -50%;
+    right: 0;
     list-style: none;
     background-color: #E21E20; 
 }
