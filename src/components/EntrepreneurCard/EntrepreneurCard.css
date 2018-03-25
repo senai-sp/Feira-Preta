@@ -68,7 +68,7 @@
 }
 
 .card-links__edit:disabled {
-    color: #808080;
+    color: #e0e0e0;
     background-color: #ffffff;
     cursor: default;
 }
@@ -90,7 +90,7 @@
 }
 
 .card-links__remove:disabled {
-    color: #808080;
+    color: #e0e0e0;
     background-color: #ffffff;
     cursor: default;
 }
