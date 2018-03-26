@@ -8,7 +8,7 @@ const Features = () => (
         <h1 className="features__title">Destaques</h1>
         <FeaturesForm />
         <FeaturesList />
-    </article>  
+    </article>
 )
 
 export default Features

@@ -1,0 +1,41 @@
+.error-alert {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: .5rem;
+    border: 1px solid #a94442;
+    
+    position: fixed;
+    top: 5.5rem;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    width: 100%
+}
+
+.success-alert {
+    color: #3c763d;
+    background-color: #dff0d8;
+    padding: .5rem;
+    border: 1px solid #3c763d;
+
+    position: fixed;
+    top: 5.5rem;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    width: 100%
+}
+
+.warning-alert {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    padding: .5rem;
+    border: 1px solid #faebcc;
+
+    position: fixed;
+    top: 5.5rem;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    width: 100%
+}

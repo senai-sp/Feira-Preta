@@ -5,8 +5,6 @@ import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
 import classnames from 'classnames'
 import './FeaturesForm.css'
-import '../Pages/AlertMessage.css'
-
 
 class FeaturesForm extends React.Component {
     constructor(props) {

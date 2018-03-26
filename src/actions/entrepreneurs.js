@@ -11,11 +11,11 @@ export function addEntrepreneur(userName, phoneNumber) {
         })
         postEntrepreneurs(userName, phoneNumber)
             .then((response) => {
-                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
             .catch(error => {
-                dispatch(addFailure('Ocorreu um erro inesperado'))
+                dispatch(addFailure(error.data.message))
             })
     }
 }
@@ -29,7 +29,7 @@ export function listEntrepreneurs() {
                     entrepreneurs: response.data
                 })
             })
-            .catch(error => dispatch(addFailure('Ocorreu um erro e não foi possível carregar a lista de empreendedores')))
+            .catch(error => dispatch(addFailure(error.data.message)))
     }
 }
 
@@ -37,22 +37,10 @@ export function removeEntrepreneur(id) {
     return dispatch => {
         deleteEntrepreneur(id)
             .then((response) => {
-                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
-            .catch(error => dispatch(addFailure('Não foi possível remover o empreendedor')))
-    }
-}
-
-export function editEntrepreneur(isEditing, id, usernameInstagram, phoneNumber) {
-    return dispatch => {
-        dispatch({
-            type: EDIT_ENTREPRENEUR,
-            isEditing,
-            id,
-            usernameInstagram,
-            phoneNumber
-        })
+            .catch(error => dispatch(addFailure(error.data.message)))
     }
 }
 
@@ -60,9 +48,9 @@ export function editedEntrepreneur(id, phoneNumber, usernameInstagram) {
     return dispatch => {
         putEntrepreneur(id, phoneNumber, usernameInstagram)
             .then(response => {
-                (response.data.statusCode < 300) ? dispatch(addSuccess(response.data.message)) : dispatch(addFailure(response.data.message))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
-            .catch(error => dispatch(addFailure('Não foi possível atualizar os dados do empreendedor')))
+            .catch(error => dispatch(dispatch(addFailure(error.data.message))))
     }
 }

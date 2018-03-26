@@ -1,16 +1,17 @@
 import React from 'react'
 import './Entrepreneurs.css'
 import EntrepreneursForm from '../../EntrepreneursForm'
-import EntrepreneurCard from '../../EntrepreneurCard'
+import EntrepreneurList from '../../EntrepreneurList'
+import Toaster from '../../Toaster'
 
 const Entrepreneurs = () => (
     <article className="entrepreneurs">
-        <h1 className="entrepreneurs__title">Empreendores</h1>
+        <h1 className="entrepreneurs__title">Empreendedores</h1>
+        <Toaster />
         <EntrepreneursForm />
-        <section>
-            <EntrepreneurCard />
-        </section>
-    </article> 
+        <EntrepreneurList />
+
+    </article>
 )
 
 export default Entrepreneurs

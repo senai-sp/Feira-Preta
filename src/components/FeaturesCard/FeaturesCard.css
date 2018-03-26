@@ -1,0 +1,62 @@
+.card {
+    display: inline-block;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 550px;
+    min-height: 300px;
+    padding: 1rem;
+    margin: .5rem;
+    border: 0;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+    overflow: auto;
+}
+
+.card__delete {
+    float: right;
+    transform: translateY(-20%);
+    padding: 0 .2rem .2rem .2rem;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #808080;
+    background-color: #ffffff;
+}  
+    
+.card__delete:hover {
+    color: #ffffff;
+    background-color: #8094b7;
+}
+
+.card__user {
+    margin: 0 0 0.8rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color:#4b4f56;
+}
+
+.card__image {
+    height: 65%;
+    width: 100%;
+    margin: 0 0 0.3rem;
+    border: 0;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+}
+
+.card__text {
+    text-align: justify;
+    color:#4b4f56;
+}
+
+@media (min-width: 768px) {
+    .card__image {
+    height: 360px;
+    width: 100%;
+    margin: 0 0 0.3rem;
+    border: 0;
+    border-radius: 3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+    }
+}

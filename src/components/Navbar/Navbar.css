@@ -1,30 +1,56 @@
 .navbar {
+    position: fixed;
+    top: 0;
     display: flex;
-    justify-content: space-around;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    z-index: 1;
     height: 5.5rem;
-    background-color: #ec2e2b;
+    width: 100%;
+    background-color: #E21E20;
 }
 
 .navbar__logo {
+    margin-left: .5rem;
     height: 3rem;
 }
 
+#menu-hamburguer {
+    float: right;
+    opacity: 0;
+}
+
+.fa-bars {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#menu-hamburguer:checked + .navbar-links {
+    opacity: 1;
+    right: 0;
+    pointer-events: all;
+}
+
 .navbar-links {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 50%;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    right: 0;
     list-style: none;
+    background-color: #E21E20; 
 }
 
 .navbar-links__item {
-    display: inline-block;
-}
-
-.link:nth-of-type(2) {
-    border-left: .1rem solid black;
-    border-right: .1rem solid black;
+    display: block;
 }
 
 .link {
+    margin-top: 1.5rem;
     padding: .5rem;
     font-size: 1rem;
     font-weight: bold;
@@ -36,26 +62,30 @@
     color: #ffffff;
 }
 
-@media (min-width: 768px) {
-    .navbar{
-        flex-direction: row;
-        height: 4rem;
-    }
-
-    .navbar__logo{
-        height: inherit;
-        margin-left: 5%;
+@media (min-width: 1080px) {
+    .fa-bars {
+        display: none;
     }
 
     .navbar-links {
-        display: flex;
-        justify-content: flex-end;
-        flex-grow: 1;
-        margin-right: 5%;
+        position: static;
+        display: inline-block;
+        opacity: 1;
+        pointer-events: all;
+        height: inherit;
+        width: inherit;
     }
 
-    .menu-link{
-        margin: 1rem;
-        font-size: 1.5rem;
+    .link {
+        margin: 0;
+    }
+
+    .navbar-links__item {
+        display: inline-block;
+    }
+
+    .navbar-links__item:nth-of-type(2) {
+        border-right: 2px solid black;
+        border-left: 2px solid black;
     }
 }

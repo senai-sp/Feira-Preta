@@ -9,46 +9,88 @@
     display: flex;
     align-items: center;
     width: 70%;
-    min-width: 320px;
+    min-width: 300px;
     margin: .5rem auto;
-    border: 2px solid #808080;
-    padding: 1rem;
+    border: 0;
+    padding: .5rem;
     border-radius: 3px;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+}
+
+.entrepreneur-card__profile-img {
+    margin: .5rem .5rem .5rem 0;
+    max-width: 4rem;
+    border-radius: 50%;
 }
 
 .user {
     flex-grow: 1;
 }
 
-.card-links {
-    list-style: none;
+.user__full-name {
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
 }
 
-li {
-    padding: .5rem;
+.user__user-name {
     font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000000;
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
+}
+
+.user__phone-number {
+    padding: .2rem 0;
+    font-style:normal;
+    font-weight:normal;
+    color:#4b4f56;
+}
+
+.card-links {
+    flex-grow: 0;
 }
 
 .card-links__edit {
-    display: inline-block;
-    border-right: .1rem solid #000000;
+    margin: 0;
+    padding: 0 .2rem .2rem .2rem;
+    border: 0;
+    border-radius: 3px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #808080;
+    background-color: #ffffff;
 }
 
 .card-links__edit:hover {
-    cursor: pointer;
-    color: #3c763d;
+    color: #ffffff;
+    background-color: #8094b7;
+}
+
+.card-links__edit:disabled {
+    color: #e0e0e0;
+    background-color: #ffffff;
+    cursor: default;
 }
 
 .card-links__remove {
-    display: inline-block;
-    border: none;
+    margin: 0;
+    padding: 0 .2rem .2rem .2rem;
+    border: 0;
+    border-radius: 3px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #808080;
+    background-color: #ffffff;
 }
 
 .card-links__remove:hover {
-    cursor: pointer;
-    color: #a94442;
+    color: #ffffff;
+    background-color: #8094b7;
+}
+
+.card-links__remove:disabled {
+    color: #e0e0e0;
+    background-color: #ffffff;
+    cursor: default;
 }

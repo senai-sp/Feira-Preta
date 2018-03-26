@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listFeatures, removeFeature } from '../../actions'
-import Card from '../Card'
+import FeaturesCard from '../FeaturesCard'
 import './FeaturesList.css'
 
 
@@ -15,10 +15,11 @@ class FeaturesList extends Component {
     }
 
     render() {
+        
         return (
             <section className="features-list">
-                {this.props.features.map(feature => (
-                    <Card
+                {this.props.features.reverse().map(feature => (
+                    <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}

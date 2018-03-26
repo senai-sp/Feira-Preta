@@ -1,0 +1,21 @@
+.ordination-options {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.ordination-options__title {
+    display: block;
+    color:#4b4f56;
+}
+
+.ordination-options__radio-button {
+    margin: .3rem .3rem .3rem 0;
+    width: 1rem;
+    cursor: pointer;
+}
+
+.ordination-options__label {
+    margin-right: .5rem;
+    cursor: pointer;
+    color:#4b4f56;
+}
