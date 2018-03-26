@@ -1,7 +1,6 @@
 import React from 'react'
 import FeaturesForm from '../../FeaturesForm'
 import FeaturesList from '../../FeaturesList'
-import Toaster from '../../Toaster'
 import './Features.css'
 
 const Features = () => (

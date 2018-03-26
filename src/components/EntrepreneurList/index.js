@@ -15,7 +15,7 @@ class EntrepreneurList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        (this.state.orderBy === '') && this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur('usernameInstagram'))
+        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur())
     }
 
     removeItem(id) {

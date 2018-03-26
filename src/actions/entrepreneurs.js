@@ -37,7 +37,7 @@ export function removeEntrepreneur(id) {
     return dispatch => {
         deleteEntrepreneur(id)
             .then((response) => {
-                (addSuccess(response.data.message))
+                dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
             .catch(error => dispatch(addFailure(error.data.message)))
