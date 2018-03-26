@@ -12,7 +12,6 @@ import './App.css'
 const App = () => (
   <main>
     <Navbar />
-    <Toaster />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/destaques" component={Features} />
