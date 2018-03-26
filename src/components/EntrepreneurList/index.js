@@ -15,7 +15,7 @@ class EntrepreneurList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur('usernameInstagram'))
+        (this.state.orderBy === '') && this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur('usernameInstagram'))
     }
 
     removeItem(id) {
@@ -23,7 +23,7 @@ class EntrepreneurList extends Component {
     }
 
     orderEntrepeneur(orderBy) {
-        (this.state.orderBy != orderBy) && this.setState({ orderBy }, () => {
+        (this.state.orderBy !== orderBy) && this.setState({ orderBy }, () => {
             switch (this.state.orderBy) {
                 case 'phoneNumber':
                     this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
@@ -32,7 +32,7 @@ class EntrepreneurList extends Component {
                     this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
                     break
                 default:
-                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
+                    this.setState({ orderBy: 'usernameInstagram', orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
                     break
             }
         })
@@ -44,11 +44,11 @@ class EntrepreneurList extends Component {
             <section>
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por:</span>
-                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" name="selectOrder" defaultChecked onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" name="selectOrder" checked={this.state.orderBy === 'usernameInstagram'} onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
-                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" onChange={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" checked={this.state.orderBy === 'fullNameInstagram'} onChange={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
-                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" onChange={() => this.orderEntrepeneur('phoneNumber')} ></input>
+                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" checked={this.state.orderBy === 'phoneNumber'} onChange={() => this.orderEntrepeneur('phoneNumber')} ></input>
                     <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
                 </div>
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
