@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Toaster from '../Toaster'
 import LogoFFP from './logo-FFP.png'
 import FaBars from 'react-icons/lib/fa/bars'
 import './Navbar.css'
@@ -33,6 +34,7 @@ const Navbar = () => (
                 </ul>
             </div>
         </nav>
+        <Toaster />
     </header>
 )
 

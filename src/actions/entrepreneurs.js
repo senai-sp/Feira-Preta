@@ -1,5 +1,5 @@
 import { postEntrepreneurs, getEntrepreneurs, deleteEntrepreneur, putEntrepreneur } from '../api/entrepreneurs'
-import { addFailure, addSuccess, START_LOAD, warning, cleanMessage } from './api'
+import { addFailure, addSuccess, START_LOAD } from './api'
 export const LIST_ENTREPRENEUR = 'LIST_ENTREPRENEUR'
 export const REMOVE_ENTREPRENEUR = 'REMOVE_ENTREPRENEUR'
 export const EDIT_ENTREPRENEUR = 'EDIT_ENTREPRENEUR'
@@ -41,19 +41,6 @@ export function removeEntrepreneur(id) {
                 dispatch(listEntrepreneurs())
             })
             .catch(error => dispatch(addFailure(error.data.message)))
-    }
-}
-
-export function editEntrepreneur(isEditing, id, usernameInstagram, phoneNumber) {
-    return dispatch => {
-        dispatch({
-            type: EDIT_ENTREPRENEUR,
-            isEditing,
-            id,
-            usernameInstagram,
-            phoneNumber
-        })
-        isEditing ? dispatch(warning('Editando empreendedor')) : dispatch(cleanMessage())
     }
 }
 

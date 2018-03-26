@@ -26,18 +26,6 @@ export function addSuccess(text) {
     }
 }
 
-export function warning(text) {
-    return dispatch => {
-        dispatch({
-            type: WARNING,
-            payload: {
-                text,
-                type: 'warning'
-            }
-        })
-    }
-}
-
 export function cleanMessage() {
     return dispatch => {
         dispatch({

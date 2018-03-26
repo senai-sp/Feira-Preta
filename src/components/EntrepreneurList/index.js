@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listEntrepreneurs, removeEntrepreneur, editEntrepreneur, cleanMessage } from '../../actions'
+import { listEntrepreneurs, removeEntrepreneur } from '../../actions'
 import EntrepreneurCard from '../EntrepreneurCard'
 import './EntrepreneurList.css'
 
@@ -22,25 +22,20 @@ class EntrepreneurList extends Component {
         this.props.dispatchRemoveEntrepreneur(id)
     }
 
-    editItem(isEditing, id, usernameInstagram, tel) {
-        this.props.dispatchCleanMessage()
-        this.props.dispatchEditEntrepreneur(isEditing, id, usernameInstagram, tel)
-    }
-
     orderEntrepeneur(orderBy) {
         (this.state.orderBy != orderBy) && this.setState({ orderBy }, () => {
             switch (this.state.orderBy) {
-            case 'phoneNumber':
-                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
-                break
-            case 'fullNameInstagram':
-                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
-                break
-            default:
-                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
-                break
-        }
-        } )
+                case 'phoneNumber':
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
+                    break
+                case 'fullNameInstagram':
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
+                    break
+                default:
+                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
+                    break
+            }
+        })
     }
 
     render() {
@@ -58,12 +53,12 @@ class EntrepreneurList extends Component {
                 </div>
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
                     <EntrepreneurCard
+                        id={entrepreneur.id}
                         key={entrepreneur.id}
                         profilePictureInstagram={entrepreneur.profilePictureInstagram}
                         usernameInstagram={entrepreneur.usernameInstagram}
                         fullNameInstagram={entrepreneur.fullNameInstagram}
                         phoneNumber={entrepreneur.phoneNumber}
-                        clickEdit={() => this.editItem(true, entrepreneur.id, entrepreneur.usernameInstagram, entrepreneur.phoneNumber)}
                         clickRemove={() => this.removeItem(entrepreneur.id)}
                     />
                 ))}
@@ -82,14 +77,7 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchRemoveEntrepreneur: (id) => {
         dispatch(removeEntrepreneur(id))
-    },
-    dispatchEditEntrepreneur: (isEditing, id, usernameInstagram, tel) => {
-        dispatch(editEntrepreneur(isEditing, id, usernameInstagram, tel))
-    },
-    dispatchCleanMessage: () => {
-        dispatch(cleanMessage())
     }
-}
-)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(EntrepreneurList)
