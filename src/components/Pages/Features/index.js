@@ -7,7 +7,6 @@ import './Features.css'
 const Features = () => (
     <article className="features">
         <h1 className="features__title">Destaques</h1>
-        <Toaster />
         <FeaturesForm />
         <FeaturesList />
     </article>

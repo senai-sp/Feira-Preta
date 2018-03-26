@@ -4,7 +4,7 @@
     justify-content: center;
     width: 70%;
     min-width: 320px;
-    margin: 6rem auto 0 auto;
+    margin: 8rem auto 0 auto;
 }
 
 .features__title {
@@ -12,4 +12,5 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
     letter-spacing: .2rem;
+    position: relative;
 }
