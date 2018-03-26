@@ -34,7 +34,6 @@
 .navbar-links {
     position: absolute;
     display: block;
-    height: 100%;
     width: 50%;
     z-index: 1;
     opacity: 0;
