@@ -35,6 +35,7 @@ class EntrepreneurList extends Component {
                     this.setState({ orderBy: 'usernameInstagram', orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
                     break
             }
+            console.log(this.state.orderBy)
         })
     }
 
@@ -44,13 +45,24 @@ class EntrepreneurList extends Component {
             <section>
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por:</span>
-                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" name="selectOrder" checked={this.state.orderBy === 'usernameInstagram'} onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
+                    <select className='ordination-options__select'>
+                        <option className='ordination-options__radio-button' id="usernameInstagram" name="selectOrder" value="usernameInstagram" onFocus={() => this.orderEntrepeneur('usernameInstagram')}>Nome de usuário</option>
+                        <option className='ordination-options__radio-button' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" onFocus={() => this.orderEntrepeneur('fullNameInstagram')}>Nome completo</option>
+                        <option className='ordination-options__radio-button' id="phoneNumber" name="selectOrder" value="phoneNumber" onFocus={() => this.orderEntrepeneur('phoneNumber')}>Telefone</option>
+                    </select>
+                </div>
+
+                {/*<div className='ordination-options'>
+                    <span className='ordination-options__title'>Ordenar por:</span>
+                    <input className='ordination-options__radio-button' type="radio" name="selectOrder" checked={this.state.orderBy === 'usernameInstagram'} onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
                     <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" checked={this.state.orderBy === 'fullNameInstagram'} onChange={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
                     <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
                     <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" checked={this.state.orderBy === 'phoneNumber'} onChange={() => this.orderEntrepeneur('phoneNumber')} ></input>
                     <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
-                </div>
+                </div>*/}
+
+
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
                     <EntrepreneurCard
                         id={entrepreneur.id}

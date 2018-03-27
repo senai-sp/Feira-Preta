@@ -8,6 +8,7 @@
 .entrepreneur-card {
     display: flex;
     align-items: center;
+    flex-direction: column;
     width: 70%;
     min-width: 300px;
     margin: .5rem auto;
@@ -28,12 +29,14 @@
 }
 
 .user__full-name {
+    text-align: center;
     font-style:normal;
     font-weight:normal;
     color:#4b4f56;
 }
 
 .user__user-name {
+    text-align: center;
     font-size: 1rem;
     font-style:normal;
     font-weight:normal;
@@ -41,10 +44,17 @@
 }
 
 .user__phone-number {
+    text-align: center;
     padding: .2rem 0;
     font-style:normal;
     font-weight:normal;
     color:#4b4f56;
+}
+
+.form-input {
+    text-align: center;
+    border: 0;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
 }
 
 .card-links {
@@ -93,4 +103,26 @@
     color: #e0e0e0;
     background-color: #ffffff;
     cursor: default;
+}
+
+@media (min-width: 720px) {
+    .entrepreneur-card {
+        flex-direction: row;
+    }
+
+    .user__full-name {
+        text-align: left;
+    }
+
+    .user__user-name {
+        text-align: left;
+    }
+
+    .user__phone-number {
+        text-align: left;
+    }
+
+    .form-input {
+        text-align: left;
+    }
 }
