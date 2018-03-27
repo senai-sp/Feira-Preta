@@ -59,6 +59,7 @@
 
 .card-links {
     flex-grow: 0;
+    margin-left: .5rem;
 }
 
 .card-links__edit {

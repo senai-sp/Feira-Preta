@@ -44,11 +44,11 @@ class EntrepreneurList extends Component {
         return (
             <section>
                 <div className='ordination-options'>
-                    <span className='ordination-options__title'>Ordenar por:</span>
+                    <span className='ordination-options__title'>Ordenar por </span>
                     <select className='ordination-options__select'>
-                        <option className='ordination-options__radio-button' id="usernameInstagram" name="selectOrder" value="usernameInstagram" onFocus={() => this.orderEntrepeneur('usernameInstagram')}>Nome de usuário</option>
-                        <option className='ordination-options__radio-button' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" onFocus={() => this.orderEntrepeneur('fullNameInstagram')}>Nome completo</option>
-                        <option className='ordination-options__radio-button' id="phoneNumber" name="selectOrder" value="phoneNumber" onFocus={() => this.orderEntrepeneur('phoneNumber')}>Telefone</option>
+                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" onFocus={() => this.orderEntrepeneur('usernameInstagram')}>nome de usuário</option>
+                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" onFocus={() => this.orderEntrepeneur('fullNameInstagram')}>nome completo</option>
+                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" onFocus={() => this.orderEntrepeneur('phoneNumber')}>telefone</option>
                     </select>
                 </div>
 
