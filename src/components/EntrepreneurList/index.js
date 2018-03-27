@@ -8,8 +8,9 @@ import './EntrepreneurList.css'
 class EntrepreneurList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '', removing: false }
+        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '', selectValue: 'usernameInstagram', removing: false }
         this.removeItem = this.removeItem.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -17,7 +18,8 @@ class EntrepreneurList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur())
+        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur(this.state.selectValue))
+        console.log('willreceive', this.state.orderBy, this.state.selectValue)
     }
 
     removeHandler(id, usernameInstagram) {
@@ -32,6 +34,10 @@ class EntrepreneurList extends Component {
     cancelHandler() {
         this.setState({ id: '', usernameInstagram: '', removing: false })
     }
+
+    handleChange(event) {
+        this.setState({selectValue: event.target.value}, () => this.orderEntrepeneur(event.target.value) );
+      }
     
     orderEntrepeneur(orderBy) {
         (this.state.orderBy !== orderBy) && this.setState({ orderBy }, () => {
@@ -47,32 +53,21 @@ class EntrepreneurList extends Component {
                     break
             }
         })
+        console.log('order', this.state.orderBy, this.state.selectValue)
     }
 
     render() {
-        
+
         return (
             <section>
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por </span>
-                    <select className='ordination-options__select'>
+                    <select className='ordination-options__select' value={this.state.selectValue} onChange={this.handleChange}>
                         <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" onFocus={() => this.orderEntrepeneur('usernameInstagram')}>nome de usuário</option>
                         <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" onFocus={() => this.orderEntrepeneur('fullNameInstagram')}>nome completo</option>
-                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" onFocus={() => this.orderEntrepeneur('phoneNumber')}>telefone</option>
+                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" onChange={() => this.orderEntrepeneur('phoneNumber')}>telefone</option>
                     </select>
                 </div>
-
-                {/*<div className='ordination-options'>
-                    <span className='ordination-options__title'>Ordenar por:</span>
-                    <input className='ordination-options__radio-button' type="radio" name="selectOrder" checked={this.state.orderBy === 'usernameInstagram'} onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
-                    <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
-                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" checked={this.state.orderBy === 'fullNameInstagram'} onChange={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
-                    <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
-                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" checked={this.state.orderBy === 'phoneNumber'} onChange={() => this.orderEntrepeneur('phoneNumber')} ></input>
-                    <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
-                </div>*/}
-
-
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
                     <EntrepreneurCard
                         id={entrepreneur.id}
