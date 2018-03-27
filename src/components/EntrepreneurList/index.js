@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listEntrepreneurs, removeEntrepreneur } from '../../actions'
 import EntrepreneurCard from '../EntrepreneurCard'
+import Modal from '../Modal'
 import './EntrepreneurList.css'
 
 class EntrepreneurList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '' }
+        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '', removing: false }
+        this.removeItem = this.removeItem.bind(this)
     }
 
     componentDidMount() {
@@ -18,10 +20,19 @@ class EntrepreneurList extends Component {
         this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur())
     }
 
-    removeItem(id) {
-        this.props.dispatchRemoveEntrepreneur(id)
+    removeHandler(id, usernameInstagram) {
+        this.setState({ id, usernameInstagram, removing: true })
     }
 
+    removeItem(id) {
+        this.props.dispatchRemoveEntrepreneur(this.state.id)
+        this.setState({ id: '', usernameInstagram: '', removing: false })
+    }
+
+    cancelHandler() {
+        this.setState({ id: '', usernameInstagram: '', removing: false })
+    }
+    
     orderEntrepeneur(orderBy) {
         (this.state.orderBy !== orderBy) && this.setState({ orderBy }, () => {
             switch (this.state.orderBy) {
@@ -35,12 +46,11 @@ class EntrepreneurList extends Component {
                     this.setState({ orderBy: 'usernameInstagram', orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
                     break
             }
-            console.log(this.state.orderBy)
         })
     }
 
     render() {
-
+        
         return (
             <section>
                 <div className='ordination-options'>
@@ -71,9 +81,15 @@ class EntrepreneurList extends Component {
                         usernameInstagram={entrepreneur.usernameInstagram}
                         fullNameInstagram={entrepreneur.fullNameInstagram}
                         phoneNumber={entrepreneur.phoneNumber}
-                        clickRemove={() => this.removeItem(entrepreneur.id)}
+                        clickRemove={() => this.removeHandler(entrepreneur.id, entrepreneur.usernameInstagram)}
                     />
                 ))}
+                {this.state.removing && <Modal
+                    usernameInstagram={this.state.usernameInstagram}
+                    cancelHandler={() => this.cancelHandler()}
+                    removeItem={this.removeItem}
+                />}
+                
             </section>
         )
     }
