@@ -8,7 +8,7 @@ class Toaster extends Component {
     render() {
 
         return (
-            <div className={classnames({ 'error-alert': (this.props.message.type == 'failure'), 'success-alert': (this.props.message.type == 'success'), 'warning-alert': (this.props.message.type == 'warning') })}>{this.props.message.text}</div>
+            <div className={classnames({ 'error-alert': (this.props.message.type === 'failure'), 'success-alert': (this.props.message.type === 'success') })}>{this.props.message.text}</div>
         )
     }
 }

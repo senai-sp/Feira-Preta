@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { addFeature, cleanMessage } from '../../actions'
 import FormInput from '../Form/FormInput'
 import FormButton from '../Form/FormButton'
-import classnames from 'classnames'
 import './FeaturesForm.css'
 
 class FeaturesForm extends React.Component {
@@ -37,7 +36,6 @@ class FeaturesForm extends React.Component {
 
         return (
             <form className='features-form' onSubmit={this.handleSubmit} >
-                {this.props.message.warning && <div className={classnames({ 'error-alert': this.props.message.isError, 'success-alert': !this.props.message.isError })}>{this.props.message.text}</div>}
                 <FormInput type="url" placeholder="Insira a url de um post aqui..." onChange={this.handleChange} onClick={this.props.dispatchCleanMessage} />
                 <FormButton { ...buttonProps }>{this.props.isLoading ? 'Enviando' : 'Enviar'}</FormButton>
             </form>
@@ -46,12 +44,7 @@ class FeaturesForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.isLoading.isLoading,
-    message: {
-        text: state.message.message.text,
-        isError: state.message.message.isError,
-        warning: state.message.message.warning
-    }
+    isLoading: state.isLoading.isLoading
 })
 
 const mapDispatchToProps = dispatch => {

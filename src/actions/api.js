@@ -1,6 +1,5 @@
 export const ADD_FAILURE = 'ADD_FAILURE'
 export const ADD_SUCCESS = 'ADD_SUCCESS'
-export const WARNING = 'WARNING'
 export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
 export const START_LOAD = 'START_LOAD'
 
