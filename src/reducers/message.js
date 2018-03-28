@@ -4,8 +4,7 @@ import * as actionsTypes from '../actions'
 const initialState = {
     message: {
         text: '',
-        isError: false,
-        warning: false
+        type: ''
     }
 }
 
@@ -33,14 +32,6 @@ export function message(state = initialState, action) {
                 message: {
                     text: null,
                     type: null
-                }
-            }
-        case actionsTypes.WARNING:
-            return {
-                ...state,
-                message: {
-                    text: action.payload.text,
-                    type: action.payload.type
                 }
             }
         default:

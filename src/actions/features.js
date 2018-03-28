@@ -13,7 +13,13 @@ export function addFeature(link) {
                 dispatch(listFeatures())
             })
             .catch(error => {
-                dispatch(addFailure(error.data.message))
+                let message = 'Ocorreu um erro, tente mais tarde'
+                if (error.message === 'Network Error') {
+                    message = 'Verifique sua conexão com a Internet'
+                } else {
+                    message = error.message
+                }
+                dispatch(addFailure(message))
             })
 
     }
@@ -29,7 +35,13 @@ export function listFeatures() {
                 })
             })
             .catch(error => {
-                dispatch(addFailure(error.data.message))
+                let message = 'Ocorreu um erro, tente mais tarde'
+                if (error.message === 'Network Error') {
+                    message = 'Verifique sua conexão com a Internet'
+                } else {
+                    message = error.message
+                }
+                dispatch(addFailure(message))
             })
     }
 }
@@ -42,7 +54,13 @@ export function removeFeature(id) {
                 dispatch(listFeatures())
             })
             .catch(error => {
-                dispatch(addFailure(error.data.message))
+                let message = 'Ocorreu um erro, tente mais tarde'
+                if (error.message === 'Network Error') {
+                    message = 'Verifique sua conexão com a Internet'
+                } else {
+                    message = error.message
+                }
+                dispatch(addFailure(message))
             })
     }
 }

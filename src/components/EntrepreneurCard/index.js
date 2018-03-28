@@ -24,23 +24,19 @@ class EntrepreneurCard extends React.Component {
 
     editHandler(id, phoneNumber, usernameInstagram) {
         this.setState({ editing: true, id, phoneNumber, usernameInstagram })
-        console.log(this.state.id, this.state.phoneNumber, this.state.usernameInstagram)
     }
 
     saveHandler() {
-        console.log(this.state.id, this.state.phoneNumber, this.state.usernameInstagram)
         this.props.dispatchEditedEntrepreneur(this.state.id, this.state.phoneNumber, this.state.usernameInstagram)
         this.setState({ editing: false })
     }
 
     handleUserInput(value) {
         this.setState({ usernameInstagram: value })
-        console.log(this.state.id, this.state.phoneNumber, this.state.usernameInstagram)
     }
 
     handlePhoneInput(event) {
         this.setState({ phoneNumber: event.target.value })
-        console.log(this.state.id, this.state.phoneNumber, this.state.usernameInstagram)
     }
 
     cancelHandler() {

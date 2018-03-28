@@ -4,10 +4,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
+    z-index: 3;
     height: 5.5rem;
     width: 100%;
-    background-color: #E21E20;
+    background-color: #e93129;
 }
 
 .navbar__logo {
@@ -15,75 +15,105 @@
     height: 3rem;
 }
 
-#menu-hamburguer {
-    float: right;
-    opacity: 0;
+.switch{
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 4;
 }
 
-.fa-bars {
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-#menu-hamburguer:checked + .navbar-links {
-    opacity: 1;
-    right: 0;
-    pointer-events: all;
+.switch--off{
+    position: absolute;
+    z-index: -1;
 }
 
 .navbar-links {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    display: block;
-    width: 50%;
-    z-index: 1;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
+    top: 5.5rem;
     right: 0;
-    list-style: none;
-    background-color: #E21E20; 
+    z-index: 5;
+    width: 50%;
+    transition: all 0.3s;
+    pointer-events: none;
+    opacity: 0;
+    background-color: #e93129; 
 }
 
-.navbar-links__item {
-    display: block;
+.navbar-links-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5.5rem;
+    right: 0;
+    z-index: 5;
+    width: 50%;
+    transition: all 0.3s;
+    pointer-events: all;
+    opacity: 1;
+    background-color: #e93129; 
 }
 
 .link {
-    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
     padding: .5rem;
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: #000000;
+
+    z-index: 5;
 }
 
-.link:hover, .link:active {
+.link:active, .link:hover {
     color: #ffffff;
+    background-color: #ef5f22;
+}
+
+.hamburguer-button {
+    margin-right: 1rem;
+    border: none;
+    background-color: #e93129;
+}
+
+.fa-bars, .fa-close {
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 @media (min-width: 1080px) {
-    .fa-bars {
+    .hamburguer-button {
         display: none;
     }
 
     .navbar-links {
+        flex-direction: row;
         position: static;
-        display: inline-block;
-        opacity: 1;
+        width: 20rem;
+        margin-right: 1rem;
         pointer-events: all;
-        height: inherit;
-        width: inherit;
+        opacity: 1;
     }
 
-    .link {
-        margin: 0;
+    .navbar-links-open {
+        flex-direction: row;
+        position: static;
+        width: 20rem;
+        margin-right: 1rem;
+        pointer-events: all;
+        opacity: 1;
     }
 
-    .navbar-links__item {
-        display: inline-block;
+    .link:hover {
+        background-color: #e93129;
     }
 
-    .navbar-links__item:nth-of-type(2) {
+    .link:nth-of-type(2) {
         border-right: 2px solid black;
         border-left: 2px solid black;
     }
