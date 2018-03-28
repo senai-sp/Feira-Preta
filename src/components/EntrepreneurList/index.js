@@ -8,7 +8,7 @@ import './EntrepreneurList.css'
 class EntrepreneurList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '', selectValue: 'usernameInstagram', removing: false }
+        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], selectValue: '', removing: false }
         this.removeItem = this.removeItem.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
@@ -18,8 +18,7 @@ class EntrepreneurList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur(this.state.selectValue))
-        console.log('willreceive', this.state.orderBy, this.state.selectValue)
+        this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur())
     }
 
     removeHandler(id, usernameInstagram) {
@@ -36,36 +35,33 @@ class EntrepreneurList extends Component {
     }
 
     handleChange(event) {
-        this.setState({selectValue: event.target.value}, () => this.orderEntrepeneur(event.target.value) );
-      }
-    
-    orderEntrepeneur(orderBy) {
-        (this.state.orderBy !== orderBy) && this.setState({ orderBy }, () => {
-            switch (this.state.orderBy) {
-                case 'phoneNumber':
-                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
-                    break
-                case 'fullNameInstagram':
-                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
-                    break
-                default:
-                    this.setState({ orderBy: 'usernameInstagram', orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
-                    break
-            }
-        })
-        console.log('order', this.state.orderBy, this.state.selectValue)
+        this.setState({ selectValue: event.target.value }, () => this.orderEntrepeneur(this.state.selectValue));
+    }
+
+    orderEntrepeneur(selectValue) {
+        switch (this.state.selectValue) {
+            case 'phoneNumber':
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
+                break
+            case 'fullNameInstagram':
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
+                break
+            default:
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
+                break
+        }
     }
 
     render() {
-
+        
         return (
             <section>
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por </span>
                     <select className='ordination-options__select' value={this.state.selectValue} onChange={this.handleChange}>
-                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" onFocus={() => this.orderEntrepeneur('usernameInstagram')}>nome de usuário</option>
-                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" onFocus={() => this.orderEntrepeneur('fullNameInstagram')}>nome completo</option>
-                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" onChange={() => this.orderEntrepeneur('phoneNumber')}>telefone</option>
+                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" >nome de usuário</option>
+                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" >nome completo</option>
+                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" >telefone</option>
                     </select>
                 </div>
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
@@ -84,7 +80,6 @@ class EntrepreneurList extends Component {
                     cancelHandler={() => this.cancelHandler()}
                     removeItem={this.removeItem}
                 />}
-                
             </section>
         )
     }
