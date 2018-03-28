@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listEntrepreneurs, removeEntrepreneur } from '../../actions'
 import EntrepreneurCard from '../EntrepreneurCard'
+import Modal from '../Modal'
 import './EntrepreneurList.css'
 
 class EntrepreneurList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], orderBy: '' }
+        this.state = { orderedEntrepeneur: [...this.props.entrepreneurs], selectValue: '', removing: false }
+        this.removeItem = this.removeItem.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -18,38 +21,48 @@ class EntrepreneurList extends Component {
         this.setState({ orderedEntrepeneur: [...nextProps.entrepreneurs] }, () => this.orderEntrepeneur())
     }
 
-    removeItem(id) {
-        this.props.dispatchRemoveEntrepreneur(id)
+    removeHandler(id, usernameInstagram) {
+        this.setState({ id, usernameInstagram, removing: true })
     }
 
-    orderEntrepeneur(orderBy) {
-        (this.state.orderBy !== orderBy) && this.setState({ orderBy }, () => {
-            switch (this.state.orderBy) {
-                case 'phoneNumber':
-                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
-                    break
-                case 'fullNameInstagram':
-                    this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
-                    break
-                default:
-                    this.setState({ orderBy: 'usernameInstagram', orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
-                    break
-            }
-        })
+    removeItem(id) {
+        this.props.dispatchRemoveEntrepreneur(this.state.id)
+        this.setState({ id: '', usernameInstagram: '', removing: false })
+    }
+
+    cancelHandler() {
+        this.setState({ id: '', usernameInstagram: '', removing: false })
+    }
+
+    handleChange(event) {
+        this.setState({ selectValue: event.target.value }, () => this.orderEntrepeneur(this.state.selectValue));
+    }
+
+    orderEntrepeneur(selectValue) {
+        switch (this.state.selectValue) {
+            case 'phoneNumber':
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.phoneNumber > b.phoneNumber) ? 1 : (b.phoneNumber > a.phoneNumber) ? -1 : 0) })
+                break
+            case 'fullNameInstagram':
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.fullNameInstagram > b.fullNameInstagram) ? 1 : (b.fullNameInstagram > a.fullNameInstagram) ? -1 : 0) })
+                break
+            default:
+                this.setState({ orderedEntrepeneur: this.state.orderedEntrepeneur.sort((a, b) => (a.usernameInstagram > b.usernameInstagram) ? 1 : (b.usernameInstagram > a.usernameInstagram) ? -1 : 0) })
+                break
+        }
     }
 
     render() {
-
+        
         return (
             <section>
                 <div className='ordination-options'>
-                    <span className='ordination-options__title'>Ordenar por:</span>
-                    <input className='ordination-options__radio-button' type="radio" id="usernameInstagram" name="selectOrder" checked={this.state.orderBy === 'usernameInstagram'} onChange={() => this.orderEntrepeneur('usernameInstagram')} ></input>
-                    <label className='ordination-options__label' htmlFor="usernameInstagram">Nome de usuário</label>
-                    <input className='ordination-options__radio-button' type="radio" id="fullNameInstagram" name="selectOrder" checked={this.state.orderBy === 'fullNameInstagram'} onChange={() => this.orderEntrepeneur('fullNameInstagram')} ></input>
-                    <label className='ordination-options__label' htmlFor="fullNameInstagram">Nome completo</label>
-                    <input className='ordination-options__radio-button' type="radio" id="phoneNumber" name="selectOrder" checked={this.state.orderBy === 'phoneNumber'} onChange={() => this.orderEntrepeneur('phoneNumber')} ></input>
-                    <label className='ordination-options__label' htmlFor="phoneNumber">Telefone</label>
+                    <span className='ordination-options__title'>Ordenar por </span>
+                    <select className='ordination-options__select' value={this.state.selectValue} onChange={this.handleChange}>
+                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" >nome de usuário</option>
+                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" >nome completo</option>
+                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" >telefone</option>
+                    </select>
                 </div>
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
                     <EntrepreneurCard
@@ -59,9 +72,14 @@ class EntrepreneurList extends Component {
                         usernameInstagram={entrepreneur.usernameInstagram}
                         fullNameInstagram={entrepreneur.fullNameInstagram}
                         phoneNumber={entrepreneur.phoneNumber}
-                        clickRemove={() => this.removeItem(entrepreneur.id)}
+                        clickRemove={() => this.removeHandler(entrepreneur.id, entrepreneur.usernameInstagram)}
                     />
                 ))}
+                {this.state.removing && <Modal
+                    usernameInstagram={this.state.usernameInstagram}
+                    cancelHandler={() => this.cancelHandler()}
+                    removeItem={this.removeItem}
+                />}
             </section>
         )
     }

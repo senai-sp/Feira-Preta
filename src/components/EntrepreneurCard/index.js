@@ -5,8 +5,8 @@ import MaskedInput from 'react-text-mask'
 import FormInput from '../Form/FormInput'
 import FaPencil from 'react-icons/lib/fa/pencil'
 import FaTrashO from 'react-icons/lib/fa/trash-o'
-import FaFloppyO from 'react-icons/lib/fa/floppy-o'
-import FaTimesCircleO from 'react-icons/lib/fa/times-circle-o'
+import FaCheck from 'react-icons/lib/fa/check'
+import FaClose from 'react-icons/lib/fa/close'
 import './EntrepreneurCard.css'
 
 
@@ -57,8 +57,8 @@ class EntrepreneurCard extends React.Component {
             <div className="entrepreneur-card" key={this.props.id} >
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
                 <span className="user">
-                    {!this.state.editing ? <h3 className="user__user-name">@{this.props.usernameInstagram}</h3> : <FormInput defaultValue={this.props.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />}
                     <h3 className="user__full-name">{this.props.fullNameInstagram}</h3>
+                    {!this.state.editing ? <h3 className="user__user-name">@{this.props.usernameInstagram}</h3> : <FormInput defaultValue={this.props.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />}
                     {!this.state.editing ? <h3 className="user__phone-number">{this.props.phoneNumber}</h3> : <MaskedInput
                         mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         guide={true}
@@ -76,7 +76,7 @@ class EntrepreneurCard extends React.Component {
                             <FaPencil className="fas fa-pencil" aria-hidden="true"></FaPencil>
                         </button> :
                         <button className="card-links__edit" onClick={this.saveHandler} >
-                            <FaFloppyO className="fas FaFloppyO" aria-hidden="true"></FaFloppyO>
+                            <FaCheck className="fas FaCheck" aria-hidden="true"></FaCheck>
                         </button>
                     }                    
                     {!this.state.editing ?
@@ -84,7 +84,7 @@ class EntrepreneurCard extends React.Component {
                             <FaTrashO className="fas fa-trash-o" aria-hidden="true"></FaTrashO>
                         </button> :
                         <button className="card-links__edit" onClick={this.cancelHandler} >
-                            <FaTimesCircleO className="fas FaTimesCircleO" aria-hidden="true"></FaTimesCircleO>
+                            <FaClose className="fas FaClose" aria-hidden="true"></FaClose>
                         </button>
                     }
                 </div>
