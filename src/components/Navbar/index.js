@@ -1,41 +1,53 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Toaster from '../Toaster'
 import LogoFFP from './logo-FFP.png'
 import FaBars from 'react-icons/lib/fa/bars'
 import './Navbar.css'
 
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { toggleMenu: false };
+        this.toggleClick = this.toggleClick.bind(this);
+    }
 
-const Navbar = () => (
-    <header>
-        <nav className="navbar">
-            <img className="navbar__logo" src={LogoFFP} alt="Logo Feira Preta" />
+    toggleClick() {
+        this.setState(state => ({
+            toggleMenu: !state.toggleMenu
+        }));
+    }
 
-            <div className="container">
-                <label htmlFor="menu-hamburguer"><FaBars className="fas fa-bars" aria-hidden="true"></FaBars></label>
-                <input type="checkbox" id="menu-hamburguer"></input>
+    render() {
+        return (
+            <header>
+                <nav className="navbar">
+                    <img className="navbar__logo" src={LogoFFP} alt="Logo Feira Preta" />
 
-                <ul className="navbar-links">
-                    <li className="navbar-links__item link">
-                        <Link className="link" to="/">
-                            Home
-                    </Link>
-                    </li>
-                    <li className="navbar-links__item link">
-                        <Link className="link" to="/empreendedores">
-                            Empreendedores
-                    </Link>
-                    </li>
-                    <li className="navbar-links__item link">
-                        <Link className="link" to="/destaques">
-                            Destaques
-                    </Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <Toaster />
-    </header>
-)
+                    <div>
+                        <nav classname={this.state.toggleMenu ? 'navbar-links-open' : 'navbar-links'}>
+                            <Link className="link" to="/">
+                                Home
+                            </Link>
+                            <Link className="link" to="/empreendedores">
+                                Empreendedores
+                            </Link>
+                            <Link className="link" to="/destaques">
+                                Destaques
+                            </Link>
+                        </nav>
+                        <button className="hamburguer-button" onClick={this.toggleClick}><FaBars className="fas fa-bars" aria-hidden="true"></FaBars></button>
+                    </div>
+                </nav>
+                <Toaster />
+            </header>
+        )
+    }
+}
 
-export default Navbar
+const mapStateToProps = state => ({
+    navbar: state.navbar
+})
+
+export default connect(mapStateToProps, null)(Navbar)
