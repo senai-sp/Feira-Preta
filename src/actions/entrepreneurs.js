@@ -14,14 +14,12 @@ export function addEntrepreneur(userName, phoneNumber) {
                 dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
-            .catch(error => {
-                let message = 'Ocorreu um erro, tente mais tarde'
+            .catch((error) => {
                 if (error.message === 'Network Error') {
-                    message = 'Verifique sua conexão com a Internet'
+                    dispatch(addFailure('Não foi possível cadastrar o empreendedor. Verifique sua conexão com a Internet e tente novamente'))
                 } else {
-                    message = error.message
+                    dispatch(addFailure(error.response.data))
                 }
-                dispatch(addFailure(message))
             })
     }
 }
@@ -35,14 +33,12 @@ export function listEntrepreneurs() {
                     entrepreneurs: response.data
                 })
             })
-            .catch(error => {
-                let message = 'Ocorreu um erro, tente mais tarde'
+            .catch((error) => {
                 if (error.message === 'Network Error') {
-                    message = 'Verifique sua conexão com a Internet'
+                    dispatch(addFailure('Não foi possível listar os empreendedores cadastrados. Verifique sua conexão com a Internet e tente novamente'))
                 } else {
-                    message = error.message
+                    dispatch(addFailure(error.response.data))
                 }
-                dispatch(addFailure(message))
             })
 
     }
@@ -55,14 +51,12 @@ export function removeEntrepreneur(id) {
                 dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
-            .catch(error => {
-                let message = 'Ocorreu um erro, tente mais tarde'
+            .catch((error) => {
                 if (error.message === 'Network Error') {
-                    message = 'Verifique sua conexão com a Internet'
+                    dispatch(addFailure('Não foi possível remover o cadastro do empreendedor. Verifique sua conexão com a Internet e tente novamente'))
                 } else {
-                    message = error.message
+                    dispatch(addFailure(error.response.data))
                 }
-                dispatch(addFailure(message))
             })
     }
 }
@@ -74,6 +68,12 @@ export function editedEntrepreneur(id, phoneNumber, usernameInstagram) {
                 dispatch(addSuccess(response.data.message))
                 dispatch(listEntrepreneurs())
             })
-            .catch(error => dispatch(dispatch(addFailure(error.data.message))))
+            .catch((error) => {
+                if (error.message === 'Network Error') {
+                    dispatch(addFailure('Não foi possível editar os dados do empreendedor. Verifique sua conexão com a Internet e tente novamente'))
+                } else {
+                    dispatch(addFailure(error.response.data))
+                }
+            })
     }
 }
