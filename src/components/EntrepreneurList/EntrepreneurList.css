@@ -15,7 +15,18 @@
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
     font-size: 1rem;
 }
-
+.modal__form{
+    background-color: #ffffff;
+    border: solid .1rem #000000;
+    display: flex;
+    flex-flow:  column nowrap;
+    left: 50%;
+    padding: 1rem;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
 /* .ordination-options__radio-button {
     margin: .3rem .3rem .3rem 0;
     width: 1rem;
