@@ -6,8 +6,18 @@ import './FeaturesList.css'
 
 
 class FeaturesList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { orderedFeatures: [] }
+    }
+
+
     componentDidMount() {
         this.props.dispatchListFeatures()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ orderedFeatures: [...nextProps.features].reverse() })
     }
 
     removeItem(id) {
@@ -18,7 +28,7 @@ class FeaturesList extends Component {
         
         return (
             <section className="features-list">
-                {this.props.features.reverse().map(feature => (
+                {this.state.orderedFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
