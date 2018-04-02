@@ -11,7 +11,7 @@ export function addEntrepreneur(userName, phoneNumber) {
         })
         postEntrepreneurs(userName, phoneNumber)
             .then((response) => {
-                dispatch(addSuccess(response.data.message))
+                dispatch(addSuccess('Empreendedor cadastrado com sucesso'))
                 dispatch(listEntrepreneurs())
             })
             .catch((error) => {
@@ -48,7 +48,7 @@ export function removeEntrepreneur(id) {
     return dispatch => {
         deleteEntrepreneur(id)
             .then((response) => {
-                dispatch(addSuccess(response.data.message))
+                dispatch(addSuccess('Empreendedor removido com sucesso'))
                 dispatch(listEntrepreneurs())
             })
             .catch((error) => {
@@ -65,7 +65,7 @@ export function editedEntrepreneur(id, phoneNumber, usernameInstagram) {
     return dispatch => {
         putEntrepreneur(id, phoneNumber, usernameInstagram)
             .then(response => {
-                dispatch(addSuccess(response.data.message))
+                dispatch(addSuccess('Edição realizada com sucesso'))
                 dispatch(listEntrepreneurs())
             })
             .catch((error) => {
