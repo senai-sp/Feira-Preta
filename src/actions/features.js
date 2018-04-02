@@ -9,7 +9,7 @@ export function addFeature(link) {
         })
         postLink(link)
             .then((response) => {
-                dispatch(addSuccess(response.data.message))
+                dispatch(addSuccess('Destaque cadastrado com sucesso'))
                 dispatch(listFeatures())
             })
             .catch((error) => {
@@ -46,7 +46,7 @@ export function removeFeature(id) {
     return dispatch => {
         deleteLink(id)
             .then((response) => {
-                dispatch(addSuccess(response.data.message))
+                dispatch(addSuccess('Destaque removido com sucesso'))
                 dispatch(listFeatures())
             })
             .catch((error) => {
