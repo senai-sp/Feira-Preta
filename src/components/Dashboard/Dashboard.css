@@ -1,4 +1,9 @@
 .average {
-    margin: 2rem;
+    margin: 2rem 0 1rem 0;
+    color: #4b4f56;
+}
+
+.total-votes {
+    margin: 1rem 0 2rem 0;
     color: #4b4f56;
 }
