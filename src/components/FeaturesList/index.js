@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listFeatures, removeFeature } from '../../actions'
 import FeaturesCard from '../FeaturesCard'
+import FormButton from '../Form/FormButton'
+import Modal from '../Modal'
 import './FeaturesList.css'
 
 
 class FeaturesList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedFeatures: [] }
+        this.state = { orderedFeatures: [], removing: false }
+        this.removeHandler = this.removeHandler.bind(this)
     }
 
 
@@ -20,8 +23,17 @@ class FeaturesList extends Component {
         this.setState({ orderedFeatures: [...nextProps.features].reverse() })
     }
 
-    removeItem(id) {
-        this.props.dispatchRemoveFeature(id)
+    removeHandler(id) {
+        this.setState({ id, removing: true })
+    }
+
+    cancelHandler() {
+        this.setState({ id: '', removing: false })
+    }
+
+    removeItem() {
+        this.props.dispatchRemoveFeature(this.state.id)
+        this.setState({ id: '', removing: false })
     }
 
     render() {
@@ -34,10 +46,18 @@ class FeaturesList extends Component {
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
-                        click={() => this.removeItem(feature.id)}
+                        click={() => this.removeHandler(feature.id)}
                         href={feature.link}
                     />
                 ))}
+                {this.state.removing && <Modal
+                    cancelHandler={() => this.cancelHandler()}>
+                    <form className="modal__form" >
+                        <label>Confirma a exclusão do destaque?</label>
+                        <FormButton type="button" onClick={() => this.cancelHandler()} >Cancelar</FormButton>
+                        <FormButton type="submit" className="form-button--secondary" onClick={() => this.removeItem()} >Excluir</FormButton>
+                    </form>
+                </Modal>}
             </section>
         )
     }

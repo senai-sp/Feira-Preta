@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listEntrepreneurs, removeEntrepreneur } from '../../actions'
 import EntrepreneurCard from '../EntrepreneurCard'
+import FormButton from '../Form/FormButton'
 import Modal from '../Modal'
 import './EntrepreneurList.css'
 
@@ -76,10 +77,13 @@ class EntrepreneurList extends Component {
                     />
                 ))}
                 {this.state.removing && <Modal
-                    usernameInstagram={this.state.usernameInstagram}
-                    cancelHandler={() => this.cancelHandler()}
-                    removeItem={this.removeItem}
-                />}
+                    cancelHandler={() => this.cancelHandler()}>
+                    <form className="modal__form" >
+                        <label>Confirma a exclusão de <strong>{this.state.usernameInstagram}</strong>?</label>
+                        <FormButton type="button" onClick={() => this.cancelHandler()} >Cancelar</FormButton>
+                        <FormButton type="submit" className="form-button--secondary" onClick={() => this.removeItem()} >Excluir</FormButton>
+                    </form>
+                </Modal>}
             </section>
         )
     }
