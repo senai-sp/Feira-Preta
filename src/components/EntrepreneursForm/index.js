@@ -22,6 +22,7 @@ class EnterpreneursForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault()
         this.props.dispatchAddEntrepreneur(this.state.usernameInstagram, this.state.phoneNumber)
+        this.setState({ usernameInstagram: '', phoneNumber: '', isUserInvalid: true, isPhoneInvalid: true })
         event.target.reset()
     }
 
@@ -39,7 +40,7 @@ class EnterpreneursForm extends React.Component {
 
     render() {
         const buttonProps = {}
-        if (this.state.isUserInvalid && this.state.isPhoneInvalid) {
+        if (this.state.isUserInvalid || this.state.isPhoneInvalid) {
             buttonProps.disabled = true
         }
         return (
