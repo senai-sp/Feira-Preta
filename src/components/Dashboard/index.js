@@ -12,12 +12,12 @@ class Dashboard extends React.Component {
 
     render() {
         const data = [
-            { nota: 'Nota 0', votos: this.props.dashboard.totalVotesZero },
-            { nota: 'Nota 1', votos: this.props.dashboard.totalVotesOne },
-            { nota: 'Nota 2', votos: this.props.dashboard.totalVotesTwo },
-            { nota: 'Nota 3', votos: this.props.dashboard.totalVotesThree },
-            { nota: 'Nota 4', votos: this.props.dashboard.totalVotesFour },
-            { nota: 'Nota 5', votos: this.props.dashboard.totalVotesFive },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 0' : 'n0' , votos: this.props.dashboard.totalVotesZero },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 1' : 'n1', votos: this.props.dashboard.totalVotesOne },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 2' : 'n2', votos: this.props.dashboard.totalVotesTwo },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 3' : 'n3', votos: this.props.dashboard.totalVotesThree },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 4' : 'n4', votos: this.props.dashboard.totalVotesFour },
+            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 5' : 'n5', votos: this.props.dashboard.totalVotesFive },
         ];
         return (
             <React.Fragment>
@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
                     <Tooltip wrapperStyle={{ width: 115 }} />
                     <Legend width={100} wrapperStyle={{ right: '0' }} />
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                    <Bar type="monotone" dataKey="votos" fill="#4b4f56" barSize={30} />
+                    <Bar type="monotone" dataKey="votos" fill="#4b4f56" barSize={(window.matchMedia("(min-width: 720px)").matches) ? 30 : 15} />
                 </BarChart>
             </React.Fragment>
         )
