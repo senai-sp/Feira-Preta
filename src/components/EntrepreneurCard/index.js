@@ -20,7 +20,6 @@ class EntrepreneurCard extends React.Component {
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
         this.cancelHandler = this.cancelHandler.bind(this)
-        this.checkPhoneInput = this.checkPhoneInput.bind(this)
     }
 
     editHandler(id, phoneNumber, usernameInstagram) {
@@ -57,7 +56,7 @@ class EntrepreneurCard extends React.Component {
         if (this.state.editing && ((this.state.usernameInstagram === '') || (this.state.phoneNumber === ''))) {
             buttonProps.disabled = true
         }
-console.log(this.state.error)
+
         return (
             <div className="entrepreneur-card" key={this.props.id} >
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
