@@ -20,6 +20,7 @@ class EntrepreneurCard extends React.Component {
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
         this.cancelHandler = this.cancelHandler.bind(this)
+        this.checkPhoneInput = this.checkPhoneInput.bind(this)
     }
 
     editHandler(id, phoneNumber, usernameInstagram) {
@@ -36,19 +37,27 @@ class EntrepreneurCard extends React.Component {
     }
 
     handlePhoneInput(event) {
-        this.setState({ phoneNumber: event.target.value })
+        this.setState({ phoneNumber: event.target.value }, () => this.checkPhoneInput())
+    }
+
+    checkPhoneInput() {
+        if (this.state.phoneNumber === '') {
+            this.setState({ error: '*campo obrigatório' })
+        } else {
+            this.setState({ error: undefined })
+        }
     }
 
     cancelHandler() {
-        this.setState({ editing: false })
+        this.setState({ editing: false, error: undefined })
     }
 
     render() {
         const buttonProps = {}
-        if (this.state.editing) {
+        if (this.state.editing && ((this.state.usernameInstagram === '') || (this.state.phoneNumber === ''))) {
             buttonProps.disabled = true
         }
-
+console.log(this.state.error)
         return (
             <div className="entrepreneur-card" key={this.props.id} >
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
@@ -65,21 +74,22 @@ class EntrepreneurCard extends React.Component {
                         onChange={this.handlePhoneInput}
                         value={this.state.phoneNumber}
                     />}
+                    {this.state.error && <p className="form-input__error">{this.state.error}</p>} 
                 </span>
                 <div className="card-links">
                     {!this.state.editing ?
-                        <button { ...buttonProps } className="card-links__edit" onClick={() => this.editHandler(this.props.id, this.props.phoneNumber, this.props.usernameInstagram)} >
+                        <button className="card-links__edit" onClick={() => this.editHandler(this.props.id, this.props.phoneNumber, this.props.usernameInstagram)} >
                             <FaPencil className="fas fa-pencil" aria-hidden="true"></FaPencil>
                         </button> :
-                        <button className="card-links__edit" onClick={this.saveHandler} >
+                        <button { ...buttonProps } className="card-links__edit card-links__edit--editing"  onClick={this.saveHandler} >
                             <FaCheck className="fas FaCheck" aria-hidden="true"></FaCheck>
                         </button>
                     }                    
                     {!this.state.editing ?
-                        <button { ...buttonProps } className="card-links__remove" onClick={this.props.clickRemove}>
+                        <button className="card-links__remove" onClick={this.props.clickRemove}>
                             <FaTrashO className="fas fa-trash-o" aria-hidden="true"></FaTrashO>
                         </button> :
-                        <button className="card-links__edit" onClick={this.cancelHandler} >
+                        <button className="card-links__cancel" onClick={this.cancelHandler} >
                             <FaClose className="fas FaClose" aria-hidden="true"></FaClose>
                         </button>
                     }

@@ -83,8 +83,10 @@
     background-color: #ffffff;
     cursor: default;
 }
-
-.card-links__remove {
+.card-links__edit--editing{
+    color: #3c763d;
+}
+.card-links__remove, .card-links__cancel {
     margin: 0;
     padding: 0 .2rem .2rem .2rem;
     border: 0;
@@ -93,6 +95,10 @@
     cursor: pointer;
     color: #808080;
     background-color: #ffffff;
+}
+
+.card-links__cancel{
+    color: #e93129;
 }
 
 .card-links__remove:hover {
