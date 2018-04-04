@@ -9,10 +9,11 @@ import './EntrepreneursForm.css'
 class EnterpreneursForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isUserInvalid: true, isPhoneInvalid: true }
+        this.state = { usernameInstagram: '', phoneNumber: '', isUserInvalid: true, isPhoneInvalid: true }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleUserInput = this.handleUserInput.bind(this)
         this.handlePhoneInput = this.handlePhoneInput.bind(this)
+        this.cleanPhoneInput = this.cleanPhoneInput.bind(this)
     }
 
     componentWillUnmount() {
@@ -27,15 +28,25 @@ class EnterpreneursForm extends React.Component {
     }
 
     handleUserInput(value) {
-        this.setState({ usernameInstagram: value })
-        this.setState({ isUserInvalid: false })
-
+        this.setState({ usernameInstagram: value, isUserInvalid: false })
     }
 
     handlePhoneInput(event) {
-        this.setState({ phoneNumber: event.target.value })
-        this.setState({ isPhoneInvalid: false })
+        this.setState({ phoneNumber: event.target.value, isPhoneInvalid: false }, () => this.checkPhoneInput())
+    }
 
+    checkPhoneInput() {
+        if ((this.state.phoneNumber === '') || (this.state.phoneNumber === '(__) _____-____')) {
+            this.setState({ error: '*campo obrigatório', isPhoneInvalid: true })
+        } else {
+            this.setState({ error: undefined, isPhoneInvalid: false })
+        }
+    }
+
+    cleanPhoneInput(event) {
+        if (this.state.phoneNumber === '(__) _____-____') {
+            event.target.value = ''
+        }
     }
 
     render() {
@@ -43,6 +54,7 @@ class EnterpreneursForm extends React.Component {
         if (this.state.isUserInvalid || this.state.isPhoneInvalid) {
             buttonProps.disabled = true
         }
+
         return (
             <form className='enterpreneurs-form' onSubmit={this.handleSubmit} >
                 <FormInput className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />
@@ -54,7 +66,9 @@ class EnterpreneursForm extends React.Component {
                     placeholder="Telefone"
                     type='tel'
                     onChange={this.handlePhoneInput}
+                    onBlur={this.cleanPhoneInput}
                 />
+                {this.state.error && <p className="form-input__error">{this.state.error}</p>}
                 <FormButton type="submit" { ...buttonProps }>{this.props.isLoading ? 'Cadastrando' : 'Cadastrar'}</FormButton>
             </form>
         )
