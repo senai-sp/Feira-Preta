@@ -3,9 +3,9 @@ import './NotFound.css'
 
 
 const NotFound = () => (
-    <article className="notfound">
+    <section className="notfound">
         <h1 className="notfounds__title">Página não encontrada</h1>
-    </article>  
+    </section>  
 )
 
 export default NotFound;

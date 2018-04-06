@@ -1,4 +1,4 @@
-.home {
+.score {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
     margin: 8rem auto 0 auto;
 }
 
-.home__title {
+.score__title {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 1rem;
