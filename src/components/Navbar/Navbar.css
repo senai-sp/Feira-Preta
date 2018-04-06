@@ -94,7 +94,7 @@
     .navbar-links {
         flex-direction: row;
         position: static;
-        width: 20rem;
+        width: 27rem;
         margin-right: 1rem;
         pointer-events: all;
         opacity: 1;

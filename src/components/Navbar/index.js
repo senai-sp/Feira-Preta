@@ -28,7 +28,7 @@ class Navbar extends React.Component {
                     <img className="navbar__logo" src={LogoFFP} alt="Logo Feira Preta" />
                     <nav className={this.state.menuOpen ? 'navbar-links-open' : 'navbar-links'}>
                         <Link className="link" to="/" onClick={this.toggleClick}>
-                            Home
+                            Avaliação da Feira
                             </Link>
                         <Link className="link" to="/empreendedores" onClick={this.toggleClick}>
                             Empreendedores
