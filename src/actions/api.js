@@ -1,11 +1,11 @@
-export const ADD_FAILURE = 'ADD_FAILURE'
-export const ADD_SUCCESS = 'ADD_SUCCESS'
+export const FAILURE_MESSAGE = 'FAILURE_MESSAGE'
+export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE'
 export const CLEAN_MESSAGE = 'CLEAN_MESSAGE'
 export const START_LOAD = 'START_LOAD'
 
-export function addFailure(text) {
+export function failureMessage(text) {
     return {
-        type: ADD_FAILURE,
+        type: FAILURE_MESSAGE,
         payload: {
                 text,
                 type: 'failure'
@@ -13,10 +13,10 @@ export function addFailure(text) {
     }
 }
 
-export function addSuccess(text) {
+export function successMessage(text) {
     return dispatch => {
         dispatch({
-            type: ADD_SUCCESS,
+            type: SUCCESS_MESSAGE,
             payload: {
                 text,
                 type: 'success'

@@ -10,7 +10,7 @@ const initialState = {
 
 export function message(state = initialState, action) {
     switch (action.type) {
-        case actionsTypes.ADD_FAILURE:
+        case actionsTypes.FAILURE_MESSAGE:
             return {
                 ...state,
                 message: {
@@ -18,7 +18,7 @@ export function message(state = initialState, action) {
                     type: action.payload.type
                 }
             }
-        case actionsTypes.ADD_SUCCESS:
+        case actionsTypes.SUCCESS_MESSAGE:
             return {
                 ...state,
                 message: {
