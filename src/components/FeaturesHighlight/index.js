@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listFeatures, removeFeature } from '../../actions'
+import FaClose from 'react-icons/lib/fa/close'
 import FeaturesCard from '../FeaturesCard'
 import FormButton from '../Form/FormButton'
 import Modal from '../Modal'
@@ -37,9 +38,10 @@ class FeaturesHighlight extends Component {
     }
 
     render() {
-        
+
         return (
             <section className="features-list">
+                <h2>Lista de Destaques</h2>
                 {this.state.highlightFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
@@ -47,15 +49,16 @@ class FeaturesHighlight extends Component {
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
                         click={() => this.removeHandler(feature.id)}
-                        href={feature.link}
-                    />
+                        href={feature.link}>
+                        <FaClose className="remove-icon" />
+                    </FeaturesCard>
                 ))}
                 {this.state.removing && <Modal
                     cancelHandler={() => this.cancelHandler()}>
                     <form className="modal__form" >
-                        <label>Confirma a exclusão do destaque?</label>
+                        <label>Este post deixará de ser destaque:</label>
                         <FormButton type="button" onClick={() => this.cancelHandler()} >Cancelar</FormButton>
-                        <FormButton type="submit" className="form-button--secondary" onClick={() => this.removeItem()} >Excluir</FormButton>
+                        <FormButton type="submit" className="form-button--secondary" onClick={() => this.removeItem()} >Confirmar</FormButton>
                     </form>
                 </Modal>}
             </section>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listFeatures, removeFeature } from '../../actions'
+import { listFeatures, addFeature, cleanMessage } from '../../actions'
+import FaStar from 'react-icons/lib/fa/star'
 import FeaturesCard from '../FeaturesCard'
 import FormButton from '../Form/FormButton'
 import Modal from '../Modal'
@@ -10,52 +11,57 @@ import './FeaturesList.css'
 class FeaturesList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedFeatures: [], removing: false }
-        this.removeHandler = this.removeHandler.bind(this)
+        this.state = { orderedFeatures: [], adding: false }
+        this.addHandler = this.addHandler.bind(this)
     }
-
 
     componentDidMount() {
         this.props.dispatchListFeatures()
+    }
+
+    componentWillUnmount() {
+        this.props.dispatchCleanMessage()
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({ orderedFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === false).reverse() })
     }
 
-    removeHandler(id) {
-        this.setState({ id, removing: true })
+    addHandler(link) {
+        this.setState({ link, adding: true })
     }
 
     cancelHandler() {
-        this.setState({ id: '', removing: false })
+        this.setState({ id: '', adding: false })
     }
 
-    removeItem() {
-        this.props.dispatchRemoveFeature(this.state.id)
-        this.setState({ id: '', removing: false })
+    addHighlight() {
+        this.props.dispatchAddFeature(this.state.link)
+        this.setState({ link: '', adding: false })
     }
 
     render() {
-        
+
         return (
             <section className="features-list">
+                <h2>Lista de Posts</h2>
                 {this.state.orderedFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         user={feature.person.fullNameInstagram}
-                        click={() => this.removeHandler(feature.id)}
-                        href={feature.link}
-                    />
+                        click={() => this.addHandler(feature.link)}
+                        href={feature.link}>
+                        <FaStar className="add-highlight" />
+                    </FeaturesCard>
                 ))}
-                {this.state.removing && <Modal
+                {this.state.adding && <Modal
                     cancelHandler={() => this.cancelHandler()}>
                     <form className="modal__form" >
-                        <label>Confirma a exclusão do destaque?</label>
-                        <FormButton type="button" onClick={() => this.cancelHandler()} >Cancelar</FormButton>
-                        <FormButton type="submit" className="form-button--secondary" onClick={() => this.removeItem()} >Excluir</FormButton>
+                        <label>Confirma a inclusão do post como destaque?</label>
+                        <FormButton type="submit" onClick={() => this.addHighlight()} >Incluir</FormButton>
+                        <FormButton type="button" className="form-button--secondary" onClick={() => this.cancelHandler()} >Cancelar</FormButton>
                     </form>
                 </Modal>}
             </section>
@@ -71,8 +77,11 @@ const mapDispatchToProps = dispatch => ({
     dispatchListFeatures: () => {
         dispatch(listFeatures())
     },
-    dispatchRemoveFeature: id => {
-        dispatch(removeFeature(id))
+    dispatchAddFeature: link => {
+        dispatch(addFeature(link))
+    },
+    dispatchCleanMessage: () => {
+        dispatch(cleanMessage())
     }
 })
 
