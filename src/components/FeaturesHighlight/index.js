@@ -4,13 +4,13 @@ import { listFeatures, removeFeature } from '../../actions'
 import FeaturesCard from '../FeaturesCard'
 import FormButton from '../Form/FormButton'
 import Modal from '../Modal'
-import './FeaturesList.css'
+import './FeaturesHighlight.css'
 
 
-class FeaturesList extends Component {
+class FeaturesHighlight extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedFeatures: [], removing: false }
+        this.state = { highlightFeatures: [], removing: false }
         this.removeHandler = this.removeHandler.bind(this)
     }
 
@@ -20,7 +20,7 @@ class FeaturesList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ orderedFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === false).reverse() })
+        this.setState({ highlightFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === true) })
     }
 
     removeHandler(id) {
@@ -40,7 +40,7 @@ class FeaturesList extends Component {
         
         return (
             <section className="features-list">
-                {this.state.orderedFeatures.map(feature => (
+                {this.state.highlightFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
@@ -76,4 +76,4 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturesList)
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturesHighlight)
