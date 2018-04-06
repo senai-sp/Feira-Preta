@@ -41,7 +41,6 @@ class FeaturesHighlight extends Component {
 
         return (
             <section className="features-list">
-                <h2>Lista de Destaques</h2>
                 {this.state.highlightFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Highlight from './components/Pages/Highlight'
 import Score from './components/Pages/Score'
-import Features from './components/Pages/Features'
 import Entrepreneurs from './components/Pages/Entrepreneurs'
+import Posts from './components/Pages/Posts'
 import NotFound from './components/Pages/NotFound'
 import './App.css'
 
@@ -13,8 +14,9 @@ const App = () => (
     <Navbar />
     <Switch>
       <Route exact path="/" component={Score} />
-      <Route path="/destaques" component={Features} />
       <Route path="/empreendedores" component={Entrepreneurs} />
+      <Route path="/destaques" component={Highlight} />
+      <Route path="/posts" component={Posts} />
       <Route component={NotFound} />
     </Switch>
   </main>

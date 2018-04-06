@@ -44,7 +44,6 @@ class FeaturesList extends Component {
 
         return (
             <section className="features-list">
-                <h2>Lista de Posts</h2>
                 {this.state.orderedFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
