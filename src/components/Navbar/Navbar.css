@@ -94,7 +94,7 @@
     .navbar-links {
         flex-direction: row;
         position: static;
-        width: 27rem;
+        width: 34rem;
         margin-right: 1rem;
         pointer-events: all;
         opacity: 1;
@@ -103,7 +103,7 @@
     .navbar-links-open {
         flex-direction: row;
         position: static;
-        width: 20rem;
+        width: 34rem;
         margin-right: 1rem;
         pointer-events: all;
         opacity: 1;
@@ -116,5 +116,9 @@
     .link:nth-of-type(2) {
         border-right: 2px solid black;
         border-left: 2px solid black;
+    }
+
+    .link:nth-of-type(3) {
+        border-right: 2px solid black;
     }
 }
