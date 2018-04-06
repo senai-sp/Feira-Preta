@@ -7,12 +7,12 @@ export function isLoading(state = { isLoading: false }, action) {
                 ...state,
                 isLoading: true
             }
-        case actionsTypes.ADD_FAILURE:
+        case actionsTypes.FAILURE_MESSAGE:
             return {
                 ...state,
                 isLoading: false,
             }
-        case actionsTypes.ADD_SUCCESS:
+        case actionsTypes.SUCCESS_MESSAGE:
             return {
                 ...state,
                 isLoading: false,
