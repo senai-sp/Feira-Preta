@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { editedEntrepreneur } from '../../actions'
 import MaskedInput from 'react-text-mask'
-import FormInput from '../Form/FormInput'
 import FaPencil from 'react-icons/lib/fa/pencil'
 import FaTrashO from 'react-icons/lib/fa/trash-o'
 import FaCheck from 'react-icons/lib/fa/check'
@@ -62,7 +61,7 @@ class EntrepreneurCard extends React.Component {
                 <img className="entrepreneur-card__profile-img" src={this.props.profilePictureInstagram} alt="Foto do perfil do empreendedor no Instagram" />
                 <span className="user">
                     <h3 className="user__full-name">{this.props.fullNameInstagram}</h3>
-                    {!this.state.editing ? <h3 className="user__user-name">@{this.props.usernameInstagram}</h3> : <FormInput defaultValue={this.props.usernameInstagram} className="form-input" type='text' placeholder='@usuário' onChange={this.handleUserInput} />}
+                    <h3 className="user__user-name">@{this.props.usernameInstagram}</h3>
                     {!this.state.editing ? <h3 className="user__phone-number">{this.props.phoneNumber}</h3> : <MaskedInput
                         mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         guide={true}

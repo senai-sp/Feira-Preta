@@ -28,13 +28,16 @@ class Navbar extends React.Component {
                     <img className="navbar__logo" src={LogoFFP} alt="Logo Feira Preta" />
                     <nav className={this.state.menuOpen ? 'navbar-links-open' : 'navbar-links'}>
                         <Link className="link" to="/" onClick={this.toggleClick}>
-                            Home
+                            Avaliação da Feira
                             </Link>
                         <Link className="link" to="/empreendedores" onClick={this.toggleClick}>
                             Empreendedores
                             </Link>
                         <Link className="link" to="/destaques" onClick={this.toggleClick}>
                             Destaques
+                            </Link>
+                        <Link className="link" to="/posts" onClick={this.toggleClick}>
+                            Lista de Posts
                             </Link>
                     </nav>
                     <button className="hamburguer-button" onClick={this.toggleClick}>{this.state.menuOpen ? <FaClose className="fas fa-close" aria-hidden="true"></FaClose> : <FaBars className="fas fa-bars" aria-hidden="true"></FaBars>}</button>

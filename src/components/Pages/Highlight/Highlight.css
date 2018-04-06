@@ -1,0 +1,16 @@
+.highlight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    min-width: 320px;
+    margin: 8rem auto 0 auto;
+}
+
+.highlight__title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: .2rem;
+    position: relative;
+}

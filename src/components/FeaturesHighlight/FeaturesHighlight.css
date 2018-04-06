@@ -1,10 +1,10 @@
-.features-list {
+.features-highlight {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
     max-width: 1300px;
 }
-.add-highlight{
-    color: #dede28;
+.remove-icon{
+    color: #e93129;
 }

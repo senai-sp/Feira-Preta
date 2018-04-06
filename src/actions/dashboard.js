@@ -1,5 +1,5 @@
 import { getDashboard } from '../api/dashboard'
-import { addFailure } from './api'
+import { failureMessage } from './api'
 export const SHOW_DASHBOARD = 'SHOW_DASHBOARD'
 
 export function showDashboard() {
@@ -13,9 +13,9 @@ export function showDashboard() {
             })
             .catch((error) => {
                 if (error.message === 'Network Error') {
-                    dispatch(addFailure('Não foi possível recuperar os dados de avaliação da feira. Verifique sua conexão com a Internet e tente novamente'))
+                    dispatch(failureMessage('Não foi possível recuperar os dados de avaliação da feira. Verifique sua conexão com a Internet e tente novamente'))
                 } else {
-                    dispatch(addFailure(error.response.data))
+                    dispatch(failureMessage(error.response.data))
                 }
             })
     }
