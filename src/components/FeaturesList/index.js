@@ -11,8 +11,9 @@ import './FeaturesList.css'
 class FeaturesList extends Component {
     constructor(props) {
         super(props)
-        this.state = { orderedFeatures: [], adding: false }
+        this.state = { orderedFeatures: [], adding: false, selectValue: '' }
         this.addHandler = this.addHandler.bind(this)
+        this.handleOption = this.handleOption.bind(this)
     }
 
     componentDidMount() {
@@ -24,7 +25,7 @@ class FeaturesList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ orderedFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === false).reverse() })
+        this.setState({ orderedFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === false) }, () => this.orderFeatures())
     }
 
     addHandler(link) {
@@ -40,16 +41,50 @@ class FeaturesList extends Component {
         this.setState({ link: '', adding: false })
     }
 
+    handleOption(event) {
+        this.setState({ selectValue: event.target.value }, () => this.orderFeatures(this.state.selectValue));
+    }
+
+    orderFeatures(selectValue) {
+        switch (this.state.selectValue) {
+            case 'subtitle':
+                this.setState({ orderedFeatures: this.state.orderedFeatures.sort((a, b) => (a.subtitle > b.subtitle) ? 1 : (b.subtitle > a.subtitle) ? -1 : 0) })
+                break
+            case 'fullNameInstagram':
+                this.setState({ orderedFeatures: this.state.orderedFeatures.sort((a, b) => (a.person.fullNameInstagram > b.person.fullNameInstagram) ? 1 : (b.person.fullNameInstagram > a.person.fullNameInstagram) ? -1 : 0) })
+                break
+            case 'createdDate':
+                this.setState({ orderedFeatures: this.state.orderedFeatures.sort((a, b) => (a.person.createdDate > b.person.createdDate) ? 1 : (b.person.createdDate > a.person.createdDate) ? -1 : 0) })
+                break
+            default:
+                this.setState({ orderedFeatures: this.state.orderedFeatures.sort((a, b) => (a.person.usernameInstagram > b.person.usernameInstagram) ? 1 : (b.person.usernameInstagram > a.person.usernameInstagram) ? -1 : 0) })
+                break
+        }
+    }
+
     render() {
 
         return (
             <section className="features-list">
+
+                <div className='ordination-options'>
+                    <span className='ordination-options__title'>Ordenar por </span>
+                    <select className='ordination-options__select' value={this.state.selectValue} onChange={this.handleOption}>
+                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" >Nome de usuário</option>
+                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" >Nome completo</option>
+                        <option className='ordination-options__select-option' id="subtitle" name="selectOrder" value="subtitle" >Legenda</option>
+                        <option className='ordination-options__select-option' id="createdDate" name="selectOrder" value="createdDate" >Data de inclusão</option>
+                    </select>
+                </div>
+{/*createdDate={feature.person.createdDate.left(6)}*/}
                 {this.state.orderedFeatures.map(feature => (
                     <FeaturesCard
                         key={feature.id}
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
-                        user={feature.person.fullNameInstagram}
+                        fullNameInstagram={feature.person.fullNameInstagram}
+                        usernameInstagram={feature.person.usernameInstagram}
+                        
                         click={() => this.addHandler(feature.link)}
                         href={feature.link}>
                         <FaStar className="add-highlight" />

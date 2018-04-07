@@ -60,9 +60,9 @@ class EntrepreneurList extends Component {
                 <div className='ordination-options'>
                     <span className='ordination-options__title'>Ordenar por </span>
                     <select className='ordination-options__select' value={this.state.selectValue} onChange={this.handleChange}>
-                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" >nome de usuário</option>
-                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" >nome completo</option>
-                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" >telefone</option>
+                        <option className='ordination-options__select-option' id="usernameInstagram" name="selectOrder" value="usernameInstagram" >Nome de usuário</option>
+                        <option className='ordination-options__select-option' id="fullNameInstagram" name="selectOrder" value="fullNameInstagram" >Nome completo</option>
+                        <option className='ordination-options__select-option' id="phoneNumber" name="selectOrder" value="phoneNumber" >Telefone</option>
                     </select>
                 </div>
                 {this.state.orderedEntrepeneur.map(entrepreneur => (
