@@ -11,7 +11,7 @@
     flex-direction: column;
     width: 70%;
     min-width: 300px;
-    margin: .5rem auto;
+    /* margin: .5rem auto; */
     border: 0;
     padding: .5rem;
     border-radius: 3px;

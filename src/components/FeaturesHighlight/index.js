@@ -21,7 +21,7 @@ class FeaturesHighlight extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ highlightFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === true) })
+        this.setState({ highlightFeatures: [...nextProps.features].filter((feature) => feature.isHighlight === true).reverse() })
     }
 
     removeHandler(id) {
@@ -46,7 +46,8 @@ class FeaturesHighlight extends Component {
                         key={feature.id}
                         image={feature.imageStandardResolution}
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
-                        user={feature.person.fullNameInstagram}
+                        fullNameInstagram={feature.person.fullNameInstagram}
+                        usernameInstagram={feature.person.usernameInstagram}
                         click={() => this.removeHandler(feature.id)}
                         href={feature.link}>
                         <FaClose className="remove-icon" />

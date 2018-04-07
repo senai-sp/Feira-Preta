@@ -1,8 +1,4 @@
 .highlight {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 70%;
     min-width: 320px;
     margin: 8rem auto 0 auto;
 }
