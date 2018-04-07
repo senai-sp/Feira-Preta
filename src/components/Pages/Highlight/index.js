@@ -3,10 +3,10 @@ import FeaturesHighlight from '../../FeaturesHighlight'
 import './Highlight.css'
 
 const Highlight = () => (
-    <article className="highlight">
+    <section className="highlight">
         <h1 className="highlight__title">Destaques</h1>
         <FeaturesHighlight />
-    </article>
+    </section>
 )
 
 export default Highlight
