@@ -12,7 +12,6 @@ class Dashboard extends React.Component {
 
     render() {
         const data = [
-            { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 0' : 'n0' , votos: this.props.dashboard.totalVotesZero },
             { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 1' : 'n1', votos: this.props.dashboard.totalVotesOne },
             { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 2' : 'n2', votos: this.props.dashboard.totalVotesTwo },
             { nota: (window.matchMedia("(min-width: 720px)").matches) ? 'nota 3' : 'n3', votos: this.props.dashboard.totalVotesThree },
