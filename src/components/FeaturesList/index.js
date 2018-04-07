@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listFeatures, addFeature, cleanMessage } from '../../actions'
+import { updateFeatures, addFeature, cleanMessage } from '../../actions'
 import FaStar from 'react-icons/lib/fa/star'
 import FeaturesCard from '../FeaturesCard'
 import FormButton from '../Form/FormButton'
 import Modal from '../Modal'
 import './FeaturesList.css'
-
 
 class FeaturesList extends Component {
     constructor(props) {
@@ -17,7 +16,7 @@ class FeaturesList extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatchListFeatures()
+        this.props.dispatchUpdateFeatures()
     }
 
     componentWillUnmount() {
@@ -108,8 +107,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    dispatchListFeatures: () => {
-        dispatch(listFeatures())
+    dispatchUpdateFeatures: () => {
+        dispatch(updateFeatures())
     },
     dispatchAddFeature: link => {
         dispatch(addFeature(link))

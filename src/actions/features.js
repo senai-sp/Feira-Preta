@@ -1,4 +1,4 @@
-import { postLink, getLinks, deleteLink } from '../api/features'
+import { postLink, getLinks, deleteLink, postFeatures } from '../api/features'
 import { failureMessage, successMessage, START_LOAD } from './api'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
@@ -52,6 +52,22 @@ export function removeFeature(id) {
             .catch((error) => {
                 if (error.message === 'Network Error') {
                     dispatch(failureMessage('Não foi possível remover o destaque. Verifique sua conexão com a Internet e tente novamente'))
+                } else {
+                    dispatch(failureMessage(error.response.data))
+                }
+            })
+    }
+}
+
+export function updateFeatures() {
+    return dispatch => {
+        postFeatures()
+            .then(response => {
+                dispatch(listFeatures())
+            })
+            .catch((error) => {
+                if (error.message === 'Network Error') {
+                    dispatch(failureMessage('Verifique sua conexão com a Internet e tente novamente'))
                 } else {
                     dispatch(failureMessage(error.response.data))
                 }
