@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { listFeatures, removeFeature } from '../../actions'
+import { listFeatures, removeFeature, cleanMessage } from '../../actions'
 import FaClose from 'react-icons/lib/fa/close'
 import FeaturesCard from '../FeaturesCard'
 import FormButton from '../Form/FormButton'
@@ -18,6 +18,10 @@ class FeaturesHighlight extends Component {
 
     componentDidMount() {
         this.props.dispatchListFeatures()
+    }
+
+    componentWillUnmount() {
+        this.props.dispatchCleanMessage()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -76,6 +80,9 @@ const mapDispatchToProps = dispatch => ({
     },
     dispatchRemoveFeature: id => {
         dispatch(removeFeature(id))
+    },
+    dispatchCleanMessage: () => {
+        dispatch(cleanMessage())
     }
 })
 
