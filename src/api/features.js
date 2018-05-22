@@ -1,12 +1,16 @@
 import instance from './instance'
 
 
-export function postLink(link) {
-    return instance.post('/publication/highlight', { link })
+export function postLink(id, link) {
+    return instance.put(`/publication/highlight/${id}`, { isHighlight: true })
 }
 
 export function postFeatures() {
     return instance.post('/publication/automatic')
+}
+
+export function editPublication(id, data) {
+    return instance.put(`/publication/${id}`, data);
 }
 
 export function getLinks() {

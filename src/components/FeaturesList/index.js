@@ -36,7 +36,7 @@ class FeaturesList extends Component {
 
     addHighlight() {
         this.props.dispatchAddFeature(this.state.link)
-        this.setState({ link: '', adding: false })
+        this.setState({ link: '', adding: false, })
     }
     
     render() {
@@ -50,7 +50,7 @@ class FeaturesList extends Component {
                         text={feature.subtitle ? feature.subtitle : 'Sem legenda'}
                         fullNameInstagram={feature.person.fullNameInstagram}
                         usernameInstagram={feature.person.usernameInstagram}
-                        click={() => this.addHandler(feature.link)}
+                        click={() => this.addHandler(feature.id)}
                         href={feature.link}>
                         <FaStar className="add-highlight" />
                     </FeaturesCard>
@@ -76,8 +76,8 @@ const mapDispatchToProps = dispatch => ({
     dispatchUpdateFeatures: () => {
         dispatch(updateFeatures())
     },
-    dispatchAddFeature: link => {
-        dispatch(addFeature(link))
+    dispatchAddFeature: id => {
+        dispatch(addFeature(id))
     },
     dispatchCleanMessage: () => {
         dispatch(cleanMessage())

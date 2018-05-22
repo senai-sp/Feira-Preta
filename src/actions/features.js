@@ -1,13 +1,13 @@
-import { postLink, getLinks, deleteLink, postFeatures } from '../api/features'
+import { postLink, getLinks, deleteLink, postFeatures, editPublication } from '../api/features'
 import { failureMessage, successMessage, START_LOAD } from './api'
 export const LIST_FEATURES = 'LIST_FEATURES'
 
-export function addFeature(link) {
+export function addFeature(id) {
     return dispatch => {
         dispatch({
             type: START_LOAD
         })
-        postLink(link)
+        postLink(id)
             .then((response) => {
                 dispatch(successMessage('Destaque cadastrado com sucesso'))
                 dispatch(listFeatures())
@@ -44,7 +44,7 @@ export function listFeatures() {
 
 export function removeFeature(id) {
     return dispatch => {
-        deleteLink(id)
+        editPublication(id, { isHighlight: false })
             .then((response) => {
                 dispatch(successMessage('Destaque removido com sucesso'))
                 dispatch(listFeatures())

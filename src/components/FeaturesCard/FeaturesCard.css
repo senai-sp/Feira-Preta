@@ -42,12 +42,16 @@
     margin: 0 0 0.3rem;
     border: 0;
     border-radius: 3px;
+    object-fit: cover;
     box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
 }
 
 .card__text {
     text-align: justify;
     color:#4b4f56;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {
